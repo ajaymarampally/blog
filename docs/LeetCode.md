@@ -52,4 +52,30 @@ class Solution:
         return res
 ```
 
+### [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+
+        int res = 0;
+        int l = 0;
+        int r = height.length - 1;
+        int area = Integer.MIN_VALUE;
+
+        while(l<r){
+            area = (r-l) * Math.min(height[l],height[r]);
+            res = Math.max(res,area);
+
+            if(height[l]<height[r]){
+                l++;
+            }
+            else{
+                r--;
+            }
+        }
+        return res;
+    }
+}
+```
 
