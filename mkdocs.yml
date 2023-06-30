@@ -1,7 +1,16 @@
-site_name: AM Docs
+site_name: Ajay Marampalli
 site_url: https://ajaymarampally.github.io/blog/
+
+#Repository
+repo_name: ajaymarampally/blog
+repo_url: https://ajaymarampally.github.io/blog/
+edit_uri: ''
+
 theme:
   name: material
+  custom_dir: theme
+  logo: images/logo.png
+  custom_css: custom.css
   features:
     - navigation.tabs
     - navigation.sections
@@ -18,40 +27,45 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
-      primary: teal
+      primary: indigo
       accent: purple
     - scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-      primary: teal
+      primary: indigo
       accent: lime
 
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ajaymarampally
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ajaymarampally
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/pengyuc
+  analytics:
+    provider: google
+    property: G-CS24T0932L
+
 markdown_extensions:
+  - toc:
+      permalink: false
   - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
+      linenums: true
+      linenums_style: pymdownx.table
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.superfences
   - pymdownx.mark
-  - attr_list
+  - pymdownx.tabbed:
+      alternate_style: true
 
 
 copyright: |
   &copy; 2023 <a href="https://github.com/ajaymarampally"  target="_blank" rel="noopener">Ajay Marampalli</a>
-
-extra_css:
-  - 'https://www.google-analytics.com/analytics.css'
-
-extra_javascript:
-  - 'https://www.googletagmanager.com/gtag/js?id=G-CS24T0932L'
-  - |
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-CS24T0932L');
