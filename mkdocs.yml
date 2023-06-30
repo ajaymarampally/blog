@@ -1,4 +1,5 @@
 site_name: AM Docs
+site_url: https://ajaymarampally.github.io/blog/
 theme:
   name: material
   features:
