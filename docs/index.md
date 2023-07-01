@@ -61,6 +61,54 @@ class MinStack {
 }
 ```
 
+### [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
+
+
+![Alt text](150.png)
+
+```java
+class Solution {
+    /*
+        t.c -> O(n) , s.c O(n)
+        Approach:
+            whenever we approach a expression pop two elements from the stack and add the result back to the stack
+
+
+    */
+
+
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> st = new Stack<>();
+
+        for(String c:tokens){
+            if(c.equals("+")){
+                int a = st.pop();
+                int b = st.pop();
+                st.push(a+b);
+            }
+            else if(c.equals("-")){
+                int a = st.pop();
+                int b = st.pop();
+                st.push(b-a);
+            }
+            else if(c.equals("*")){
+                st.push(st.pop() * st.pop());
+            }
+            else if(c.equals("/")){
+                int a = st.pop();
+                int b = st.pop();
+                st.push(b/a);
+            }
+            else{
+                st.add(Integer.parseInt(c));
+            }
+        }
+
+        return st.pop();
+    }
+}
+```
+
 
 ## Sliding window
 
