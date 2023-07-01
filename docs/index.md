@@ -60,6 +60,46 @@ class MinStack {
     }
 }
 ```
+### [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
+
+<img src="22.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```py
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        '''
+         t.c - O(2^n) s.c O(n) to hold stack and O(2^n) for res stack
+         Approach:
+            backtrack algo
+            start with (0,0)
+            maintain two integers open and close
+            if open < n:
+                add('(')
+                backtrack(open+1)
+                pop()
+            if close < o: (closed cant be greater than o)
+                add(')')
+                backtrack(close+1)
+                pop()
+        '''
+        res = []
+        st = []
+
+        def bt(o,c):
+            if o == c == n:
+                res.append("".join(st))
+                return
+            if o < n:
+                st.append("(")
+                bt(o+1,c)
+                st.pop()
+            if c < o:
+                st.append(")")
+                bt(o,c+1)
+                st.pop()
+        bt(0,0)
+        return res
+```
 
 ### [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
 
@@ -138,50 +178,6 @@ class Solution:
                 maxR = max(maxR,height[r])
         return res
 ```
-
-### [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
-
-<img src="22.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
-![Alt text](image.png)
-
-```py
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        '''
-         t.c - O(2^n) s.c O(n) to hold stack and O(2^n) for res stack
-         Approach:
-            backtrack algo
-            start with (0,0)
-            maintain two integers open and close
-            if open < n:
-                add('(')
-                backtrack(open+1)
-                pop()
-            if close < o: (closed cant be greater than o)
-                add(')')
-                backtrack(close+1)
-                pop()
-        '''
-        res = []
-        st = []
-
-        def bt(o,c):
-            if o == c == n:
-                res.append("".join(st))
-                return
-            if o < n:
-                st.append("(")
-                bt(o+1,c)
-                st.pop()
-            if c < o:
-                st.append(")")
-                bt(o,c+1)
-                st.pop()
-        bt(0,0)
-        return res
-```
-
-
 
 ### [11.Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
