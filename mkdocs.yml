@@ -58,9 +58,6 @@ markdown_extensions:
       linenums_style: pymdownx.table
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:pymdownx.emoji.twemoji
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.superfences
   - pymdownx.mark
   - pymdownx.tabbed:

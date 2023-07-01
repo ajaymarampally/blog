@@ -22,6 +22,46 @@ class Solution:
     return not stack
 ```
 
+### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
+
+```java
+class MinStack {
+        /*t.c O(1) , s.c O(n)
+         Approach:
+         to find the minValue in constant time , maintain a minstack which stores the min until now
+
+        */
+    private Stack<Integer> st;
+    private Stack<Integer> minSt;
+
+    public MinStack(){
+        st = new Stack<>();
+        minSt = new Stack<>();
+    }
+
+    public void push(int val) {
+        st.push(val);
+
+        val = Math.min(val, minSt.isEmpty()?val:minSt.peek());
+        minSt.push(val);
+    }
+
+    public void pop() {
+        st.pop();
+        minSt.pop();
+    }
+
+    public int top() {
+        return st.peek();
+    }
+
+    public int getMin() {
+        return minSt.peek();
+    }
+}
+```
+
+
 ## Sliding window
 
 ### [42.Trapping rain water](https://leetcode.com/problems/trapping-rain-water/)
@@ -138,3 +178,4 @@ class Solution {
     }
 }
 ```
+
