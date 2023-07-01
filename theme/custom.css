@@ -1,3 +1,8 @@
 .md-header__logo img {
     max-height: 120px; /* Adjust the value as needed */
   }
+
+  img{
+    width: 50%;
+    height: 50%;
+  }
