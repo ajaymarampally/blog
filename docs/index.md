@@ -22,7 +22,6 @@ class Solution:
     return not stack
 ```
 
-
 ## Sliding window
 
 ### [42.Trapping rain water](https://leetcode.com/problems/trapping-rain-water/)
@@ -113,7 +112,6 @@ class Solution:
 
     return ans
 ```
-
 
 ## Matrix
 
