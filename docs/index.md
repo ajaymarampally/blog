@@ -2,7 +2,7 @@
 
 ## Stack
 
-### Valid Paranthesis
+### [36.Valid Paranthesis]()
 
 ```py
 class Solution:
@@ -22,7 +22,7 @@ class Solution:
     return not stack
 ```
 
-### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
+### [155.Min Stack](https://leetcode.com/problems/min-stack/description/)
 
 ```java
 class MinStack {
@@ -60,7 +60,7 @@ class MinStack {
     }
 }
 ```
-### [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
+### [22.Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
 
 <img src="22.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
 
@@ -101,7 +101,7 @@ class Solution:
         return res
 ```
 
-### [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
+### [150.Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
 
 
 <img src="150.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
@@ -148,6 +148,88 @@ class Solution {
     }
 }
 ```
+
+### [739.Daily Temperatures](https://leetcode.com/problems/daily-temperatures/description/)
+
+```java
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        /*
+            t.c - O(n) s.c O(n) extra stack
+
+            Approach:
+                keep a stack to store the elements
+                start from the back , check if the stack is empty , if empty then append 0
+                else:
+                    check if element is greater then pop (continue until stack exists)
+                    if element is less than the top of stack , append the difference between curr and top stack to res
+        */
+
+        int[] ans = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int currDay = 0; currDay < temperatures.length; currDay++) {
+            while (!stack.isEmpty() && temperatures[currDay] > temperatures[stack.peek()]) {
+                int prevDay = stack.pop();
+                ans[prevDay] = currDay - prevDay;
+            }
+            stack.add(currDay);
+        }
+        return ans;
+    }
+}
+```
+
+### [853.Car Fleet](https://leetcode.com/problems/car-fleet/description/)
+
+```java
+class Car{
+    public int position;
+    public double time;
+    public Car(int pos,double time){
+        this.position = pos;
+        this.time = time;
+    }
+}
+
+class Solution {
+    public int carFleet(int target, int[] position, int[] speed) {
+        /*
+            Approach 1 : t.c - O(nlogn) s.c O(n) - stack
+            algo:
+                1.make pairs of cars [[pos,speed]]
+                2.start from right , add time taken by car to stack
+                3. if stack has more than 2 items , check if st[-1] <= st[-2] , pop from stack
+                4.return total len of the stack
+            Approach 2: t.c - O(sort) , s.c O(n)
+            algo:
+                1.make car class objects car(pos,time)
+                2.sort the array,
+                3.for car in carArr , if car.time > maxTime --> res++
+                4.return res
+
+        */
+        double maxTime = 0;
+        int n = position.length;
+        int res = 0;
+        Car[] car = new Car[n];
+        for(int z = 0 ; z<n; z++){
+            car[z] = new Car(position[z],(double)(target-position[z])/speed[z]);
+        }
+        Arrays.sort(car,(a,b)-> b.position - a.position);
+
+        for(Car c:car){
+            if(c.time>maxTime){
+                maxTime = c.time;
+                res++;
+            }
+        }
+        return res;
+
+    }
+}
+```
+
+
 
 
 ## Sliding window
