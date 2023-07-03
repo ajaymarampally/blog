@@ -1,5 +1,150 @@
 # LeetCode Solutions
 
+## Binary Search
+
+### [704. Binary Search](https://leetcode.com/problems/binary-search/description/)
+
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+
+        /*
+            t.c - O(logn) s.c - O(1)
+            Approach:
+                s.w
+                1.init l,r at start and end
+                2.find mid and compare with target
+                3.update left and right
+                4.return mid when equal
+        */
+
+        int l = 0;
+        int r = nums.length-1;
+        while (l<=r){
+            int mid = (l+r) / 2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            if (nums[mid]>target){ //ans in left portion
+                r = mid-1;
+            }
+            else if(nums[mid]<target){
+                l = mid+1;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+### [74. Search a 2D matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
+
+```java
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        /*
+            t.c - o(logm+logn) s.c - o(1)
+            Approach:
+                1.find the row which contains the element by b,s log(m)
+                2.peform a second b,s to find the element in that row log(n)
+                3.return el
+        */
+        //edge case
+        if(matrix.length==0){
+            return false;
+        }
+
+
+        int ROWS = matrix.length;
+        int COL = matrix[0].length;
+
+        int top = 0;
+        int btm = ROWS-1;
+
+        while (top<=btm){
+            int row = (top + btm) / 2;
+            System.out.println(row);
+            System.out.println(COL-1);
+            if (target > matrix[row][matrix[row].length-1]){ // after the mid
+                top = row+1;
+            }
+            else if(target < matrix[row][0]){
+                btm = row-1;
+            }
+            else{
+                break;
+            }
+        }
+
+        //if no row is found with the elem , break
+        if(!(top<=btm)){
+            return false;
+        }
+        //search in the row
+        int s_row = (top + btm) / 2;
+        int l = 0;Sea
+        int r = matrix[0].length;
+
+        while (l<=r){
+            int mid = (l+r) / 2;
+            if(matrix[s_row][mid]==target){
+                return true;
+            }
+            if (matrix[s_row][mid]>target){ //ans in left portion
+                r = mid-1;
+            }
+            else if(matrix[s_row][mid]<target){
+                l = mid+1;
+            }
+        }
+        return false;
+    }
+}
+```
+
+`second approach` - works for smaller matrix , less number of rows
+
+```java
+class Solution {
+  public boolean searchMatrix(int[][] matrix, int target) {
+    /*
+        t.c o(log(m*n)) s.c o(1)
+        approach:
+        1. flatten the matrix , left = start , end = m*n
+        2.search for el
+        3.return
+
+
+    */
+    //edge case
+    if (matrix.length == 0)
+      return false;
+
+    final int m = matrix.length;
+    final int n = matrix[0].length;
+    int l = 0;
+    int r = m * n;
+
+    while (l < r) {
+      final int mid = (l + r) / 2;
+      final int i = mid / n;
+      final int j = mid % n;
+      if (matrix[i][j] == target)
+        return true;
+      if (matrix[i][j] < target)
+        l = mid + 1;
+      else
+        r = mid;
+    }
+
+    return false;
+  }
+}
+```
+
+
+
+
 ## Stack
 
 ### [36.Valid Paranthesis]()
@@ -60,6 +205,7 @@ class MinStack {
     }
 }
 ```
+
 ### [22.Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
 
 <img src="22.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
@@ -102,7 +248,6 @@ class Solution:
 ```
 
 ### [150.Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
-
 
 <img src="150.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
 
@@ -283,9 +428,6 @@ class Solution {
 }
 ```
 
-
-
-
 ## Sliding window
 
 ### [42.Trapping rain water](https://leetcode.com/problems/trapping-rain-water/)
@@ -402,4 +544,3 @@ class Solution {
     }
 }
 ```
-
