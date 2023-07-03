@@ -142,6 +142,52 @@ class Solution {
 }
 ```
 
+### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
+
+<img src="875.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+        /*
+            t.c - o(Nlogn) s.c o(1)
+            approach-
+            1. need to find the k which is optimal to finish in less than h hours
+            2. total possible for k ->[1,max(piles)] , do a binary search on this range
+            3. calculate total hours for a specific k , if calculated_hours< h , search in left portion , else right
+            4.return mid
+        */
+    public int calucateHours(int[] piles,int k){
+        //calcuate hours taken for a k
+        int res = 0;
+        for(int c:piles){
+            res+= Math.ceil((double) c / k);
+        }
+        return res;
+    }
+
+    public int minEatingSpeed(int[] piles, int h) {
+
+
+        int l = 1;
+        int r = 1;
+        for(int c:piles)
+            r = Math.max(r,c);
+
+        while (l<r){
+            int mid = (l+r)/2;
+            int hrs = calucateHours(piles,mid);
+            if (hrs<=h){
+                r = mid;
+            }
+            else if(hrs>h){
+                l = mid+1;
+            }
+        }
+        return r;
+    }
+}
+```
+
 
 
 
