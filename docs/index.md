@@ -229,6 +229,60 @@ class Solution {
 }
 ```
 
+### [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+
+<img src="84.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        /*
+            largest area --> max_width or max_height
+            area = (l*b)
+            t.c -> O(n)
+            s.c -> O(n)
+            Approach:
+                1. we can make an rectangle only when the next element is greater than the current
+                2. start at ind 0, add to stack with pair (ind,height)
+                3. when element height is less than stack peek , pop from stack and calcuate the area
+                4. at last if any elements are left in the stack , they can extend all the way until end
+                5. return the maxArea formed
+        */
+
+        int res = 0;
+        int n = heights.length;
+        int start;
+
+        Stack<Pair<Integer,Integer>> st = new Stack<>();
+        //start iteration
+        for(int z=0;z<n;z++){
+            int el = heights[z];
+            start = z;
+            //start poping from stack and modify the start index
+            while(!st.empty() && st.peek().getValue()>el){
+                Pair<Integer,Integer> p = st.pop();
+                int index = p.getKey();
+                int val = p.getValue();
+                res = Math.max(res,val*(z-index)); //calculating all rectangles
+                start = index; //update start index
+            }
+            //add to stack
+            st.push(new Pair(z,el));
+        }
+
+        //check for the remaining element in the stack (can be extended until end)
+        while(!st.empty()){
+            Pair<Integer,Integer> s = st.pop();
+            int i = s.getKey();
+            int h = s.getValue();
+            res = Math.max(res,h*(n-i));
+        }
+
+        return res;
+    }
+}
+```
+
 
 
 
