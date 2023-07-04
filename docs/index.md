@@ -2,41 +2,60 @@
 
 ## Binary Search
 
-### [704. Binary Search](https://leetcode.com/problems/binary-search/description/)
+### [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 ```java
 class Solution {
     public int search(int[] nums, int target) {
-
         /*
-            t.c - O(logn) s.c - O(1)
-            Approach:
-                s.w
-                1.init l,r at start and end
-                2.find mid and compare with target
-                3.update left and right
-                4.return mid when equal
-        */
+            T.C  o(logn) s.c o(1)
 
+            approach:
+                1.init l,r = 0,len(nums)-1
+                2. check if target is in left portionn or right portion (based on nums[l])
+                3. if left portion:
+                        check with nums[l] and mid:
+                            if target<nums[l] or target>mid: //element in right portion
+                                left = mid+1
+                            else:
+                                r = mid-1
+                    if right portion:
+                        check with nums[r] and mid:
+                            if target < mid or target > nums[r]: // element in left portion
+                                r = mid-1
+                            else:
+                                l = mid+1
+        */
         int l = 0;
-        int r = nums.length-1;
-        while (l<=r){
-            int mid = (l+r) / 2;
-            if(nums[mid]==target){
+        int r = nums.length - 1;
+
+        while(l<=r){
+
+            int mid = (l+r)/2;
+
+            if(nums[mid] == target){
                 return mid;
             }
-            if (nums[mid]>target){ //ans in left portion
-                r = mid-1;
+            //left sorted
+            if(nums[l]<=nums[mid]){
+                if(target > nums[mid] || target < nums[l]){
+                    l = mid + 1;
+                }else{
+                    r = mid - 1;
+                }
+            }else{//right sorted
+                if(target < nums[mid] || target > nums [r]){
+                    r = mid - 1;
+                }else{
+                    l = mid + 1;
+                }
             }
-            else if(nums[mid]<target){
-                l = mid+1;
-            }
+
         }
         return -1;
     }
 }
 ```
-
 ### [74. Search a 2D matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
 
 ```java
@@ -141,6 +160,88 @@ class Solution {
   }
 }
 ```
+### [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+
+<img src="153.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    /*
+        t,c - o(logn) s,c o(1)
+
+        ALGO:
+        1. maintain a res to hold min
+        2. in a sorted rotated array , at any point mid can belong either to right sorted portion or left sorted portion
+        3. if nums[mid]>= nums[left] --> belongs to left portion , have to search in right portion for min value (set left = mid+1)
+        4.else belongs to right portion , have to search in left (set right = mid)
+        5.return left
+
+    */
+
+
+    public int findMin(int[] nums) {
+        // int m = Integer.MAX_VALUE;
+        // for(int c:nums)
+        //     m = Math.min(m,c);
+        // return m;
+
+        int res = 0;
+        int l = 0;
+        int r = nums.length-1;
+
+        while(l<=r){
+            if (nums[l] <= nums[r]) {
+                return nums[l]; //termination condition , minimum at left
+            }
+            int mid = (l+r)/2;
+            if(nums[mid]>=nums[l]){
+                l = mid+1;
+            }
+            else if(nums[mid]<=nums[l]){
+                r = mid;
+            }
+        }
+        return 0;
+    }
+}
+```
+
+### [704. Binary Search](https://leetcode.com/problems/binary-search/description/)
+
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+
+        /*
+            t.c - O(logn) s.c - O(1)
+            Approach:
+                s.w
+                1.init l,r at start and end
+                2.find mid and compare with target
+                3.update left and right
+                4.return mid when equal
+        */
+
+        int l = 0;
+        int r = nums.length-1;
+        while (l<=r){
+            int mid = (l+r) / 2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            if (nums[mid]>target){ //ans in left portion
+                r = mid-1;
+            }
+            else if(nums[mid]<target){
+                l = mid+1;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+
 
 ### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 
@@ -149,7 +250,7 @@ class Solution {
 ```java
 class Solution {
         /*
-            t.c - o(Nlogn) s.c o(1)
+            t.c - o(Nlog(max(n))) s.c o(1)
             approach-
             1. need to find the k which is optimal to finish in less than h hours
             2. total possible for k ->[1,max(piles)] , do a binary search on this range
@@ -188,69 +289,7 @@ class Solution {
 }
 ```
 
-
-
-
 ## Stack
-
-### [36.Valid Paranthesis]()
-
-```py
-class Solution:
-  def isValid(self, s: str) -> bool:
-    stack = []
-
-    for c in s:
-      if c == '(':
-        stack.append(')')
-      elif c == '{':
-        stack.append('}')
-      elif c == '[':
-        stack.append(']')
-      elif not stack or stack.pop() != c:
-        return False
-
-    return not stack
-```
-
-### [155.Min Stack](https://leetcode.com/problems/min-stack/description/)
-
-```java
-class MinStack {
-        /*t.c O(1) , s.c O(n)
-         Approach:
-         to find the minValue in constant time , maintain a minstack which stores the min until now
-
-        */
-    private Stack<Integer> st;
-    private Stack<Integer> minSt;
-
-    public MinStack(){
-        st = new Stack<>();
-        minSt = new Stack<>();
-    }
-
-    public void push(int val) {
-        st.push(val);
-
-        val = Math.min(val, minSt.isEmpty()?val:minSt.peek());
-        minSt.push(val);
-    }
-
-    public void pop() {
-        st.pop();
-        minSt.pop();
-    }
-
-    public int top() {
-        return st.peek();
-    }
-
-    public int getMin() {
-        return minSt.peek();
-    }
-}
-```
 
 ### [22.Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
 
@@ -291,6 +330,80 @@ class Solution:
                 st.pop()
         bt(0,0)
         return res
+```
+
+### [36.Valid Paranthesis]()
+
+```py
+class Solution:
+  def isValid(self, s: str) -> bool:
+    stack = []
+
+    for c in s:
+      if c == '(':
+        stack.append(')')
+      elif c == '{':
+        stack.append('}')
+      elif c == '[':
+        stack.append(']')
+      elif not stack or stack.pop() != c:
+        return False
+
+    return not stack
+```
+
+### [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+
+<img src="84.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        /*
+            largest area --> max_width or max_height
+            area = (l*b)
+            t.c -> O(n)
+            s.c -> O(n)
+            Approach:
+                1. we can make an rectangle only when the next element is greater than the current
+                2. start at ind 0, add to stack with pair (ind,height)
+                3. when element height is less than stack peek , pop from stack and calcuate the area
+                4. at last if any elements are left in the stack , they can extend all the way until end
+                5. return the maxArea formed
+        */
+
+        int res = 0;
+        int n = heights.length;
+        int start;
+
+        Stack<Pair<Integer,Integer>> st = new Stack<>();
+        //start iteration
+        for(int z=0;z<n;z++){
+            int el = heights[z];
+            start = z;
+            //start poping from stack and modify the start index
+            while(!st.empty() && st.peek().getValue()>el){
+                Pair<Integer,Integer> p = st.pop();
+                int index = p.getKey();
+                int val = p.getValue();
+                res = Math.max(res,val*(z-index)); //calculating all rectangles
+                start = index; //update start index
+            }
+            //add to stack
+            st.push(new Pair(z,el));
+        }
+
+        //check for the remaining element in the stack (can be extended until end)
+        while(!st.empty()){
+            Pair<Integer,Integer> s = st.pop();
+            int i = s.getKey();
+            int h = s.getValue();
+            res = Math.max(res,h*(n-i));
+        }
+
+        return res;
+    }
+}
 ```
 
 ### [150.Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
@@ -336,6 +449,45 @@ class Solution {
         }
 
         return st.pop();
+    }
+}
+```
+
+### [155.Min Stack](https://leetcode.com/problems/min-stack/description/)
+
+```java
+class MinStack {
+        /*t.c O(1) , s.c O(n)
+         Approach:
+         to find the minValue in constant time , maintain a minstack which stores the min until now
+
+        */
+    private Stack<Integer> st;
+    private Stack<Integer> minSt;
+
+    public MinStack(){
+        st = new Stack<>();
+        minSt = new Stack<>();
+    }
+
+    public void push(int val) {
+        st.push(val);
+
+        val = Math.min(val, minSt.isEmpty()?val:minSt.peek());
+        minSt.push(val);
+    }
+
+    public void pop() {
+        st.pop();
+        minSt.pop();
+    }
+
+    public int top() {
+        return st.peek();
+    }
+
+    public int getMin() {
+        return minSt.peek();
     }
 }
 ```
@@ -420,88 +572,7 @@ class Solution {
 }
 ```
 
-### [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-
-<img src="84.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
-
-```java
-class Solution {
-    public int largestRectangleArea(int[] heights) {
-        /*
-            largest area --> max_width or max_height
-            area = (l*b)
-            t.c -> O(n)
-            s.c -> O(n)
-            Approach:
-                1. we can make an rectangle only when the next element is greater than the current
-                2. start at ind 0, add to stack with pair (ind,height)
-                3. when element height is less than stack peek , pop from stack and calcuate the area
-                4. at last if any elements are left in the stack , they can extend all the way until end
-                5. return the maxArea formed
-        */
-
-        int res = 0;
-        int n = heights.length;
-        int start;
-
-        Stack<Pair<Integer,Integer>> st = new Stack<>();
-        //start iteration
-        for(int z=0;z<n;z++){
-            int el = heights[z];
-            start = z;
-            //start poping from stack and modify the start index
-            while(!st.empty() && st.peek().getValue()>el){
-                Pair<Integer,Integer> p = st.pop();
-                int index = p.getKey();
-                int val = p.getValue();
-                res = Math.max(res,val*(z-index)); //calculating all rectangles
-                start = index; //update start index
-            }
-            //add to stack
-            st.push(new Pair(z,el));
-        }
-
-        //check for the remaining element in the stack (can be extended until end)
-        while(!st.empty()){
-            Pair<Integer,Integer> s = st.pop();
-            int i = s.getKey();
-            int h = s.getValue();
-            res = Math.max(res,h*(n-i));
-        }
-
-        return res;
-    }
-}
-```
-
 ## Sliding window
-
-### [42.Trapping rain water](https://leetcode.com/problems/trapping-rain-water/)
-
-```py
-class Solution:
-    def trap(self, height: List[int]) -> int:
-        #edge case
-        if not height:
-            return 0
-
-        res = 0
-        l = 0
-        r = len(height)-1
-        maxL = height[l]
-        maxR = height[r]
-
-        while(l<r):
-            if(maxL<maxR):
-                res+= maxL - height[l]
-                l+=1
-                maxL = max(maxL,height[l])
-            else:
-                res+=maxR - height[r]
-                r-=1
-                maxR = max(maxR,height[r])
-        return res
-```
 
 ### [11.Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
@@ -563,6 +634,33 @@ class Solution:
           r -= 1
 
     return ans
+```
+
+### [42.Trapping rain water](https://leetcode.com/problems/trapping-rain-water/)
+
+```py
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #edge case
+        if not height:
+            return 0
+
+        res = 0
+        l = 0
+        r = len(height)-1
+        maxL = height[l]
+        maxR = height[r]
+
+        while(l<r):
+            if(maxL<maxR):
+                res+= maxL - height[l]
+                l+=1
+                maxL = max(maxL,height[l])
+            else:
+                res+=maxR - height[r]
+                r-=1
+                maxR = max(maxR,height[r])
+        return res
 ```
 
 ## Matrix
