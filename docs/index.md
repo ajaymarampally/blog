@@ -2,6 +2,76 @@
 
 ## Binary Search
 
+### [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+
+```java
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        /*
+            t.c o(log(min(m,n))) s.c o(1)
+
+            Approach;
+                1. No need to merge both the arrays the whole thing can be made into left and right portions
+                2. take the min_len array , make l , r as start and end
+                3. for the other array , set l as 0 and right as ((total/2) - end of first arr)
+                4. check if the partitions are correct by checking the boundaries
+                5. if even:
+                        max(first_array)+min(second_array) / 2
+                    odd:
+                        max(left_array)
+        */
+
+       int m = nums1.length;
+        int n = nums2.length;
+
+        if (m > n) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
+
+        int total = m + n;
+        int half = (total + 1) / 2;
+
+        int left = 0;
+        int right = m;
+
+        var result = 0.0;
+
+        while (left <= right) {
+            int i = left + (right - left) / 2;
+            int j = half - i;
+
+            // get the four points around possible median
+            int left1 = (i > 0) ? nums1[i - 1] : Integer.MIN_VALUE;
+            int right1 = (i < m) ? nums1[i] : Integer.MAX_VALUE;
+            int left2 = (j > 0) ? nums2[j - 1] : Integer.MIN_VALUE;
+            int right2 = (j < n) ? nums2[j] : Integer.MAX_VALUE;
+
+            // partition is correct
+            if (left1 <= right2 && left2 <= right1) {
+                // even
+                if (total % 2 == 0) {
+                    result =
+                        (Math.max(left1, left2) + Math.min(right1, right2)) /
+                        2.0;
+                    // odd
+                } else {
+                    result = Math.max(left1, left2);
+                }
+                break;
+            }
+            // partition is wrong (update left/right pointers)
+            else if (left1 > right2) {
+                right = i - 1;
+            } else {
+                left = i + 1;
+            }
+        }
+
+        return result;
+    }
+}
+```
+
 ### [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 ```java
@@ -56,6 +126,7 @@ class Solution {
     }
 }
 ```
+
 ### [74. Search a 2D matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
 
 ```java
@@ -160,6 +231,7 @@ class Solution {
   }
 }
 ```
+
 ### [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
 
 <img src="153.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
@@ -241,8 +313,6 @@ class Solution {
 }
 ```
 
-
-
 ### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 
 <img src="875.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
@@ -288,6 +358,71 @@ class Solution {
     }
 }
 ```
+
+### [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
+
+```java
+class TimeMap {
+    /*
+        t.c - o(logn) s.c O(1)
+        approach:
+        1. items in set operation are sorted (time is always increasing)
+        2. perform binary operation on the dict[key]
+        3. find the closest to the timestamp (<=)
+        4. return
+    */
+    private HashMap<String,List<Pair<String,Integer>>> mp;
+
+    private String binaySearch(List<Pair<String,Integer>> val,int ts){
+        //peform binary
+        int l = 0;
+        int r = val.size()-1;
+        String res = "";
+        while (l<=r){
+            int m = (l+r)/2;
+            //check if <= timestamp
+            int el = val.get(m).getValue();
+            if(el <= ts){
+                res = val.get(m).getKey();
+                l = m+1;
+            }
+            else{
+                r = m-1;
+            }
+        }
+        return res;
+    }
+
+    public TimeMap() {
+        mp = new HashMap();
+    }
+
+    public void set(String key, String value, int timestamp) {
+        //set to the key
+        if(!mp.containsKey(key)){
+            mp.put(key,new ArrayList<>());
+        }
+        mp.get(key).add(new Pair(value,timestamp));
+    }
+
+    public String get(String key, int timestamp) {
+        //check if key exists
+        if(!mp.containsKey(key))
+            return "";
+        List<Pair<String,Integer>> val = mp.get(key);
+        return binaySearch(val,timestamp);
+    }
+}
+
+/**
+ * Your TimeMap object will be instantiated and called as such:
+ * TimeMap obj = new TimeMap();
+ * obj.set(key,value,timestamp);
+ * String param_2 = obj.get(key,timestamp);
+ */
+```
+
+
 
 ## Stack
 
