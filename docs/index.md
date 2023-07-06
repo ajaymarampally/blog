@@ -1,5 +1,80 @@
 # LeetCode Solutions
 
+## Sliding Window
+
+### [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+```java
+class Solution {
+    /*
+        t.c o(n) s.c o(n) - set
+        approach:
+        1. use a set to check for duplicates
+        2. start the left at 0 and increase the sliding window until no duplicates are found
+        3. return the max res
+    */
+
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> cs = new HashSet<>();
+        char[] ns = s.toCharArray();
+        int res = 0;
+        int l = 0;
+        int n = s.length();
+
+        for(int r=0;r<n;r++){
+            while(cs.contains(ns[r])){
+                //remove elements update the pointer
+                cs.remove(ns[l]);
+                l++;
+            }
+            cs.add(ns[r]);
+            res = Math.max(res, r-l+1);
+        }
+        return res;
+    }
+}
+```
+
+### [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        /*
+            t.c : o(n) s.c o(1)
+            approach:
+                1.init two pointer , l = 0 , r = 1
+                2. check until r <= total_len
+                3. if prices[l] < prices[r] // upward curve (calculate profit)
+                4. else update left to the right (shift the whole window)
+                5. return
+        */
+
+        int res = 0;
+        int l = 0;
+        int r = 1;
+
+        while(r<prices.length){
+            if(prices[l]<prices[r]){
+                int profit = prices[r] - prices[l];
+                res = Math.max(res,profit);
+            }
+            else{
+                l = r; // shifting the whole window
+            }
+            r+=1;
+        }
+
+        return res;
+
+    }
+}
+```
+
+
+
+
+
 ## Binary Search
 
 ### [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
