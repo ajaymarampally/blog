@@ -35,6 +35,38 @@ class Solution {
 }
 ```
 
+`second approach` - `t.c O(n), s.c O(128)`
+
+```java
+class Solution {
+    /*
+        t.c o(n)
+        s.c o(128)
+        approach:
+            1. use a array of 128 len to represent all characters
+            2. if any element in array has count>1 , indicates duplicates are found
+            3. init l at 0 , r at 0 , increment the counter of the right elelment
+            4. if count > 1 , move the left towards right (update the sliding window)
+            5.return res
+    */
+    public int lengthOfLongestSubstring(String s) {
+        int res = 0;
+        int[] cnt = new int[128];
+
+        for(int l=0,r=0;r<s.length();++r){
+            ++cnt[s.charAt(r)];
+            while(cnt[s.charAt(r)]>1){
+                --cnt[s.charAt(l++)];
+            }
+            res = Math.max(res,r-l+1);
+        }
+
+        return res;
+
+    }
+}
+```
+
 ### [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 ```java
@@ -71,7 +103,43 @@ class Solution {
 }
 ```
 
+### [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/description/)
 
+<img src="424.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    public int characterReplacement(String s, int k) {
+        /*
+            t.c - o(26*n)
+            s.c - o(26) - hashmap
+            approach:
+            1. init arr to store the cnt of characters
+            2. start l,r = 0 until r reaches end - break point
+            3. increase the cnt of char at r by 1
+            4. check if window is valid (windowSize - max(hashMap) <= k)
+            5. else decrese the count of char and increase the l
+            6. return res
+        */
+
+        int res = 0;
+        int[] hm = new int[26];
+        int max = 0;
+        for(int l=0,r=0;r<s.length();r++){
+            hm[s.charAt(r)-'A']++;
+            max = Math.max(max,hm[s.charAt(r)-'A']);
+            //check if window is valid
+            if(r-l+1 - max >k){
+                //invalid
+                hm[s.charAt(l)-'A']--;
+                l++;
+            }
+            res = Math.max(res,r-l+1);
+        }
+        return res;
+    }
+}
+```
 
 
 
