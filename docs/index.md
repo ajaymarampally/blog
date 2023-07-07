@@ -67,6 +67,74 @@ class Solution {
 }
 ```
 
+### [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/description/)
+
+<img src="76.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    public String minWindow(String s, String t) {
+        /*
+        t.c o(m+n)
+        s.c o(m)
+        Approach:
+            1. have to maintain hash map to check the counts between two strings
+            2. init l,r as 0,0 where l stores the start of the subString to return , run until r reaches end
+            3. match --> indicates total found matches
+                minLen --> min substr found until now
+            4. when match is found at r , add to map and decrement by 1 , if count == 0 , correct match
+            5. run a while loop where matched == len(t) , keep on moving the left towards right to find the min len
+            6.return the substr
+        */
+
+        HashMap<Character,Integer> hm = new HashMap<>();
+        int l = 0;
+        int match = 0;
+        int subStrStart = 0;
+        int minLen = s.length()+1; // can be any number > len of s
+
+        //make map for string t
+        for(char c:t.toCharArray()){
+            hm.put(c,hm.getOrDefault(c,0)+1);
+        }
+
+
+        for(int r=0;r<s.length();r++){
+            //move until match is found
+            char right = s.charAt(r);
+            if(hm.containsKey(right)){
+                //decrement the count in map and check if it's 0
+                hm.put(right,hm.get(right)-1);
+                if(hm.get(right)==0){
+                    //correct match
+                    match++;
+                }
+            }
+
+            //loop to move left
+            while(match == hm.size()){
+                //update minLen and subStrStart
+                if(r-l+1 < minLen){
+                    minLen = r-l+1;
+                    subStrStart = l;
+                }
+                //pop left and check the count and l++
+                char left = s.charAt(l++);
+                if(hm.containsKey(left)){
+                    if(hm.get(left)==0){
+                        match--;
+                    }
+                    hm.put(left,hm.get(left)+1);
+                }
+
+
+            }
+        }
+        return minLen > s.length() ? "" : s.substring(subStrStart,subStrStart+minLen);
+    }
+}
+```
+
 ### [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 ```java
