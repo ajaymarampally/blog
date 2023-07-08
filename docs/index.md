@@ -203,6 +203,53 @@ class Solution {
 }
 ```
 
+### [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/description/)
+
+```java
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        /*
+            brute force:
+            t.c - o(k.(n-k)) s.c o(1)
+            pass through each window and calculate the max
+
+
+            linear - montonic decreasing queue
+            t.c - o(n)
+            s.c - o(n) - queue
+            approach:
+            1. init l,r =0, for first case offer all element in the range to the dequeue
+            2. for the next iteration , check if the q is not empty and if r > last elem of queue , pop everything to left
+            3. if windows size matches , add to the result array
+            4. return
+        */
+        int n = nums.length;
+        int[] res = new int[n-k+1];
+        Deque<Integer> q = new LinkedList<>();
+
+        int l = 0;
+        for(int r=0;r<n;r++){
+            //check if q is empty and the left index is not out of bounds
+            if(!q.isEmpty() && q.peekFirst() < r-k+1){
+                 q.pollFirst();
+            }
+            while(!q.isEmpty() && nums[r]> nums[q.peekLast()]){
+                q.pollLast();
+            }
+            //add the element to queue
+            q.offer(r);
+            if(r>=k-1){
+                res[l++] = nums[q.peekFirst()];
+            }
+        }
+
+        return res;
+
+    }
+}
+```
+
+
 ### [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/description/)
 
 <img src="424.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
