@@ -100,6 +100,56 @@ class Solution {
 }
 ```
 
+### [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
+
+<img src="138.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+/*
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+*/
+
+class Solution {
+    public Node copyRandomList(Node head) {
+
+        /*
+            t.c = 0(n)
+            s.c = o(n) - hash map
+            approach:
+                1. two passes to make the deepy copy
+                2. first pass , store the (curr,val) in the hashmap
+                3. second pass , build the node by fetching values from the hashmap
+        */
+        Node curr = head;
+        Map<Node,Node> hm = new HashMap<>();
+
+        //first pass
+        while(curr!=null){
+            hm.put(curr,new Node(curr.val)); //create a new node
+            curr = curr.next;
+        }
+        curr = head; //bring back curr for next iter
+        while(curr!=null){
+            hm.get(curr).next = hm.get(curr.next); //check for the curr.val in the map for curr
+            hm.get(curr).random = hm.get(curr.random);
+            curr = curr.next;
+        }
+        //return head from map
+        return hm.get(head);
+    }
+}
+```
 
 
 ### [143. Reorder List](https://leetcode.com/problems/reorder-list/description/)
