@@ -48,6 +48,81 @@ class Solution {
 }
 ```
 
+### [143. Reorder List](https://leetcode.com/problems/reorder-list/description/)
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+        t.c o(n)
+        s.c o(1)
+        approach:
+            1. find the mid point of the llist
+            2. reverse the portion from mid to end
+            3. merge first and second portion
+
+    */
+
+    private ListNode findMid(ListNode head){
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+
+        while(fast!=null && fast.next!=null){
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //attach prev to null
+        prev.next = null;
+        return slow;
+    }
+
+    private ListNode reverse(ListNode head){
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr!=null){
+            ListNode tmp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tmp;
+        }
+        return prev;
+    }
+
+    private void merge(ListNode l1,ListNode l2){
+        //1 2 --> l1
+        //4 3 --> l2
+        //1->4->2->3
+        while(l2!=null){
+            ListNode tmp = l1.next; //2
+            l1.next = l2; // 1->4
+            l1 = l2;// moves l1 to 4
+            l2 = tmp;//1-4->2
+        }
+    }
+
+
+    public void reorderList(ListNode head) {
+        if (head == null || head.next == null){
+            return;
+        }
+        ListNode mid = findMid(head);
+        ListNode reverseOrder = reverse(mid);
+        merge(head,reverseOrder);
+    }
+}
+```
+
 ## Sliding Window
 
 ### [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
