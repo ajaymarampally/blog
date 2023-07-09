@@ -2,6 +2,58 @@
 
 ## Linked list
 
+### [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+<img src="19.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+        t.c o(n)
+        s.c o(1)
+        approach:
+            1.create a dummy node ,dummy.next = head
+            2. assign l,r pointers to find the nth element from last
+            3. l = dummy , r= moved by n times from head
+            4. delete the node
+            5. return
+    */
+
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0,head);
+        ListNode l_ptr = dummy;
+        ListNode r_ptr = head;
+
+        while(n>0){
+            r_ptr = r_ptr.next;
+            n--;
+        }
+
+        while(r_ptr!=null){ //reaches the node n
+            l_ptr = l_ptr.next;
+            r_ptr = r_ptr.next;
+        }
+
+        l_ptr.next = l_ptr.next.next; //delete the node
+
+        return dummy.next;
+
+    }
+}
+```
+
 ### [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/description/)
 
 ```java
@@ -47,6 +99,8 @@ class Solution {
     }
 }
 ```
+
+
 
 ### [143. Reorder List](https://leetcode.com/problems/reorder-list/description/)
 
