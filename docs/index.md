@@ -2,6 +2,56 @@
 
 ## Linked list
 
+### [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+        T.C - o(n)
+        s.c - o(1)
+
+        approach;;
+        1. check if carry exists or l1 or l2
+        2. add value to carry , make a new node with carry%10
+        3. return
+    */
+
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dum = new ListNode();
+        ListNode curr = dum;
+        int carry = 0;
+
+        while(carry>0 || l1!=null || l2!=null){
+            if(l1!=null){
+                carry+=l1.val;
+                l1 = l1.next;
+            }
+            if(l2!=null){
+                carry+=l2.val;
+                l2 = l2.next;
+            }
+            curr.next = new ListNode(carry%10);
+            carry /=10;
+            curr = curr.next;
+        }
+
+        return dum.next;
+
+    }
+}
+```
+
 ### [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
 
 <img src="19.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
