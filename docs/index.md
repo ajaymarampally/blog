@@ -207,6 +207,58 @@ class Solution {
 }
 ```
 
+### [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/description/)
+
+<img src="25.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(1)
+
+        approach:
+        1. find the total length , to split it into k parts
+        2. for each part reverse the section and maintatin the curr as first elem of next section
+        3. return dummy
+
+    */
+
+
+  public ListNode reverseKGroup(ListNode head, int k) {
+    if (head == null || k == 1)
+      return head;
+
+    final int length = getLength(head);
+    ListNode dummy = new ListNode(0, head);
+    ListNode prev = dummy;
+    ListNode curr = head;
+
+    for (int i = 0; i < length / k; ++i) {
+      for (int j = 0; j < k - 1; ++j) {
+        // 1 - > 2
+        // 2->1 -> curr (3)
+        ListNode tmp = curr.next; // 2
+        curr.next = tmp.next; // 3
+        tmp.next = prev.next; //1
+        prev.next = tmp; // 2
+      }
+      prev = curr; //5
+      curr = curr.next;
+    }
+
+    return dummy.next;
+  }
+
+  private int getLength(ListNode head) {
+    int length = 0;
+    for (ListNode curr = head; curr != null; curr = curr.next)
+      ++length;
+    return length;
+  }
+}
+```
+
 ### [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 
 <img src="138.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
