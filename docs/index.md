@@ -150,6 +150,63 @@ class Solution {
 }
 ```
 
+### [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/description/)
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+        t.c o(nlogk)
+        s.c o(1)
+
+        approach:
+        1. merge 2 lists at a time (helper function to merge)
+        2. append to the main list after every merge
+        3. return
+    */
+    private ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        final ListNode dum = new ListNode();
+        ListNode dum_ptr = dum;
+        while(list1!=null && list2!=null){
+            if(list1.val<list2.val){
+                dum_ptr.next = list1;
+                list1 = list1.next;
+            }
+            else{
+                dum_ptr.next = list2;
+                list2 = list2.next;
+            }
+            dum_ptr = dum_ptr.next;
+        }
+        //check for remaining portion
+        dum_ptr.next = list1!=null?list1:list2;
+        return dum.next;
+    }
+
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        int n = lists.length;
+        int window =1;
+        while(window<n){
+            for(int z=0;z<n-window;z+=2*window){
+                lists[z] = mergeTwoLists(lists[z],lists[z+window]);
+            }
+            window*=2;
+        }
+        return n>0?lists[0]:null;
+    }
+}
+```
+
 ### [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 
 <img src="138.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
