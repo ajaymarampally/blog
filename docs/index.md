@@ -277,6 +277,118 @@ class Solution {
 }
 ```
 
+### [146. LRU Cache](https://leetcode.com/problems/lru-cache/description/)
+
+```java
+class LRUCache {
+    /*
+        t.c - o(1)
+        s.c - 0(capacity)
+        approach:
+            1. create a doubly linked list to store the elems (lru_ptr ---- elemenets --- mru_ptr)
+            2. keep a track of the most freq and least freq in the list
+            3. after inserting , check the capacity and if exceed remove the lru element
+    */
+    private class Node{
+        Node prev;
+        Node next;
+
+        private int key;
+        private int value;
+
+        public Node(int key,int value){
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    //helper functions
+
+    public void remove(Node elem){
+        Node prev = elem.prev;
+        Node nxt = elem.next;
+
+        // 1 -> <- 2 -> <- 3
+
+        prev.next = nxt;
+        nxt.prev = prev;
+
+    }
+
+    public void insert(Node elem){
+        //insert the end of the list (at the mru position)
+        Node prev = this.mru.prev;
+        Node nxt = this.mru;
+
+        // prev -- x -- next
+        prev.next = elem;
+        elem.prev = prev;
+
+        elem.next = nxt;
+        nxt.prev = elem;
+
+    }
+
+
+    //define the hashmap and lru and mru pointers
+
+    private Map<Integer,Node> hm;
+    Node lru;
+    Node mru;
+    private int cap;
+    public LRUCache(int capacity) {
+        //init
+        this.cap = capacity;
+        hm = new HashMap<>();
+        this.lru = new Node(0,0);
+        this.mru = new Node(0,0);
+
+        //keep all the values in between lru and mru
+
+        this.lru.next = this.mru;
+        this.mru.prev = this.lru;
+    }
+
+    public int get(int key) {
+        //to get the key check if the key exists return
+        if(hm.containsKey(key)){
+            //add the element as mru
+            remove(hm.get(key));
+            insert(hm.get(key));
+            return hm.get(key).value;
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public void put(int key, int value) {
+        //insert into the right end before mru
+        if(hm.containsKey(key)){
+            remove(hm.get(key));
+        }
+
+        hm.put(key,new Node(key,value));
+        insert(hm.get(key));
+
+        if(hm.size()>cap){
+            Node lru_ptr = this.lru.next;
+            remove(lru_ptr);
+            hm.remove(lru_ptr.key);
+        }
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+```
+
+
+
 ## Sliding Window
 
 ### [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
