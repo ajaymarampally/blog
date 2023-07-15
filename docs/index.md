@@ -35,6 +35,45 @@ class Solution {
 }
 ```
 
+### [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+<img src="235.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    /*
+        LCA - either p,q is descent of the elem or the elem is equal to p or q (can be descendant of itself)
+        t.c - o(logn)
+        s.c - o(1)
+
+        approach:
+            1. have to return the node where both p and q are not greater or less than the TreeNode elem
+            2. start with root , check two conditions to change the curr to left or right
+            3. return the curr , when the condition satisfies
+
+    */
+
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode curr = root;
+
+        while(curr!=null){
+            if(p.val> curr.val && q.val > curr.val){
+                //present in the right tree
+                curr = curr.right;
+            }
+            else if(p.val < curr.val && q.val < curr.val){
+                //present in left tree
+                curr = curr.left;
+            }
+            else{
+                return curr;
+            }
+        }
+        return null;
+    }
+}
+```
 
 
 ## Linked list
