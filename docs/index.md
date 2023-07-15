@@ -25,6 +25,8 @@
 class Solution {
 
     /*
+        t.c - o(n)
+        s.c - o(n)
         approach:
             1. init a deque with root elem
             2. if elem has left and right , append them into queue
