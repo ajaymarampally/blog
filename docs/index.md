@@ -7,21 +7,6 @@
 <img src="102.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
 
 ```java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
 
     /*
@@ -95,6 +80,51 @@ class Solution {
     }
 }
 ```
+
+### [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
+
+![Alt text](199.png)
+
+```java
+class Solution {
+    /*
+        t.c o(n)
+        s.c o(n)
+        approach:
+            1. init empty res , if root is null return empty res
+            2. add root to queue and start bfs
+            3. in each iter, add the last elem of the level to the res
+            4. return
+    */
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        //base case
+        if(root==null){
+            return res;
+        }
+       Deque<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            TreeNode rightNode = null;
+            int levelSize = q.size();
+            for(int z = 0;z<levelSize;z++){
+                TreeNode t = q.pollFirst();
+                rightNode = t;
+                if(t.left!=null){
+                    q.offer(t.left);
+                }
+                if(t.right!=null){
+                    q.offer(t.right);
+                }
+            }
+            res.add(rightNode.val);
+        }
+        return res;
+    }
+}
+```
+
 
 ### [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 
