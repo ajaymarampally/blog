@@ -2,6 +2,65 @@
 
 ## Binary Tree
 
+### [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+<img src="110.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    /*
+        approach:
+            1. init a deque with root elem
+            2. if elem has left and right , append them into queue
+            3. in the range of the lenght of q , pop left and add to currlevel , if it has left and right append to q
+
+    */
+
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(root==null){
+            return res;
+        }
+       Deque<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            List<Integer> currLevel = new ArrayList<>();
+            int levelSize = q.size();
+            for(int z = 0;z<levelSize;z++){
+                TreeNode t = q.pollFirst();
+                currLevel.add(t.val);
+                if(t.left!=null){
+                    q.offer(t.left);
+                }
+                if(t.right!=null){
+                    q.offer(t.right);
+                }
+            }
+            res.add(currLevel);
+        }
+        return res;
+    }
+}
+```
+
+
 ### [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/)
 
 <img src="110.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
@@ -74,6 +133,7 @@ class Solution {
     }
 }
 ```
+
 
 
 ## Linked list
