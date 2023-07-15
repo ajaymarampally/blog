@@ -4,7 +4,7 @@
 
 ### [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
 
-<img src="110.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+<img src="102.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
 
 ```java
 /**
