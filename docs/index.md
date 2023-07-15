@@ -2,6 +2,45 @@
 
 ## Binary Tree
 
+### [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
+
+![Alt text](98.png)
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach:
+        1. to validate have to check the boundaries for each iteration
+        2. init the iteration with -inf to +inf
+        3. for each iter, for left tree update right boundary to root.val
+        4. for each iter , for right tree update left boundary to root.val
+        5. if condition is not satisfied ? return false : true
+
+    */
+    public boolean dfs(TreeNode root,Integer left,Integer right){
+        if(root==null){
+            //empty tree can be a bst
+            return true;
+        }
+        if((left!=null && root.val<=left)||( right!=null && root.val>=right)){
+            // condition not satisfied for a bst
+            return false;
+        }
+
+        return ((dfs(root.left,left,root.val))&&(dfs(root.right,root.val,right)));
+    }
+
+
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root,null,null);
+    }
+}
+```
+
+
+
 ### [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
 
 <img src="102.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
