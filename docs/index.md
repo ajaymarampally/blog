@@ -1,5 +1,42 @@
 # LeetCode Solutions
 
+## Binary Tree
+
+### [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/)
+
+<img src="110.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach: (bottom up to reduce to o(n), top down is o(n**2))
+            1. initially if root is null , return a new pair of (true,0)
+            2. check for left and right node , if both the trees are valid and their height diff <=1
+            3. return the boolean at last
+    */
+    public Pair<Boolean,Integer> dfs(TreeNode root){
+        if(root==null){
+            return new Pair<Boolean,Integer>(true,0);
+        }
+
+        var left = dfs(root.left);
+        var right = dfs(root.right);
+
+        Boolean balanced = (left.getKey() && right.getKey() && Math.abs(left.getValue() - right.getValue())<=1);
+
+        return new Pair<Boolean,Integer>(balanced, 1 + Math.max(left.getValue(),right.getValue()));
+    }
+
+    public boolean isBalanced(TreeNode root) {
+        return dfs(root).getKey();
+    }
+}
+```
+
+
+
 ## Linked list
 
 ### [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
@@ -213,6 +250,7 @@ class Solution {
 
 ```java
 class Solution {
+class Solution {
     /*
         t.c - o(n)
         s.c - o(1)
@@ -236,8 +274,8 @@ class Solution {
 
     for (int i = 0; i < length / k; ++i) {
       for (int j = 0; j < k - 1; ++j) {
-        // 1 - > 2
-        // 2->1 -> curr (3)
+        // 1 - > 2 , 3->4
+        // 2->1 -> curr (3) ,4-> 3->curr(5)
         ListNode tmp = curr.next; // 2
         curr.next = tmp.next; // 3
         tmp.next = prev.next; //1
@@ -1560,7 +1598,7 @@ class Solution {
 }
 ```
 
-## Sliding window
+## Two Pointers
 
 ### [11.Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
