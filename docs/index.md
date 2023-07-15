@@ -166,6 +166,90 @@ class Solution {
 }
 ```
 
+### [1448. Count Good Nodes in Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/)
+
+![Alt text](1448.png)
+
+`dfs` approach
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach:
+            1. do a dfs on left and right subtree
+            2. compare if val > maxVal then res++;
+            3. return res
+
+    */
+    public int dfs(TreeNode root,int maxVal){
+        if(root==null) return 0;
+
+        int res = root.val >=maxVal ? 1:0;
+
+        res+= dfs(root.left,Math.max(root.val,maxVal));
+        res+=dfs(root.right,Math.max(root.val,maxVal));
+
+        return res;
+    }
+
+    public int goodNodes(TreeNode root) {
+        return dfs(root,Integer.MIN_VALUE);
+    }
+}
+```
+
+`bfs` approach
+
+```java
+class Solution {
+    /*
+        approach : bfs
+        1. init q and maxValq to maintain the nodes
+        2. for each level compare with maxVal and res++
+        3. return res
+    */
+
+    public int goodNodes(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int res = 0;
+        Deque<TreeNode> nodeQueue = new LinkedList<>();
+        Deque<Integer> maxValQueue = new LinkedList<>();
+
+        nodeQueue.offer(root);
+        maxValQueue.offer(root.val);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            int maxVal = maxValQueue.poll();
+
+            if (node.val >= maxVal) {
+                res++;
+            }
+
+            int newMaxVal = Math.max(maxVal, node.val);
+
+            if (node.left != null) {
+                nodeQueue.offer(node.left);
+                maxValQueue.offer(newMaxVal);
+            }
+
+            if (node.right != null) {
+                nodeQueue.offer(node.right);
+                maxValQueue.offer(newMaxVal);
+            }
+        }
+
+        return res;
+    }
+}
+```
+
+
 
 
 ## Linked list
