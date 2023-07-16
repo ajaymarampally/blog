@@ -164,6 +164,75 @@ class Solution {
 }
 ```
 
+### [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/)
+
+![Alt text](230.png)
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach:
+        1. init an array list to store the elem
+        2. do an in order traversal and store the values
+        3. return k-1
+    */
+
+    public void inOrder(TreeNode root, List<Integer> res){
+        if(root==null) return;
+
+        inOrder(root.left,res);
+        res.add(root.val);
+        inOrder(root.right,res);
+    }
+
+    public int kthSmallest(TreeNode root, int k) {
+        List<Integer> res = new ArrayList<>();
+        inOrder(root,res);
+        return res.get(k-1);
+    }
+}
+```
+
+`stack` - approach
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach:
+        1. init stack and append root
+        2. traverse until the end of the left tree
+        3. for k-1 times , pop from stack and move the root to right tree and traverse it's left tree
+        4. return top of the stack value
+    */
+
+    public int kthSmallest(TreeNode root, int k) {
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode curr = root;
+
+        while(curr!=null){
+            st.push(curr);
+            curr = curr.left;
+        }
+
+        //at the end of the left
+
+        for(int z = 0 ; z<k-1;z++){
+            TreeNode tmp = st.pop();
+            tmp = tmp.right;
+            while(tmp!=null){
+                st.push(tmp);
+                tmp = tmp.left;
+            }
+        }
+
+        return st.peek().val;
+    }
+}
+```
 
 ### [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 
