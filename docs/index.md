@@ -86,6 +86,60 @@ class Solution {
 }
 ```
 
+### [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/)
+
+![Alt text](105.png)
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(n) - hm to hold the index of the elements
+        approach:
+        1. two diff traversals are pre-order(root,left,right) and inorder(left,root,right)
+        2. the first index of preorder is always the root , check for the index of root in inorder
+        3. everything left to the found index , will be in the left subtree of the root
+        4. everything right to the found index , will be in the right subtree of the root
+        5. build the tree accordingly
+    */
+
+
+    public TreeNode build(int[] preorder, int preStart , int preEnd , int[] inorder , int inStart, int inEnd,   Map<Integer,Integer> inToIndex){
+        //base case to exit
+        if (preStart > preEnd)
+            return null;
+
+        final int rootVal = preorder[preStart];
+        final int rootInIndex = inToIndex.get(rootVal);
+        final int leftSize = rootInIndex - inStart;
+
+        TreeNode root = new TreeNode(rootVal);
+        //root.left
+        //preorder --> [1:mid+1] , inorder[:mid]
+
+        root.left = build(preorder, preStart + 1, preStart + leftSize, inorder, inStart,
+                        rootInIndex - 1, inToIndex);
+
+        //root.right
+        //preorder --> [mid+1:] , inorder [mid+1:]
+        root.right = build(preorder, preStart + leftSize + 1, preEnd, inorder, rootInIndex + 1, inEnd,inToIndex);
+
+        return root;
+    }
+
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        //hm to store the indexes
+         Map<Integer, Integer> inToIndex = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; ++i)
+            inToIndex.put(inorder[i], i);
+
+        return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1, inToIndex);
+    }
+
+}
+```
 
 ### [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/)
 
