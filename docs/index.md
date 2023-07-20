@@ -1,5 +1,69 @@
 # LeetCode Solutions
 
+## Trie
+
+### [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
+
+```java
+class TrieNode{
+    public TrieNode[] children = new TrieNode[26];
+    public boolean isEnd = false;
+}
+
+class Trie {
+    /*
+        t.c:
+        s.c:
+
+        approach:
+        1. init trie node class , each node consits of 26 children capacity and a boolean to check if its the end
+        2. to insert check if node exits , add it childrenm , else create a new node
+        3. to check startsWith , check if node exits ? true :false
+
+    */
+    private TrieNode root = new TrieNode();
+    //helper functions
+    public TrieNode find(String prefix) {
+        var curr = root;
+        for(char c : prefix.toCharArray()){
+            final int ind = c - 'a';
+            if(curr.children[ind]==null){
+                return null;
+            }
+            curr = curr.children[ind];
+        }
+        return curr;
+    }
+
+    public void insert(String word) {
+        TrieNode curr = root;
+        for(final char c:word.toCharArray()){
+            //find index
+            final int i = c - 'a';
+            if(curr.children[i]==null){
+                curr.children[i] = new TrieNode();
+            }
+            curr = curr.children[i];
+        }
+        curr.isEnd = true;
+    }
+
+    public boolean search(String word) {
+        var findNode = find(word);
+        return findNode!=null && findNode.isEnd;
+
+    }
+
+    public boolean startsWith(String prefix) {
+        var findNode = find(prefix);
+        return findNode!=null;
+    }
+}
+```
+
+
+
+
 ## Binary Tree
 
 ### [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
