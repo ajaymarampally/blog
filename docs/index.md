@@ -176,6 +176,8 @@ class Solution {
 
 ### [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
 
+![Alt text](124.png)
+
 ```java
 class Solution {
     /*
@@ -211,7 +213,7 @@ class Solution {
 }
 ```
 
-![Alt text](124.png)
+
 
 
 ### [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
@@ -364,6 +366,62 @@ class Solution {
             }
         }
         return null;
+    }
+}
+```
+
+### [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/)
+
+```java
+public class Codec {
+    /*
+
+        approach:
+        1. either use dfs/bfs to create a string , seperated by delimiter
+        2. use the string and start a dfs to construct the tree
+        3. return node
+
+    */
+
+    private int index = 0;
+
+    public void serializeDFS(TreeNode root,List<String> res){
+        if(root==null){
+            res.add("N");
+            return;
+        }
+        res.add(String.valueOf(root.val));
+        serializeDFS(root.left,res);
+        serializeDFS(root.right,res);
+    }
+
+    public TreeNode deserializeDFS(String[] tokens){
+
+        String str = tokens[this.index];
+        if(str.equals("N")){
+            this.index++;
+            return null;
+        }
+
+        TreeNode nn = new TreeNode(Integer.parseInt(str));
+        this.index++;
+        nn.left = deserializeDFS(tokens);
+        nn.right = deserializeDFS(tokens);
+
+        return nn;
+    }
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        List<String> res = new ArrayList<>();
+        serializeDFS(root,res);
+        return String.join(",",res);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] tokens = data.split(",");
+        return deserializeDFS(tokens);
     }
 }
 ```
