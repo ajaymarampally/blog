@@ -174,6 +174,46 @@ class Solution {
 }
 ```
 
+### [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
+
+```java
+class Solution {
+    /*
+        t.c - o(n)
+        s.c - o(h)
+        approach:
+            1. two possible options for every node , either to split it or not split it
+            2. make two calculations and update the max variable
+            3. return the max variable
+
+    */
+
+    private int res = Integer.MIN_VALUE;
+
+    private int dfs(TreeNode root){
+        //base case
+        if(root==null)
+            return 0;
+
+        final int leftSum = Math.max(dfs(root.left),0);
+        final int rightSum = Math.max(dfs(root.right),0);
+        //with splitting
+        res = Math.max(res, root.val + leftSum + rightSum);
+        //without splitting (either take the left path or the right path )
+        return root.val + Math.max(leftSum,rightSum);
+
+    }
+
+    public int maxPathSum(TreeNode root) {
+        dfs(root);
+        return res;
+    }
+}
+```
+
+![Alt text](124.png)
+
+
 ### [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
 ![Alt text](199.png)
