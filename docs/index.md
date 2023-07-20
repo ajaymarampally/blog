@@ -12,8 +12,8 @@ class TrieNode{
 
 class Trie {
     /*
-        t.c:
-        s.c:
+        t.c: o(word)
+        s.c: o(word*avg(word))
 
         approach:
         1. init trie node class , each node consits of 26 children capacity and a boolean to check if its the end
@@ -61,8 +61,166 @@ class Trie {
 }
 ```
 
+### [211. Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/)
+
+```java
+class TrieNode{
+    public TrieNode[] children = new TrieNode[26];
+    public boolean isEnd = false;
+}
+
+class WordDictionary {
+    /*
+       t.c - add(o(word)) , search : o(26)
+
+       approach:
+       1. create words in the trie
+       2. to search , check if the value at index is '.'
+       3. if '.' --> check if the next char exists then return true : false
+       4. if normal char , make a dfs on index+1
+       5.return
+    */
+
+    private TrieNode root = new TrieNode();
+
+public boolean dfs(String word, TrieNode root, int ind) {
+    if (ind == word.length()) {
+        return root.isEnd;
+    }
+
+    // If not '.', do dfs on ind+1
+    if (word.charAt(ind) != '.') {
+        var nextNode = root.children[word.charAt(ind) - 'a'];
+        return nextNode == null ? false : dfs(word, nextNode, ind + 1);
+    }
+
+    // Found '.', check all 26 children
+    for (int z = 0; z < 26; ++z) {
+        var nextChild = root.children[z];
+        if (nextChild != null && dfs(word, nextChild, ind + 1)) {
+            return true;
+        }
+    }
+
+    // Not found
+    return false;
+}
 
 
+    public void addWord(String word) {
+        var curr = root;
+        for(final char c : word.toCharArray()){
+            final int ind = c - 'a';
+            if(curr.children[ind]==null){
+                curr.children[ind] = new TrieNode();
+            }
+            curr = curr.children[ind];
+        }
+        curr.isEnd = true;
+    }
+
+    public boolean search(String word) {
+        return dfs(word,root,0);
+    }
+}
+```
+
+### [212. Word Search II](https://leetcode.com/problems/word-search-ii/description/)
+
+```java
+class TrieNode{
+    public TrieNode[] children = new TrieNode[26];
+    public boolean isEnd = false;
+}
+
+class Solution {
+    /*
+        t.c -
+            addWords --> o(total(words) * avg(word))
+            findWord --> o(1)
+            dfs --> o(row * col * 4^max(words) )
+
+        s.c -
+            addWords --> o(total(words) * avg(word))
+            dfs --> o(max(words))
+
+        approach:
+            1. init trienode class and add all the words
+            2. init dfs , check if its visited or exists in the trie
+            3. if exists , check if its the end , then add to string builder
+            4. else dfs in four directions
+            5. return
+
+    */
+
+
+    private TrieNode root = new TrieNode();
+    private List<String> res = new ArrayList<>();
+
+    private void addWords(TrieNode root,String[] words){
+        for(var word : words){
+            var curr = root;
+            for(final char c: word.toCharArray()){
+                final int index = c - 'a';
+                if(curr.children[index]==null){
+                    curr.children[index] = new TrieNode();
+                }
+                curr = curr.children[index];
+            }
+            curr.isEnd = true;
+        }
+    }
+
+    private boolean findWord(TrieNode root,char el){
+        int index = el - 'a';
+        return root.children[index]!=null;
+    }
+
+
+    private void dfs(int row, int col, char[][] board,TrieNode root,StringBuilder word){
+        // 1.check if the elem exists in root.children (first level) , else go to next
+        // 2. do a dfs and check if word forms and add it to res
+        char el = board[row][col];
+        if(el=='$' || !findWord(root,el)){
+            return;
+        }
+
+        root = root.children[el - 'a'];
+        word.append(el);
+        if (root.isEnd) {
+            res.add(word.toString());
+            root.isEnd = false; // Mark as visited to avoid duplicates
+        }
+
+        char temp = board[row][col];
+        board[row][col] = '$'; // Mark the cell as visited
+
+        if (row > 0) dfs(row - 1, col, board, root, word);
+        if (row < board.length - 1) dfs(row + 1, col, board, root, word);
+        if (col > 0) dfs(row, col - 1, board, root, word);
+        if (col < board[0].length - 1) dfs(row, col + 1, board, root, word);
+
+        board[row][col] = temp; // Restore the cell value for backtracking
+        word.deleteCharAt(word.length() - 1);
+    }
+
+    public List<String> findWords(char[][] board, String[] words) {
+        final int r = board.length;
+        final int c = board[0].length;
+        addWords(root, words);
+
+        for (int row = 0; row < r; ++row) {
+            for (int col = 0; col < c; ++col) {
+                dfs(row, col, board, root, new StringBuilder());
+            }
+        }
+
+        return res;
+
+
+    }
+}
+```
 
 ## Binary Tree
 
