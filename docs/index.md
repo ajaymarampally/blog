@@ -1,5 +1,50 @@
 # LeetCode Solutions
 
+## Back Tracking
+
+### [78. Subsets](https://leetcode.com/problems/subsets/description/)
+
+```java
+class Solution {
+    /*
+        t.c - o(2^n)
+        s.c - o(n*2^n)
+
+        approach:
+        1. init res , start at index 0
+        2. at each index , 2 operations , either to add index or exclude the index
+        3. add to subset , call dfs , remove from subset , call dfs
+        4. if length reaches size of nums , add to res
+        5. return
+    */
+
+
+
+    public void dfs(int[] nums,int index,List<Integer> subset,List<List<Integer>> res){
+        if(index>=nums.length){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+        //left tree add at index i
+        subset.add(nums[index]);
+        dfs(nums,index+1,subset,res);
+
+        //right tree not to add index i
+        subset.remove(subset.size()-1);
+        dfs(nums,index+1,subset,res);
+
+    }
+
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(nums,0,new ArrayList<>(),res);
+        return res;
+    }
+}
+```
+
 ## Trie
 
 ### [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
