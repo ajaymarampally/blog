@@ -2,6 +2,55 @@
 
 ## Back Tracking
 
+### [39. Combination Sum](https://leetcode.com/problems/combination-sum/description/)
+
+```java
+class Solution {
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+    /*
+        t.c - o(2^target)
+        s.c - o(target) - arrayList for target amount
+
+        approach:
+        1. two decision , one to include the number , target = total - val[index]
+        2. second decision , not to include the number , index++
+        3. if target == 0 , add to res
+        4. base case --> if target < 0 or index > len(nums) , return
+        5. return res
+
+    */
+
+
+    public void dfs(int index, List<Integer> subset, int target, int[] candidates, int total) {
+        // Base case: if the target is reached, add the current subset to the result
+        if (target == 0) {
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+        // If the target is exceeded or all elements are processed, return
+        if (target < 0 || index >= candidates.length) {
+            return;
+        }
+
+        // Include the current element and make the recursive call with the same index
+        subset.add(candidates[index]);
+        dfs(index, subset, target - candidates[index], candidates, total + candidates[index]);
+
+        // Exclude the current element and make the recursive call with the next index
+        subset.remove(subset.size() - 1);
+        dfs(index + 1, subset, target, candidates, total);
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        dfs(0, new ArrayList<>(), target, candidates, 0);
+        return res;
+    }
+}
+```
+
 ### [78. Subsets](https://leetcode.com/problems/subsets/description/)
 
 ```java
