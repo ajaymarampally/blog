@@ -142,6 +142,48 @@ class Solution {
 }
 ```
 
+### [90. Subsets II](https://leetcode.com/problems/subsets-ii/description/)
+
+```java
+class Solution {
+
+    /*
+        t.c - O(n*2^n)
+        s.c - o(n*2^n)
+
+        approach:
+        1. sort the arr , start the dfs
+        2. add at index , dfs on next non duplicate index , remove elem , backtrack
+        3. return res
+
+    */
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+
+    public void dfs(int index, List<Integer> subset, int[] nums){
+        res.add(new ArrayList<>(subset));
+
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i - 1]) {
+                continue; // Skip duplicates
+            }
+
+            subset.add(nums[i]);
+            dfs(i + 1, subset, nums);
+            subset.remove(subset.size() - 1);
+        }
+
+    }
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        dfs(0,new ArrayList<>(),nums);
+        return res;
+    }
+}gi
+```
+
 ## Trie
 
 ### [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
