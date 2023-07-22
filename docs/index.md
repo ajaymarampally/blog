@@ -51,6 +51,54 @@ class Solution {
 }
 ```
 
+### [46. Permutations](https://leetcode.com/problems/permutations/description/)
+
+```java
+class Solution {
+
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+
+    public void backTrack(boolean[] usedValues , List<Integer> subset , int[] nums){
+        //base case
+        if(subset.size() == nums.length){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+        for(int z = 0 ; z< nums.length; z++){
+            if(usedValues[z]){ //value already added
+                continue;
+            }
+
+            usedValues[z] = true;
+            subset.add(nums[z]);
+            backTrack(usedValues,subset,nums);
+            subset.remove(subset.size()-1);
+            usedValues[z] = false; //backtrack
+        }
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        /*
+            t.c - O(n*n!)
+            s.c - O(n!)
+
+            approach:
+            1. use a boolean array to keep track whether a val is added or not
+            2. if not added , set to true , add to subset
+            3. backtrack setting it false for  next index
+            4. return res
+        */
+
+        backTrack(new boolean[nums.length], new ArrayList<>(), nums);
+        return res;
+    }
+}
+```
+
+
 ### [78. Subsets](https://leetcode.com/problems/subsets/description/)
 
 ```java
