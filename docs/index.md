@@ -190,6 +190,71 @@ class Solution {
 }
 ```
 
+### [79. Word Search](https://leetcode.com/problems/word-search/description/)
+
+```java
+class Solution {
+    /*
+        t.c -> o(m*n* 4^len(word))
+        s.c --> (n.4^len(word)) --> 4 dfs calls at each index
+
+        approach:
+        1. check the edge cases to exit the dfs
+        2. if index reaches the last index , return true
+        3. mark the el in board as visited and run dfs
+        4. modify the el back to its state to backtrack
+        5. return
+
+    */
+
+
+    public boolean dfs(int r, int c, char[][] board, String word, int index) {
+        //end cases
+        //row , column overflow
+        if (r < 0 || r == board.length || c < 0 || c == board[0].length) {
+            return false;
+        }
+
+        //index match
+        if (board[r][c] == word.charAt(index)) {
+            // If it is the last character of the word, return true
+            if (index == word.length() - 1) {
+                return true;
+            }
+
+            final char el = board[r][c];
+            // mark the el as visited
+            board[r][c] = '*';
+
+            // make a dfs on four directions
+            final boolean isValid = dfs(r + 1, c, board, word, index + 1) ||
+                                    dfs(r - 1, c, board, word, index + 1) ||
+                                    dfs(r, c + 1, board, word, index + 1) ||
+                                    dfs(r, c - 1, board, word, index + 1);
+
+            // replace the elem with cache
+            board[r][c] = el;
+
+            return isValid;
+        }
+
+        return false;
+    }
+
+    public boolean exist(char[][] board, String word) {
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[0].length; c++) {
+                if (dfs(r, c, board, word, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+```
+
+
 ### [90. Subsets II](https://leetcode.com/problems/subsets-ii/description/)
 
 ```java
