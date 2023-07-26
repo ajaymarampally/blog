@@ -97,7 +97,55 @@ class Solution {
     }
 }
 ```
+### [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)
 
+```java
+class Solution {
+
+    /*
+        t.c - o(2^n)
+        s.c - o(n.2^n) , n arrayLists for 2^n times
+
+        approach:
+        1. sort the array
+        2. init dfs , two choices to add the elem and not to add the elem
+        3. check if the current elem is same as next (or prev according to implementation)
+        4. if same skip the elem
+        5. return
+
+
+    */
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+    public void dfs(int index , List<Integer> subset, List<List<Integer>> res, int target , int[] nums){
+        if(target<0){
+            return;
+        }
+
+        if(target==0){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i - 1]) continue;
+            subset.add(nums[i]);
+            dfs(i+1, subset,res,target - nums[i], nums);
+            subset.remove((subset.size() - 1));
+        }
+
+    }
+
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(0,new ArrayList<>(), res, target,candidates);
+        return res;
+    }
+}
+```
 
 ### [78. Subsets](https://leetcode.com/problems/subsets/description/)
 
