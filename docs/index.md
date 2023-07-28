@@ -2,6 +2,76 @@
 
 ## Back Tracking
 
+### [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
+
+```java
+class Solution {
+
+    /*
+        t.c - o(4^n) - n : no of digits
+        s.c - o(n.4^n)
+
+        approach:
+            1. make a map from digit:characters
+            2. make dfs adding to subset str and increment index
+            3. if len() matches , add to res
+            4. return
+
+    */
+
+
+    private List<String> res = new ArrayList<>();
+
+    public void dfs(int index ,String subset,String digits,Map<Character,String> digitToChar){
+        if(subset.length() == digits.length()){
+            res.add(subset);
+            return;
+        }
+
+        if(index >= digits.length()){
+            return;
+        }
+
+        String dig = digitToChar.get(digits.charAt(index));
+        for(char c : dig.toCharArray()){
+            dfs(index+1,subset+c,digits,digitToChar);
+        }
+    }
+
+    public List<String> letterCombinations(String digits) {
+        /*
+        */
+
+        Map<Character, String> digitToChar = Map.of(
+            '2',
+            "abc",
+            '3',
+            "def",
+            '4',
+            "ghi",
+            '5',
+            "jkl",
+            '6',
+            "mno",
+            '7',
+            "pqrs",
+            '8',
+            "tuv",
+            '9',
+            "wxyz"
+        );
+
+    if(digits.length()==0){
+        return new ArrayList<>();
+    }
+
+    dfs(0,"",digits,digitToChar);
+
+    return res;
+    }
+}
+```
+
 ### [39. Combination Sum](https://leetcode.com/problems/combination-sum/description/)
 
 ```java
@@ -46,6 +116,55 @@ class Solution {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         dfs(0, new ArrayList<>(), target, candidates, 0);
+        return res;
+    }
+}
+```
+### [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)
+
+```java
+class Solution {
+
+    /*
+        t.c - o(2^n)
+        s.c - o(n.2^n) , n arrayLists for 2^n times
+
+        approach:
+        1. sort the array
+        2. init dfs , two choices to add the elem and not to add the elem
+        3. check if the current elem is same as next (or prev according to implementation)
+        4. if same skip the elem
+        5. return
+
+
+    */
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+    public void dfs(int index , List<Integer> subset, List<List<Integer>> res, int target , int[] nums){
+        if(target<0){
+            return;
+        }
+
+        if(target==0){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i - 1]) continue;
+            subset.add(nums[i]);
+            dfs(i+1, subset,res,target - nums[i], nums);
+            subset.remove((subset.size() - 1));
+        }
+
+    }
+
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(0,new ArrayList<>(), res, target,candidates);
         return res;
     }
 }
@@ -97,52 +216,82 @@ class Solution {
     }
 }
 ```
-### [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)
+
+### [51. N-Queens](https://leetcode.com/problems/n-queens/description/)
+
+![Alt text](51.png)
 
 ```java
 class Solution {
 
-    /*
-        t.c - o(2^n)
-        s.c - o(n.2^n) , n arrayLists for 2^n times
 
-        approach:
-        1. sort the array
-        2. init dfs , two choices to add the elem and not to add the elem
-        3. check if the current elem is same as next (or prev according to implementation)
-        4. if same skip the elem
-        5. return
-
-
-    */
-
-    private List<List<Integer>> res = new ArrayList<>();
-
-    public void dfs(int index , List<Integer> subset, List<List<Integer>> res, int target , int[] nums){
-        if(target<0){
+    public void dfs(int r , int n , boolean[] col , boolean[] posDiag , boolean[] negDiag , char[][] board ){
+        if(r==n){
+            //construct string and add to res
+            res.add(constructString(board));
             return;
         }
 
-        if(target==0){
-            res.add(new ArrayList<>(subset));
-            return;
-        }
+        for(int c = 0 ; c<n;++c){
+            //check if the c is visited , or posDiag is vis or negDiag is vis
+            if(col[c] || posDiag[r+c] || negDiag[r-c+n-1]){
+                continue;
+            }
 
+            //mark as vis
+            col[c] = true;
+            posDiag[r+c] = true; // n = 4 , r = 1 , c = 2 (3) , max of PosDiag (0,7)
+            negDiag[r-c+n-1] = true;
+            board[r][c] = 'Q';
 
-        for (int i = index; i < nums.length; i++) {
-            if (i > index && nums[i] == nums[i - 1]) continue;
-            subset.add(nums[i]);
-            dfs(i+1, subset,res,target - nums[i], nums);
-            subset.remove((subset.size() - 1));
+            dfs(r+1,n,col,posDiag,negDiag,board);
+
+            //remove and backtrack
+            col[c] = false;
+            posDiag[r+c] = false;
+            negDiag[r-c+n-1] = false;
+            board[r][c] = '.';
         }
 
     }
 
+    public List<String> constructString(char[][] board){
+        List<String> el = new ArrayList<>();
+        for(int r = 0 ; r<board.length;r++){
+            el.add(String.valueOf(board[r]));
+        }
+        return el;
 
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        Arrays.sort(candidates);
-        dfs(0,new ArrayList<>(), res, target,candidates);
+    }
+
+    private List<List<String>> res = new ArrayList<>();
+
+    public List<List<String>> solveNQueens(int n) {
+
+        /*
+            t.c - n.n!
+            dfs --> n!
+            constructString --> n (traverse through each row)
+            s.c
+            new List<List> to store res
+
+            approach:
+            1. init the board with '.' in n*n
+            2. keep track of visited col, positiveDiagonal , negative diagonal using boolean[]
+            3. if row==n, add to res (all rows visited)
+            4. visit each col and mark as visited , do dfs, mark unvisited for backtracking
+            5. return
+        */
+        char[][] board = new char[n][n];
+        //fill the board
+        for(int r = 0 ; r<n;r++){
+            Arrays.fill(board[r],'.');
+        }
+
+        dfs(0,n,new boolean[n],new boolean[2*n-1],new boolean[2*n-1],board);
+
         return res;
+
     }
 }
 ```
@@ -294,7 +443,45 @@ class Solution {
         dfs(0,new ArrayList<>(),nums);
         return res;
     }
-}gi
+}
+```
+
+### [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/description/)
+
+```java
+class Solution {
+
+    private List<List<String>> res = new ArrayList<>();
+
+
+    public boolean isPalindrome(String s,int l,int r){
+        while(l<r)
+            if(s.charAt(l++)!=s.charAt(r--))
+                return false;
+        return true;
+    }
+
+    public void dfs(String s, int index,List<String> subset){
+        if(index == s.length()){
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+        for(int i = index ; i<s.length();i++){
+            //check if palindrome from index, i
+            if(isPalindrome(s,index,i)){
+                subset.add(s.substring(index,i+1));
+                dfs(s,i+1,subset);
+                subset.remove(subset.size()-1);
+            }
+        }
+    }
+
+    public List<List<String>> partition(String s) {
+        dfs(s,0,new ArrayList<>());
+        return res;
+    }
+}
 ```
 
 ## Trie
