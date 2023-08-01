@@ -1,5 +1,61 @@
 # LeetCode Solutions
 
+## Graph
+
+### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/description/)
+
+![Alt text](200.png)
+
+```java
+class Solution {
+    /*
+        t.c - O(m*n) - 2 loops to check the element , dfs takes O(1)
+        s.c - O(m*n) - worst case if complete graph is an island , size of the call stack
+
+        approach:
+        1. init row and col values , check if the element is 0 or 1
+        2. if 1 --> check its neighbours
+        3. if neighbours are 1 , mark them as 0 and move to find the next elem in the two nested loops
+        4. return count
+
+    */
+
+
+    private void dfs(int r, int c , char[][] grid){
+        //check boundaries
+        if(r<0 || c<0 || r>=grid.length || c>=grid[0].length || grid[r][c]=='0'){
+            return;
+        }
+        //mark as visited
+        grid[r][c]='0';
+        dfs(r+1,c,grid);
+        dfs(r-1,c,grid);
+        dfs(r,c+1,grid);
+        dfs(r,c-1,grid);
+    }
+
+    public int numIslands(char[][] grid) {
+        if(grid.length==0){
+            return 0;
+        }
+
+        int row = grid.length;
+        int col = grid[0].length;
+        int res = 0;
+
+        for(int r = 0; r<row;r++){
+            for(int c = 0 ;c<col;c++){
+                if(grid[r][c]=='1'){
+                    dfs(r,c,grid);
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
 ## Back Tracking
 
 ### [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
