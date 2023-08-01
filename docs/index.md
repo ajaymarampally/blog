@@ -2,6 +2,50 @@
 
 ## Graph
 
+### [133. Clone Graph](https://leetcode.com/problems/clone-graph/description/)
+
+```java
+class Solution {
+
+    /*
+        t.c - o(n) - to iterate over the n elements
+        s.c - o(n) - to store n elements in the map
+        approach:
+        1. edge case , if the node is null , return
+        2. start with the first node , maintain a map (integer,Node) to store the elements
+        3. in the dfs func , if the node exists return else create a new node and add the children of the elems
+        4. return
+
+    */
+
+    public Node dfs(Node node){
+        if(hs.containsKey(node.val)){
+            return hs.get(node.val);
+        }
+        //create a new node
+        Node cp = new Node(node.val,new ArrayList<>());
+        hs.put(node.val,cp);
+        //iterate over the children
+        for(Node child: node.neighbors){
+            cp.neighbors.add(dfs(child));
+        }
+
+        return cp;
+
+    }
+
+    private HashMap<Integer,Node> hs = new HashMap<>();
+
+    public Node cloneGraph(Node node) {
+        if(node==null){
+            return null;
+        }
+
+        return dfs(node);
+    }
+}
+```
+
 ### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/description/)
 
 ![Alt text](200.png)
@@ -55,6 +99,9 @@ class Solution {
     }
 }
 ```
+
+
+
 
 ## Back Tracking
 
