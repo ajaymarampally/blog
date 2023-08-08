@@ -29,6 +29,37 @@ class Solution {
 }
 ```
 
+### [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
+
+```java
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        /*
+            b.f --> generate all the list of paths and return the math with min sum (back tracking)
+            approach:
+            t.c - o(n)
+            s.c - o(n)
+            1. set the last step as 0 , first step as cost[n]
+            2. for (2,n)--> dp[z] = dp[z-1] + cost[z-1] or dp[z-2] + cost[z-1]
+            3. return min of last and second last index
+
+        */
+
+
+        int n = cost.length;
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        dp[1] = cost[0];
+
+        for(int z = 2; z <= n; z++) {
+            dp[z] = Math.min(dp[z-1] + cost[z-1], dp[z-2] + cost[z-1]);
+        }
+
+        return Math.min(dp[n], dp[n-1]);
+    }
+}
+```
+
 ## Graph
 
 ### [133. Clone Graph](https://leetcode.com/problems/clone-graph/description/)
