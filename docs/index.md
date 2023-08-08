@@ -7,6 +7,7 @@
 ```java
 class Solution {
     /*
+        b.f --> generate all the paths and calculate the total sum (backtracking) t.c - O(2^n)
         t.c - O(n)
         s.c - O(n)
         approach:
