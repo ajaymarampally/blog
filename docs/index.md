@@ -1,5 +1,33 @@
 # LeetCode Solutions
 
+## DP
+
+### [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
+
+```java
+class Solution {
+    /*
+        t.c - O(n)
+        s.c - O(n)
+        approach:
+        1. we need 1 step at n and n-1 index
+        2. for (n-2) to 0 , each index have sum of n-1 and n-2 as steps required
+        3. return dp[n]
+    */
+
+    public int climbStairs(int n) {
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for(int z = 2; z<n+1;z++){
+            dp[z] = dp[z-1] + dp[z-2];
+        }
+        return dp[n];
+    }
+}
+```
+
 ## Graph
 
 ### [133. Clone Graph](https://leetcode.com/problems/clone-graph/description/)
