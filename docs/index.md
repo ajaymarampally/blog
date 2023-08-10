@@ -28,6 +28,100 @@ class Solution {
     }
 }
 ```
+### [198. House Robber](https://leetcode.com/problems/house-robber/)
+
+```java
+class Solution {
+    /*
+        brute.f -> make combinations , choosing one home or leaving it and calculate sum (back-tracking)
+        t.c - O(2^n)
+
+        approach:
+        1. first choice -> select first home , second choice -> select second home or first home
+        2. from third house , two choices , either select current + first or second (cannot select second as it is adjacent)
+        3. return dp[last]
+        t.c - O(n)
+        s.c - O(n)
+
+    */
+
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return nums[0];
+        }
+
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for (int z = 2; z < n; z++) {
+            dp[z] = Math.max(nums[z] + dp[z - 2], dp[z - 1]);
+        }
+
+        return dp[n - 1];
+    }
+}
+```
+
+### [213. House Robber II](https://leetcode.com/problems/house-robber-ii/)
+
+```java
+class Solution {
+    /*
+        b.f -> to select in circle have to avoid first and last as they are adjacent , run backtracking including first and excluding last and vice versa
+        t.c - 2 * O(2^n)
+
+        dp:
+        1. init two arrays f = nums[1:] , s = nums[0:n-1]
+        2. a helper function to find max amount to rob from a house (h.r I)
+        3. return max of helper(f),helper(s)
+
+        t.c - 2*O(n)
+        s.c - 2*O(n)
+
+    */
+    public int h(int[] nums){
+        int n = nums.length;
+        if(n==0){
+            return 0;
+        }
+        if(n==1){
+            return nums[0];
+        }
+
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(dp[0], nums[1]);
+
+        for(int z = 2;z<n;z++){
+            dp[z] = Math.max(nums[z]+dp[z-2], dp[z-1]); //cannot select z-1 (adjacent)
+        }
+        return dp[n-1];
+    }
+
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if(n==0){
+            return 0;
+        }
+        if(n==1){
+            return nums[0];
+        }
+        int[] f = new int[n - 1];
+        int[] s = new int[n - 1];
+
+        for (int i = 0; i < n - 1; i++) {
+            f[i] = nums[i];
+            s[i] = nums[i + 1];
+        }
+
+        return Math.max(h(f), h(s));
+    }
+}
+```
 
 ### [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
 
