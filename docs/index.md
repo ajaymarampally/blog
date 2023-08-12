@@ -2,6 +2,59 @@
 
 ## DP
 
+### [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+```java
+class Solution {
+
+    /*
+        brute force -> check all the possible strings and return the largest combinations from those strings
+        t.c -> O(n^2) to check pairs , O(n) to check if string is palindrome : total : O(n^3)
+        s.c -> O(validPalindromes) , considering StringBuilder Objects
+
+        algo:
+        1. to check in one pass , have to consider a element as a center and check left and right boundaries
+        2. in case of odd , consider single element as center , in case of even consider z and z+1 (two chars)
+        3. return the longest substring
+    */
+
+    private String res = "";
+
+    public void util(String s, int l, int r) {
+        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+            int palindromeLen = r - l + 1;
+            if (palindromeLen > res.length()) {
+                res = s.substring(l, r + 1);
+            }
+            l--;
+            r++;
+        }
+    }
+
+    public String longestPalindrome(String s) {
+        int n = s.length();
+        if (n == 0) {
+            return "";
+        }
+
+        for (int z = 0; z < n; z++) {
+            // check for odd length palindromes , considering z as center and checking boundaries
+            util(s, z, z);
+            // check for even length palindromes , considering 2 elements as center
+            util(s, z, z + 1);
+        }
+
+        return res;
+    }
+}
+```
+
+`Manacher Approach - O(n)`
+
+
+
+
+
 ### [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 
 ```java
@@ -28,6 +81,97 @@ class Solution {
     }
 }
 ```
+
+### [91. Decode Ways](https://leetcode.com/problems/decode-ways/description/)
+
+`brute-force: back-tracking`
+
+```java
+class Solution {
+
+    private List<List<Character>> res = new ArrayList<>();
+
+    public void bt(int index, List<Character> subset, String s) {
+        if (index == s.length()) {
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+        // Single-digit case
+        int digit = s.charAt(index) - '0';
+        if (digit >= 1 && digit <= 9) {
+            subset.add((char) (digit + 'A' - 1));
+            bt(index + 1, subset, s);
+            subset.remove(subset.size() - 1);
+        }
+
+        // Two-digit case
+        if (index + 1 < s.length()) {
+            int twoDigits = Integer.parseInt(s.substring(index, index + 2));
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                subset.add((char) (twoDigits + 'A' - 1));
+                bt(index + 2, subset, s);
+                subset.remove(subset.size() - 1);
+            }
+        }
+    }
+
+    public int numDecodings(String s) {
+        // Check if index 0 is 0, return 0
+        if (s.charAt(0) == '0') {
+            return 0;
+        }
+        bt(0, new ArrayList<>(), s);
+
+        for (var el : res) {
+            System.out.println(el);
+        }
+        return res.size();
+    }
+}
+```
+
+`DP approach`
+
+```java
+public class Solution {
+    /*
+        t.c - O(n)
+        s.c - O(n)
+        approach:
+        1. for each char in the string , we can either form a single digit combination or two digit combination
+        2. start from(2,n) check for single and two digit , if in range(1-9) and (10-26) , add to dp
+        3. return dp[n]
+    */
+    public int numDecodings(String s) {
+        int n = s.length();
+
+        if (n == 0) {
+            return 0;
+        }
+
+        int[] dp = new int[n + 1];
+        dp[0] = 1; // Base case: Empty string can be decoded in one way (no characters).
+        dp[1] = s.charAt(0) == '0' ? 0 : 1; // First character can be decoded only if it's not '0'.
+
+        for (int i = 2; i <= n; i++) {
+            int oneDigit = Integer.parseInt(s.substring(i - 1, i));
+            int twoDigits = Integer.parseInt(s.substring(i - 2, i));
+
+            if (oneDigit >= 1 && oneDigit <= 9) {
+                dp[i] += dp[i - 1];
+            }
+
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                dp[i] += dp[i - 2];
+            }
+        }
+
+        return dp[n];
+    }
+}
+```
+
 ### [198. House Robber](https://leetcode.com/problems/house-robber/)
 
 ```java
