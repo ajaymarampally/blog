@@ -267,6 +267,68 @@ class Solution {
 }
 ```
 
+### [322. Coin Change](https://leetcode.com/problems/coin-change/description/)
+
+`brute-force: back-tracking`
+
+```java
+class Solution {
+
+    private List<List<Integer>> res = new ArrayList<>();
+
+    private void backtrack(List<List<Integer>> result, List<Integer> current, int[] coins, int start, int remainingAmount) {
+        if (remainingAmount == 0) {
+            res.add(new ArrayList<>(current));
+            return;
+        }
+
+        for (int i = start; i < coins.length; i++) {
+            if (remainingAmount - coins[i] >= 0) {
+                current.add(coins[i]);
+                backtrack(result, current, coins, i, remainingAmount - coins[i]);
+                current.remove(current.size() - 1); // Backtrack
+            }
+        }
+    }
+
+    public int coinChange(int[] coins, int amount) {
+        backtrack(res, new ArrayList<>(), coins, 0, amount);
+        for(var el:res){
+            System.out.println(el);
+        }
+
+        return res.size();
+    }
+}
+```
+
+`DP-approach`
+
+```java
+class Solution {
+
+    public int coinChange(int[] coins, int amount) {
+        if (amount < 0 || coins.length == 0 || coins == null) {
+            return -1;
+        }
+
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+
+        for (int coin : coins) {
+            for (int z = coin; z <= amount; z++) {
+                dp[z] = Math.min(dp[z], 1 + dp[z - coin]);
+            }
+        }
+
+        return dp[amount] <= amount ? dp[amount] : -1;
+    }
+}
+```
+
+
+
 ### [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
 
 ```java
