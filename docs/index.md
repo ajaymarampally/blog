@@ -172,6 +172,148 @@ public class Solution {
 }
 ```
 
+### [139. Word Break](https://leetcode.com/problems/word-break/)
+
+`brute-force: recursion`
+
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        /*
+            brute - force(recursive approach)
+            1. base case when the word is found in dictionary return true;
+            2. start from (1,n) , if the substring is found in dictionary (found the first match )
+            3. pass the rest of the string recursively , if all recursive calls return true
+            4. return
+        */
+
+
+        int n = s.length();
+
+        // Base case: if the string is in the dictionary, return true
+        if (wordDict.contains(s)) {
+            return true;
+        }
+
+        for (int z = 1; z < n; z++) {
+            String ss = s.substring(0, z);
+            // find the first part, pass on the second part recursively
+            if (wordDict.contains(ss)) {
+                String suf = s.substring(z);
+                if (wordBreak(suf, wordDict)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+```
+
+`dp approach`
+
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        /*
+            dp approach (bottom-up)
+            1. base case dp[len(word)] as true, start from n-1 to 0
+            2. if any substring is found in wordDict , set dp[index] as true
+            3. to check the final string can be split or not , set dp[0] as dp[0+len(matchedWord)]
+
+            leetcode , [leet,code]
+            dp[8] = true
+            dp[7] = dp[6] = dp[5] = false
+            dp[4] = true (found code)
+            dp[3] = dp[2] = dp[1] = false
+            dp[0] = dp[0+4] 4 --> len(matchedWord) i.e leet
+        */
+        int n = s.length();
+        boolean[] dp = new boolean[n+1];
+        dp[n] = true;
+
+        for (int z = n - 1; z >= 0; z--) {
+            for (String word : wordDict) {
+                int end = z + word.length();
+                if (end <= n && s.substring(z, end).equals(word)) {
+                    dp[z] = dp[end] || dp[z];
+                }
+            }
+        }
+
+        return dp[0];
+    }
+}
+```
+
+### [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
+
+`brute-force`
+
+```java
+class Solution {
+    public int maxProduct(int[] nums) {
+        /*
+            brute force
+            1. O(n**2), init the product of every number as i
+            2. multiply until n-1
+            3. return max
+
+        */
+        int n = nums.length;
+        int maxProduct = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            int product = 1;
+            for (int j = i; j < n; j++) {
+                product *= nums[j];
+                maxProduct = Math.max(maxProduct, product);
+            }
+        }
+
+        return maxProduct;
+    }
+}
+```
+
+`using prefix and suffix sum`
+
+```java
+class Solution {
+    public int maxProduct(int[] nums) {
+        /*
+            approach - 2 (using suffix and prefix)
+            1. start with 1 for pre and suff , mulitply z (0 to n-1)
+            2. if digit is 0 , make the pre and suff back to 1 (will not be considered as sub-array)
+            3. return the max
+        */
+
+        int n = nums.length;
+        int maxProduct = nums[0]; // Initialize maxProduct with the first element
+        int pre = 1;
+        int suff = 1;
+
+        for (int i = 0; i < n; i++) {
+            pre *= nums[i];
+            suff *= nums[n - i - 1];
+
+            // Update maxProduct with the maximum of maxProduct, pre, and suff
+            maxProduct = Math.max(maxProduct, Math.max(pre, suff));
+
+            // Reset pre and suff if they become 0
+            if (pre == 0) {
+                pre = 1;
+            }
+            if (suff == 0) {
+                suff = 1;
+            }
+        }
+
+        return maxProduct;
+    }
+}
+```
+
 ### [198. House Robber](https://leetcode.com/problems/house-robber/)
 
 ```java
