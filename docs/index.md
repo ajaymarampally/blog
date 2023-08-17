@@ -409,6 +409,88 @@ class Solution {
 }
 ```
 
+### [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+
+`O(n^2)`
+
+```java
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        /*
+            Approach:
+            1. we can form a subsequence of length 1 with each element in the array , so dp[i] of each index is initialized as 1
+            2. for (0,n) -> start as 1 , check from (0 to i) . if element is less than orginal , modity dp[i]
+            3. at each index update the maxLen in comparision with dp[i]
+            4.return
+        */
+
+        int n = nums.length;
+        int[] dp = new int[n];
+        int maxLen = 1; //base case
+
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1; // Initialize to 1 as every element is a subsequence of length 1
+
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+
+            maxLen = Math.max(maxLen, dp[i]);
+        }
+        return maxLen;
+    }
+}
+```
+
+`O(nlogn)`
+```java
+class Solution {
+    /*
+        approach:
+        1. idea is to calculate the length of th LIS not return the LIS , so we can modify the array
+        2. add the first elem to a temp list and set the length as 1 (base case)
+        3. for(1,n) -> check if the element is greater than z-1 index , if yes add it to list , len++
+        4. else , find the index in the temporarry list where the element can be added ( lower bound (binary seach))
+        5. return
+
+        t.c - O(nlogn)
+        s.c - O(n) - arrayList to hold the elements
+    */
+
+
+    public int lengthOfLIS(int[] nums) {
+        List<Integer> tail = new ArrayList<>();
+
+        for (final int num : nums) {
+            if (tail.isEmpty() || num > tail.get(tail.size() - 1)) {
+                tail.add(num);
+            } else {
+                int ind = firstGreaterEqual(tail, num);
+                tail.set(ind, num);
+            }
+        }
+
+        return tail.size();
+    }
+
+    private int firstGreaterEqual(List<Integer> A, int target) {
+        int l = 0;
+        int r = A.size();
+        while (l < r) {
+            final int m = (l + r) / 2;
+            if (A.get(m) >= target) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
+    }
+}
+```
+
 ### [322. Coin Change](https://leetcode.com/problems/coin-change/description/)
 
 `brute-force: back-tracking`
