@@ -551,7 +551,88 @@ class Solution {
 }
 ```
 
+### [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)
 
+`brute-force`
+
+```java
+class Solution {
+    /*
+        brute - force:
+        1. if the sum of nums is odd , cannot parition the nums
+        2. generate all the subsets using backtracking and check if targetsum can be acheived
+        3. return
+    */
+
+    public boolean canPartition(int[] nums) {
+        int totalSum = 0;
+        for (int num : nums) {
+            totalSum += num;
+        }
+
+        if (totalSum % 2 != 0) {
+            return false; // If total sum is odd, cannot partition equally
+        }
+
+        return canPartitionRec(nums, 0, 0, totalSum / 2);
+    }
+
+    private boolean canPartitionRec(int[] nums, int index, int currentSum, int targetSum) {
+        if (currentSum == targetSum) {
+            return true;
+        }
+
+        if (index >= nums.length || currentSum > targetSum) {
+            return false;
+        }
+
+        // Include the current element in the subset
+        if (canPartitionRec(nums, index + 1, currentSum + nums[index], targetSum)) {
+            return true;
+        }
+
+        // Exclude the current element from the subset
+        if (canPartitionRec(nums, index + 1, currentSum, targetSum)) {
+            return true;
+        }
+
+        return false;
+    }
+}
+```
+
+`DP using sets`
+
+```java
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for (var s : nums) {
+            sum += s;
+        }
+        if (sum % 2 == 1) {
+            // base case, cannot partition the array
+            return false;
+        }
+        Set<Integer> set = new HashSet<>();
+        // base case can form a set of length 0, if no elements are included
+        set.add(0);
+        for (int z = 0; z < nums.length; z++) {
+            Set<Integer> tempSet = new HashSet<>(set); // Temporary set to hold updated values
+            // iterate over the elements in the set and add nums[z]
+            for (var el : set) {
+                int ns = el + nums[z];
+                if (ns == sum / 2) {
+                    return true;
+                }
+                tempSet.add(ns);
+            }
+            set.addAll(tempSet); // Update the main set after the iteration is complete
+        }
+        return false;
+    }
+}
+```
 
 ### [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
 
@@ -585,6 +666,134 @@ class Solution {
 ```
 
 ## Graph
+
+### [127. Word Ladder](https://leetcode.com/problems/word-ladder/)
+
+```java
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        /*
+            t.c -
+            to add words - word size m --> o(m^2)
+            to traverse the list - o(n)
+            for bfs --> o(n^2) , no.of nodes in the q
+            o(m) to traverse the word
+
+            s.c -
+            hm - O(m*n)
+
+            approach:
+            1. add beginWord to the wordList as we will be using that in count
+            2. for each word , make a new string with * replaced at each index
+            e.g hit --> *it , h*t , hi*
+            3. add the word (hit) to all the possible formations
+            4. create a q with beingWord
+            5. make the formations and get all the possible neighbors from the hm , add to q
+            6. increse res at each level
+            7. return res , when endWord is found at a level
+            8.if not found , return 0
+
+        */
+
+
+        Map<String, List<String>> hm = new HashMap<>();
+        Set<String> set = new HashSet<>();
+        Queue<String> q = new LinkedList<>();
+        int res = 1;
+
+        if (!wordList.contains(endWord)) {
+            return 0;
+        }
+
+        wordList.add(beginWord);
+
+        for (String word : wordList) {
+            for (int i = 0; i < word.length(); i++) {
+                StringBuilder sb = new StringBuilder(word);
+                sb.setCharAt(i, '*');
+                String pattern = sb.toString();
+                List<String> wordlist = hm.getOrDefault(pattern, new ArrayList<String>());
+                wordlist.add(word);
+                hm.put(pattern, wordlist);
+            }
+        }
+
+        q.offer(beginWord);
+        set.add(beginWord);
+
+        while (!q.isEmpty()) {
+            res++; // Increment res at each level
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                String w = q.poll();
+                for (int z = 0; z < w.length(); z++) {
+                    StringBuilder sb = new StringBuilder(w);
+                    sb.setCharAt(z, '*');
+                    String pattern = sb.toString();
+                    List<String> neigh = hm.getOrDefault(pattern, new ArrayList<String>());
+                    for (String nei : neigh) {
+                        if (nei.equals(endWord)) {
+                            return res; // Return res when endWord is found
+                        }
+                        if (set.contains(nei)) {
+                            continue;
+                        }
+                        q.offer(nei);
+                        set.add(nei);
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
+}
+```
+
+### [130. Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)
+
+```java
+class Solution {
+    public void dfs(int r, int c, char[][] board) {
+        if (r < 0 || c < 0 || r >= board.length || c >= board[0].length || board[r][c] != 'O') {
+            return;
+        }
+        board[r][c] = '*';
+        dfs(r + 1, c, board);
+        dfs(r, c + 1, board);
+        dfs(r - 1, c, board);
+        dfs(r, c - 1, board);
+    }
+
+    public void solve(char[][] board) {
+        int rows = board.length;
+        int cols = board[0].length;
+
+        // Start DFS from border cells in the first and last columns
+        for (int r = 0; r < rows; r++) {
+            dfs(r, 0, board);
+            dfs(r, cols - 1, board);
+        }
+
+        // Start DFS from border cells in the first and last rows
+        for (int c = 0; c < cols; c++) {
+            dfs(0, c, board);
+            dfs(rows - 1, c, board);
+        }
+
+        // Convert '*' back to 'O' and 'O' to 'X'
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (board[r][c] == 'O') {
+                    board[r][c] = 'X';
+                } else if (board[r][c] == '*') {
+                    board[r][c] = 'O';
+                }
+            }
+        }
+    }
+}
+```
 
 ### [133. Clone Graph](https://leetcode.com/problems/clone-graph/description/)
 
@@ -680,6 +889,367 @@ class Solution {
             }
         }
         return res;
+    }
+}
+```
+
+### [207. Course Schedule](https://leetcode.com/problems/course-schedule/)
+
+```java
+class Solution {
+
+    private Map<Integer,List<Integer>> hm = new HashMap<>();
+    private Set<Integer> set = new HashSet<>();
+
+    public boolean dfs(int course){
+        if(set.contains(course)){
+            //found cycle
+            return false;
+        }
+
+        //if an empty list is found as value for key in hm , not more pre --> can finsh the course
+        if(hm.get(course).size()==0){
+            return true;
+        }
+
+        set.add(course);
+        List<Integer> pre = hm.get(course);
+        for(var el:pre){
+            if(!dfs(el)){
+                return false;
+            }
+        }
+        set.remove(course);
+        //mark the pre as visited
+        hm.get(course).clear();
+        return true;
+
+
+    }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        //create a hashMap to store the crs: pre pairs
+
+
+        //create empty ArrayList for each course
+        for(int z = 0 ; z<numCourses;z++){
+            hm.put(z,new ArrayList<>());
+        }
+
+        for(int[] preList:prerequisites){
+            int crs = preList[0];
+            int pre = preList[1];
+
+            List<Integer> ls = hm.get(crs);
+            ls.add(pre);
+        }
+
+
+
+        //iterate through all the courses if in case its an unconnected graph
+
+        for(int x = 0 ; x<numCourses;x++){
+            if(!dfs(x)){
+                return false;
+            }
+        }
+
+        return true;
+
+
+    }
+}
+```
+
+### [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+
+```java
+class Solution {
+
+
+    //variable instantitaion
+
+    private List<Integer> mid = new ArrayList<>();
+    private Set<Integer> cycle = new HashSet<>();
+    private Set<Integer> vis = new HashSet<>();
+    private Map<Integer,List<Integer>> hm = new HashMap<>();
+
+
+    public boolean dfs(int course,int[] res){
+        if(cycle.contains(course)){
+            return false;
+        }
+
+        if(vis.contains(course)){
+            //already visited no need to continue
+            return true;
+        }
+
+        cycle.add(course);
+        //do a dfs for each pre
+        List<Integer> pre = hm.get(course);
+        for(var el:pre){
+            if(!dfs(el,res)){
+                return false;
+            }
+        }
+        mid.add(course);
+        cycle.remove(course);
+        vis.add(course);
+        return true;
+    }
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        //create an empty list for each crs
+        int[] res = new int[numCourses];
+
+        for(int z = 0 ;z<numCourses;z++)
+            hm.put(z,new ArrayList<>());
+
+        //add prereq to the crs
+        for(int[] el : prerequisites){
+            int crs = el[0];
+            int pre = el[1];
+            List<Integer> ls = hm.get(crs);
+            ls.add(pre);
+        }
+
+        //run dfs for all the courses
+        for(int x = 0 ; x<numCourses;x++){
+            if(!dfs(x,res)){
+                return new int[0];
+            }
+        }
+
+        //add values to res
+        for (int i = 0; i < numCourses; i++) {
+            res[i] = mid.get(i); // Reversed order
+        }
+
+        return res;
+    }
+}
+```
+
+### [417. Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)
+
+```java
+class Solution {
+
+    int[][] dir = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        int rows = heights.length, cols = heights[0].length;
+        boolean[][] pacific = new boolean[rows][cols];
+        boolean[][] atlantic = new boolean[rows][cols];
+
+        for (int i = 0; i < cols; i++) {
+            dfs(heights, 0, i, Integer.MIN_VALUE, pacific);
+            dfs(heights, rows - 1, i, Integer.MIN_VALUE, atlantic);
+        }
+
+        for (int i = 0; i < rows; i++) {
+            dfs(heights, i, 0, Integer.MIN_VALUE, pacific);
+            dfs(heights, i, cols - 1, Integer.MIN_VALUE, atlantic);
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (pacific[i][j] && atlantic[i][j]) {
+                    res.add(Arrays.asList(i, j));
+                }
+            }
+        }
+        return res;
+    }
+
+    private void dfs(
+        int[][] heights,
+        int i,
+        int j,
+        int prev,
+        boolean[][] ocean
+    ) {
+        if (i < 0 || i >= ocean.length || j < 0 || j >= ocean[0].length) return;
+        if (heights[i][j] < prev || ocean[i][j]) return;
+
+        ocean[i][j] = true;
+        for (int[] d : dir) {
+            dfs(heights, i + d[0], j + d[1], heights[i][j], ocean);
+        }
+    }
+}
+```
+
+### [684. Redundant Connection](https://leetcode.com/problems/redundant-connection/)
+
+```java
+class Solution {
+    /*
+        t.c. - o(n) , for find and union function for n edges
+        s.c - o(n+1) - to store (n+1) elements in int[] to store parent , rank
+
+        appraoch:
+        1. union function , returns the parent of two nodes
+        2. find function , returns the parent of a node
+        3. for all the nodes in the int[][] , return the uninon function , if both have same parent found the res
+        4. return res
+
+    */
+
+    private int[] parent;
+    private int[] rank;
+
+    //function to find union
+    public boolean union(int n1,int n2){
+        int p1 = find(n1);
+        int p2 = find(n2);
+
+        if(p1==p2){
+            //found same parent edge found
+            return false;
+        }
+        if(rank[p1]<rank[p2]){
+            parent[p1] = p2;
+        }
+        else if(rank[p1]>rank[p2]){
+            parent[p2] = p1;
+        }
+        else{
+            parent[p1] = p2;
+            rank[p2]++;
+        }
+        return true;
+
+    }
+
+    //function to find the parent
+    public int find(int u){
+        return parent[u] == u ? u : (parent[u] = find(parent[u]));
+    }
+
+
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length+1;
+        parent = new int[n];
+        rank = new int[n];
+
+        //fill the parent array
+        for(int z = 0 ; z<n ; z++){
+            parent[z] = z;
+        }
+
+        for(int[] node:edges){
+            if(!union(node[0],node[1])){
+                return node;
+            }
+        }
+
+        throw new IllegalArgumentException();
+
+
+    }
+}
+```
+
+### [695. Max Area of Island](https://leetcode.com/problems/max-area-of-island/)
+
+```java
+class Solution {
+    /*
+        t.c - O(m*n)
+        s.c - o(m*n) -- recursive call stack
+
+        approach:
+        1. init val as 0 , start the dfs
+        2. check if inbounds (should be inside the range) , add 1 to it and return the max area
+    */
+    private int res = 0;
+    public int dfs(int r , int c, int[][] grid){
+        //check if in the bounds
+        if(r<0 || c<0 || r==grid.length || c==grid[0].length || grid[r][c]==0){
+            return 0;
+        }
+        //mark as vis
+        grid[r][c]=0;
+        return (1+ dfs(r+1,c,grid)+ dfs(r,c+1,grid)+ dfs(r,c-1,grid)+ dfs(r-1,c,grid));
+    }
+
+    public int maxAreaOfIsland(int[][] grid) {
+        int row = grid.length;
+        int col = grid[0].length;
+        for(int r = 0;r<row;r++){
+            for(int c = 0 ; c<col ; c++){
+                res = Math.max(dfs(r,c,grid),res);
+            }
+        }
+
+        return res;
+    }
+}
+```
+
+### [994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+
+```java
+class Solution {
+
+    private static class Cell {
+        int row;
+        int col;
+
+        public Cell(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+    }
+
+    public int orangesRotting(int[][] grid) {
+        Deque<Cell> q = new ArrayDeque<>();
+
+        int res = 0;
+        int freshOranges = 0;
+
+        // Count the fresh oranges and add the rotten to the queue
+        int row = grid.length;
+        int col = grid[0].length;
+
+        for (int r = 0; r < row; r++) {
+            for (int c = 0; c < col; c++) {
+                if (grid[r][c] == 1) {
+                    freshOranges++;
+                } else if (grid[r][c] == 2) {
+                    q.offer(new Cell(r, c));
+                }
+            }
+        }
+
+        int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+
+        // BFS on the grid
+        while (q.size() > 0 && freshOranges > 0) {
+            int size = q.size();
+            for (int e = 0; e < size; e++) {
+                Cell cell = q.poll();
+                int elRow = cell.row;
+                int elCol = cell.col;
+                for (int[] dire : directions) {
+                    int newRow = elRow + dire[0];
+                    int newCol = elCol + dire[1];
+                    if (newRow >= 0 && newCol >= 0 && newRow < row && newCol < col && grid[newRow][newCol] == 1) {
+                        // Found a fresh orange, change to rotten and add to queue
+                        grid[newRow][newCol] = 2;
+                        q.offer(new Cell(newRow, newCol));
+                        freshOranges--;
+                    }
+                }
+            }
+            res++;
+        }
+
+        return freshOranges == 0 ? res : -1;
     }
 }
 ```
