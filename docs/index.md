@@ -1254,7 +1254,65 @@ class Solution {
 }
 ```
 
+## Advanced Graphs
 
+### [332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/description/)
+
+![Alt text](332.png)
+
+```java
+class Solution {
+    /*
+        approach:
+
+        1. using dfs approach on the graph to find the next nodes (need to explore the present branch before backtracking on the node)
+        2. to store the neigh's of the nodes in the adj list , use a priority queue
+        3. use a stack to store the current visited node
+        4. add to stack until neighbours are null
+        5. pop from stack and add to res
+        6. return reverse of the linked list (can use addFirst to avoid reversing while poping from the stack)
+
+        t.c:
+        1. to construct adj list , O(no. of tickes * log(no.of tickets)) (with lexical sort)
+        2. stack calls O(E)
+        total -> O(E.log(E))
+
+        s.c:
+        1. to store nodes in graph , O(E)
+        2. stack , O(E)
+        3. res O(E)
+        total -> O(E)
+    */
+
+    private LinkedList<String> res = new LinkedList<>();
+    private Stack<String> st = new Stack();
+    private Map<String,PriorityQueue<String>> gr = new HashMap<>();
+
+    public List<String> findItinerary(List<List<String>> tickets) {
+        //iterate over the tickets and build the graph
+
+        for(var ticket:tickets){
+            gr.putIfAbsent(ticket.get(0),new PriorityQueue<>());
+            gr.get(ticket.get(0)).offer(ticket.get(1));
+        }
+
+        //initialize the stack with JFK
+        st.push("JFK");
+        while(!st.isEmpty()){
+            String nxt = st.peek();
+            if(!gr.getOrDefault(nxt, new PriorityQueue<>()).isEmpty()){
+                st.push(gr.get(nxt).poll()); // gets the next list and remove the first element
+            }
+            else{
+                //reached the end of the stack , keep building the res
+                res.addFirst(st.pop());
+            }
+        }
+
+        return res;
+    }
+}
+```
 
 
 ## Back Tracking
