@@ -1296,7 +1296,6 @@ class Solution {
             gr.get(ticket.get(0)).offer(ticket.get(1));
         }
 
-        //initialize the stack with JFK
         st.push("JFK");
         while(!st.isEmpty()){
             String nxt = st.peek();
@@ -1314,6 +1313,107 @@ class Solution {
 }
 ```
 
+### [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/description/)
+
+![Alt text](743.png)
+
+`Dijkstra's approach`
+
+```java
+import java.util.*;
+
+class Solution {
+    /*
+        1. generate adj list map(int, int[node,weight]) --> keep track of neigh of each node
+        2. init a dist matrix with values as int_max except for node k
+        3. maintain a queue(int[node,weight]) , init with [source,0]
+        4. until q is empty , pop a node , travese its neigh and update the dist matrix
+        5. return the max of dist mat
+    */
+    public int networkDelayTime(int[][] times, int n, int k) {
+        Map<Integer, List<int[]>> mp = new HashMap<>();
+        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        int[] dist = new int[n + 1];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        int res = -1;
+
+        dist[k] = 0;
+
+        for (int[] time : times) {
+            int source = time[0];
+            int dst = time[1];
+            int w = time[2];
+
+            mp.computeIfAbsent(source, key -> new ArrayList<>()).add(new int[]{dst, w});
+        }
+
+        q.offer(new int[]{k, 0});
+
+        while (!q.isEmpty()) {
+            int[] el = q.poll();
+            int s = el[0];
+            int weight = el[1];
+
+            if (!mp.containsKey(s)) continue;
+
+            List<int[]> neigh = mp.get(s);
+            for (int[] nn : neigh) {
+                int nw = nn[1] + weight;
+                if (nw < dist[nn[0]]) {
+                    dist[nn[0]] = nw;
+                    q.offer(new int[]{nn[0], nw});
+                }
+            }
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (dist[i] == Integer.MAX_VALUE) {
+                return -1;
+            }
+            res = Math.max(res, dist[i]);
+        }
+        return res;
+    }
+}
+```
+
+`Bell-man-ford approach`
+
+```java
+import java.util.*;
+
+class Solution {
+    public int networkDelayTime(int[][] times, int n, int k) {
+        int[] dist = new int[n + 1];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[k] = 0;
+
+        // Bellman-Ford algorithm
+        for (int i = 0; i < n - 1; i++) {
+            for (int[] time : times) {
+                int source = time[0];
+                int dst = time[1];
+                int weight = time[2];
+
+                if (dist[source] != Integer.MAX_VALUE && dist[source] + weight < dist[dst]) {
+                    dist[dst] = dist[source] + weight;
+                }
+            }
+        }
+
+        int res = -1;
+
+        for (int i = 1; i <= n; i++) {
+            if (dist[i] == Integer.MAX_VALUE) {
+                return -1;
+            }
+            res = Math.max(res, dist[i]);
+        }
+
+        return res;
+    }
+}
+```
 
 ## Back Tracking
 
