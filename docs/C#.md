@@ -6,7 +6,29 @@
 
 |  Concept     | Primary Usages  |
 | ---------------- | -------------------- |
-| Namespaces |  |
+| Namespaces |  Oraganize code base|
+| Classes | |
+
 
 ### NameSpaces
+
+A group of Classes, Interfaces, Enums, Structs organized together. Used to organize and maintain the codebase
+
+```
+namespace MyNamespace {
+    class MyClass {
+        // Class definition
+    }
+
+    interface MyInterface {
+        // Interface definition
+    }
+
+    // Other types can be declared here
+
+    // Using directive
+    using MyNamespace;
+    MyClass myObj = new MyClass();
+}
+```
 
