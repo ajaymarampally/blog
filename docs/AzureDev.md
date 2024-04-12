@@ -73,7 +73,7 @@ HTTP-based service for hosting web application , REST API's and back ends. Runs 
 | Any OpenID Connect provider | /.auth/login/providername | App Service OpenID Connect login              |
 | GitHub                      | /.auth/login/github       | App Service GitHub login                      |
 
-### how it wokrs
+### how it works
 
 Both the authetication and Authorization modules run in same sandbox, before the http request hit the App service they are processed.services provided by this module are
 
@@ -103,4 +103,64 @@ Both the authetication and Authorization modules run in same sandbox, before the
 ### Token Store
 
 App Service provides in-built token store at the init of the application, when authetication is enabled with any provider a default token store is provided.
+
+### Networking
+
+In Standard plans , all the Apps in the service run under the same worker node, similarly all the outbound addresses for the application are shared. All the possible IP's are listed under the `possibleOutboundIPAddresses` property.
+
+in azure shell
+
+```
+az webapp show \
+    --resource-group <group_name> \
+    --name <app_name> \
+    --query outboundIpAddresses \
+    --output tsv
+```
+
+### Application Settings
+
+All the environmental variables of the application are controller through appSettings Configuaration file, this files will be used for connecting to Azure MySQL servers in production env. , the contents of web.config and appsettings.json by default are used for development env.
+
+### Security Certificates
+
+A certificate is shared between app services in the same resourceGroup and region combination.
+
+| Option                                        | Description                                                                                                                                                      |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Create a free App Service managed certificate | A private certificate that's free of charge and easy to use if you just need to secure your custom domain in App Service.                                        |
+| Purchase an App Service certificate           | A private certificate that's managed by Azure. It combines the simplicity of automated certificate management and the flexibility of renewal and export options. |
+| Import a certificate from Key Vault           | Useful if you use Azure Key Vault to manage your certificates.                                                                                                   |
+| Upload a private certificate                  | If you already have a private certificate from a third-party provider, you can upload it.                                                                        |
+| Upload a public certificate                   | Public certificates aren't used to secure custom domains, but you can load them into your code if you need them to access remote resources.                      |
+
+
+All the certifcates purchased through azure are stored in `azure keyValut`
+
+### Metrics for AutoScale
+
+Autoscaling by metric requires that you define one or more autoscale rules. An autoscale rule specifies a metric to monitor, and how autoscaling should respond when this metric crosses a defined threshold. The metrics you can monitor for a web app are:
+- CPU Percentage. This metric is an indication of the CPU utilization across all instances. A high value shows that instances are becoming CPU-bound, which could cause delays in processing client requests.
+- Memory Percentage. This metric captures the memory occupancy of the application across all instances. A high value indicates that free memory could be running low, and could cause one or more instances to fail.
+- Disk Queue Length. This metric is a measure of the number of outstanding I/O requests across all instances. A high value means that disk contention could be occurring.
+- Http Queue Length. This metric shows how many client requests are waiting for processing by the web app. If this number is large, client requests might fail with HTTP 408 (Timeout) errors.
+- Data In. This metric is the number of bytes received across all instances.
+- Data Out. This metric is the number of bytes sent by all instances.
+
+A duration is defined for capturing the Autoscale metrics , the whole duration is divided into equal time grains.
+
+### slot swapping
+
+The following is carried out during swap
+
+- All the settings of the target(production build) are copied into source slot
+- HTTP requests are sent to all instances in the source , if a response is recived the slot is considered warmed up.
+- Once All the instances are warmed up, the route configurations are swapped to route the traffic to new slot
+
+### Routing
+
+To get user feedback for the new features, a portion of the production traffic can be routed to the new staging slot randomly. The user is pointed to the staging slot until the end of client session. A cookie `x-ms-routing-name=staging` indicates the same.
+
+- Azure WebJob contents --> these are the background workers which process specific tasks on http requests or message queues
+- Azure webjob schedulers --> these are background workers which trigger on a scheduled basis mainly used for data synchronization.
 
