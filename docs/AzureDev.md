@@ -271,18 +271,18 @@ All files stored in azure storage are by default encrypted with 256 bit AES. A u
 - customer managed key - A specific key is used to encrypt all the incoming data
 - customer provided key - A key is provided in the request to read or write data in azure storage
 
-## blob lifecycle policies
+### blob lifecycle policies
 
 Any rule in a policy contains a filter set and a action set, filter set defines a set of data blobs and action set defines a particular action to be performed on the filtered set
 
-## Rehydrate blob
+### Rehydrate blob
 
 Once a blob is in archive tier its considered as an offline resource, to make it alive , two options
 
 - copy the contents of the blob to a new cool or hot tier blob
 - set the existing blob to new tier
 
-## Azure Storage Client
+### Azure Storage Client
 
 Azure storage provides classes for .NET to interact with the storage
 
@@ -304,7 +304,7 @@ Azure storage provides classes for .NET to interact with the storage
 4. use the BlobContainer class to update contents to it
 5. clean up
 
-## HTTP header for blobs
+### HTTP header for blobs
 
 The standard HTTP headers supported on blobs include:
 1. ETag
@@ -318,4 +318,31 @@ The standard HTTP headers supported on blobs include:
 9. Origin
 10. Range
 
-a
+## Azure COSMOS DB
+
+Azure cosmos DB is a NOSQL database which offers multi-master replication across all regions
+
+hierarchy
+
+DB account --> Databases --> container --> DB Items
+
+![alt text](az2.png)
+
+Cosmos DB supports stored procedures in interpretted languages (JS), all the procedures are time bound, during the creation of procedures a boolean return is expected indicating the status of the procedure
+
+cosmos DB also offeres
+
+- pre triggers --> these are initiated before making changes in the DB , used for formatting data, data validation
+- post triggers --> these are initiated after making a change in DB , used for logging or sending an email
+
+all the triggers are part of an single transaction, i.e if an trigger even fails the whole transaction is rolled back to initial state
+
+A change feed is offered for a container in cosmos db , azure .net sdk or java sdk can be used to interact with it.
+
+four steps in changed feed processor
+
+1. connect to the container on which feed is required
+2. A lease instance is issued to store the feed temporarily
+3. A compute instance is initiated can be a app service or VM or physical
+4. bussiness logic associated with change feed
+
