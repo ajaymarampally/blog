@@ -1,5 +1,7 @@
 # Azure Developer Associate
 
+`Credits` - [Microsoft Learning](https://learn.microsoft.com/en-us/training/courses/az-204t00?ns-enrollment-type=Collection&ns-enrollment-id=e21nurz5wk3m71#course-syllabus)
+
 ## Table of contents
 
 | Concept                                      | Primary Usages                     |
@@ -163,4 +165,87 @@ To get user feedback for the new features, a portion of the production traffic c
 
 - Azure WebJob contents --> these are the background workers which process specific tasks on http requests or message queues
 - Azure webjob schedulers --> these are background workers which trigger on a scheduled basis mainly used for data synchronization.
+
+
+## Azure Functions
+
+Azure functions are similar to WebJobs of the App Service , but have more flexible triggers and standalone properties. It is also similar to Azure Logic Apps in terms of functionality but has a different development approach, Logic Apps are design driven where as Functions are code-first architecture.
+
+`functionAppScaleLimit` is used to fix the scale Limit for the Azure Function lies in range(0-max(200))
+
+A function contains two components code and config.json file, A function can have only one trigger.
+
+### Function App
+
+A Function App is a holder for all the functions, all the items share same deployment method and runtime.
+
+Data required for the functions is passed as parameters and the function returns the output. No services are connected in this way.
+
+`dataType` property is used to define the binding type, it's required in interpretted languages, in compiled languages the type is inferred from runtime.
+
+useCase --> whenever a message is added to Azure Queue , add a table row to Azure table Storage.
+
+```
+{
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "direction": "in",
+      "name": "order",
+      "queueName": "myqueue-items",
+      "connection": "MY_STORAGE_ACCT_APP_SETTING"
+    },
+    {
+      "type": "table",
+      "direction": "out",
+      "name": "$return",
+      "tableName": "outTable",
+      "connection": "MY_TABLE_STORAGE_ACCT_APP_SETTING"
+    }
+  ]
+}
+```
+
+`type` --> trigger type
+`direction` --> data binding direction (in,out)
+`name` --> data parameter
+`queueName` --> name of queue column (name of the trigger)
+`connection` --> connection String
+
+The Functions can also be triggered using class libraries , in this case the function.json file is not required.
+
+e.g
+
+```
+public static class QueueTriggerTableOutput
+{
+    [FunctionName("QueueTriggerTableOutput")]
+    [return: Table("outTable", Connection = "MY_TABLE_STORAGE_ACCT_APP_SETTING")]
+    public static Person Run(
+        [QueueTrigger("myqueue-items", Connection = "MY_STORAGE_ACCT_APP_SETTING")]JObject order,
+        ILogger log)
+    {
+        return new Person() {
+                PartitionKey = "Orders",
+                RowKey = Guid.NewGuid().ToString(),
+                Name = order["Name"].ToString(),
+                MobileNumber = order["MobileNumber"].ToString() };
+    }
+}
+
+public class Person
+{
+    public string PartitionKey { get; set; }
+    public string RowKey { get; set; }
+    public string Name { get; set; }
+    public string MobileNumber { get; set; }
+}
+```
+
+All the required parameters are passed in the class as annotations.
+
+- [HTTP Triggers](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cfunctionsv2&pivots=programming-language-csharp)
+
+
+## Azure Blob Storage
 
