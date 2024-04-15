@@ -249,3 +249,39 @@ All the required parameters are passed in the class as annotations.
 
 ## Azure Blob Storage
 
+Three types of resources
+
+- Storage Account - endpoint of the azure storage blob e.g mystorageaccount
+
+`http://mystorageaccount.blob.core.windows.net`
+
+- container -> organizes a set of blobs , a storage account can have unlimited containers
+
+`https://myaccount.blob.core.windows.net/mycontainer`
+
+- blobs
+  1. block blobs - text and binary
+  2. append blobs - logs
+  3. page blobs - images for vm
+
+`https://myaccount.blob.core.windows.net/mycontainer/myvirtualdirectory/myblob`
+
+### Security
+
+All files stored in azure storage are by default encrypted with 256 bit AES. A user can choose manual encryption by adding a key in microsoft valut
+
+- customer managed key - A specific key is used to encrypt all the incoming data
+- customer provided key - A key is provided in the request to read or write data in azure storage
+
+## blob lifecycle policies
+
+Any rule in a policy contains a filter set and a action set, filter set defines a set of data blobs and action set defines a particular action to be performed on the filtered set
+
+## Rehydrate blob
+
+Once a blob is in archive tier its considered as an offline resource, to make it alive , two options
+
+- copy the contents of the blob to a new cool or hot tier blob
+- set the existing blob to new tier
+
+
