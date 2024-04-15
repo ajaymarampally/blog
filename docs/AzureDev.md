@@ -136,12 +136,12 @@ A certificate is shared between app services in the same resourceGroup and regio
 | Upload a private certificate                  | If you already have a private certificate from a third-party provider, you can upload it.                                                                        |
 | Upload a public certificate                   | Public certificates aren't used to secure custom domains, but you can load them into your code if you need them to access remote resources.                      |
 
-
 All the certifcates purchased through azure are stored in `azure keyValut`
 
 ### Metrics for AutoScale
 
 Autoscaling by metric requires that you define one or more autoscale rules. An autoscale rule specifies a metric to monitor, and how autoscaling should respond when this metric crosses a defined threshold. The metrics you can monitor for a web app are:
+
 - CPU Percentage. This metric is an indication of the CPU utilization across all instances. A high value shows that instances are becoming CPU-bound, which could cause delays in processing client requests.
 - Memory Percentage. This metric captures the memory occupancy of the application across all instances. A high value indicates that free memory could be running low, and could cause one or more instances to fail.
 - Disk Queue Length. This metric is a measure of the number of outstanding I/O requests across all instances. A high value means that disk contention could be occurring.
@@ -165,7 +165,6 @@ To get user feedback for the new features, a portion of the production traffic c
 
 - Azure WebJob contents --> these are the background workers which process specific tasks on http requests or message queues
 - Azure webjob schedulers --> these are background workers which trigger on a scheduled basis mainly used for data synchronization.
-
 
 ## Azure Functions
 
@@ -246,7 +245,6 @@ All the required parameters are passed in the class as annotations.
 
 - [HTTP Triggers](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cfunctionsv2&pivots=programming-language-csharp)
 
-
 ## Azure Blob Storage
 
 Three types of resources
@@ -284,4 +282,40 @@ Once a blob is in archive tier its considered as an offline resource, to make it
 - copy the contents of the blob to a new cool or hot tier blob
 - set the existing blob to new tier
 
+## Azure Storage Client
 
+Azure storage provides classes for .NET to interact with the storage
+
+| Class               | Description                                                                                                                                                    |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BlobServiceClient   | Represents the storage account, and provides operations to retrieve and configure account properties, and to work with blob containers in the storage account. |
+| BlobContainerClient | Represents a specific blob container, and provides operations to work with the container and the blobs within.                                                 |
+| BlobClient          | Represents a specific blob, and provides general operations to work with the blob, including operations to upload, download, delete, and create snapshots.     |
+| AppendBlobClient    | Represents an append blob, and provides operations specific to append blobs, such as appending log data.                                                       |
+| BlockBlobClient     | Represents a block blob, and provides operations specific to block blobs, such as staging and then committing blocks of data.                                  |
+
+- exercise to create blob storage using asp.net sdk client
+
+/az-204/azblob/program.cs
+
+1. create a new dotnet console app
+2. add the azure sdk dependency
+3. create a storage account , set up a container in it
+4. use the BlobContainer class to update contents to it
+5. clean up
+
+## HTTP header for blobs
+
+The standard HTTP headers supported on blobs include:
+1. ETag
+2. Last-Modified
+3. Content-Length
+4. Content-Type
+5. Content-MD5
+6. Content-Encoding
+7. Content-Language
+8. Cache-Control
+9. Origin
+10. Range
+
+a
