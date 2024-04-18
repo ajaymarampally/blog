@@ -112,7 +112,7 @@ In Standard plans , all the Apps in the service run under the same worker node, 
 
 in azure shell
 
-```
+```bash
 az webapp show \
     --resource-group <group_name> \
     --name <app_name> \
@@ -215,7 +215,7 @@ The Functions can also be triggered using class libraries , in this case the fun
 
 e.g
 
-```
+```c#
 public static class QueueTriggerTableOutput
 {
     [FunctionName("QueueTriggerTableOutput")]
@@ -407,8 +407,6 @@ This service runs on top of Azure Kubernetes service, mainly used for
 
 All container Apps are serviced inside an Container Environment which shares the same virtual network resources and logging storage.
 
-`az group delete --name $myRG`
-
 Azure container Apps cannot run priviliged apps , no root access is provided to containers and it can run only linux/amd64 based images
 
 ### Authorization and Authentication
@@ -531,7 +529,7 @@ Before the init process of the application , need to register the application in
 
 - public client :
 
-```
+```c#
 IPublicClientApplication app = PublicClientApplicationBuilder.Create(clientId).Build();
 ```
 
@@ -539,7 +537,7 @@ IPublicClientApplication app = PublicClientApplicationBuilder.Create(clientId).B
 
 need to specify the redirect URI where the app server is running
 
-```
+```c#
 string redirectUri = "https://myapp.azurewebsites.net";
 IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(clientId)
     .WithClientSecret(clientSecret)
@@ -595,7 +593,7 @@ SAS token: `sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=20
 | sr=b                                                 | The kind of storage being accessed. In this example, b is for blob.                                                                                                                                            |
 | sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D | The cryptographic signature.                                                                                                                                                                                   |
 
-----
+---
 
 ![alt text](az6.png)
 
@@ -606,12 +604,10 @@ Use case
 - A front end proxy server is established to validate the files if required and get an SAS
 - Post acquring the SAS , the files are sent to the storage account
 
-
 An extra level of security can be acheived by adding the storage access policy to a container to check on the server side before accessing the file
 
 - creating a storage access policy throuh azure-cli
 
-```
+```bash
 az storage container policy create --name <stored access policy identifier> --container-name <container name> --start <start time UTC datetime> --expiry <expiry time UTC datetime> --permissions <(a)dd, (c)reate, (d)elete, (l)ist, (r)ead, or (w)rite> --account-key <storage account key> --account-name <storage account name>
 ```
-
