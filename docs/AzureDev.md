@@ -307,6 +307,7 @@ Azure storage provides classes for .NET to interact with the storage
 ### HTTP header for blobs
 
 The standard HTTP headers supported on blobs include:
+
 1. ETag
 2. Last-Modified
 3. Content-Length
@@ -345,4 +346,272 @@ four steps in changed feed processor
 2. A lease instance is issued to store the feed temporarily
 3. A compute instance is initiated can be a app service or VM or physical
 4. bussiness logic associated with change feed
+
+## Azure Container Registry
+
+Azure Container Registry (ACR) hosts all the services for a smooth CI/CD pipelines.
+
+different tasks to build and maintain container images
+
+- Quick task : build a single image and push to ACR
+- Trigger Update: Source code trigger, Image update
+- Multi updates: upgrades at container level , helm upgrades
+
+### DockerFile
+
+A Dockerfile is a script that contains a series of instructions that are used to build a Docker image. Dockerfiles typically include the following information:
+
+- The base or parent image we use to create the new image
+- Commands to update the base OS and install other software
+- Build artifacts to include, such as a developed application
+- Services to expose, such a storage and network configuration
+- Command to run when the container is launched
+
+## Azure Container Instances
+
+It's a serveless container service in azure, main difference from the ACR is the ability to run container without managing the underlying images, useful for microservices , batch process and it provides various start and stop policies
+
+Top level resource in ACI is `container-group` , it hosts multiple container under same host machine , all the containers share same life-cycle, resources and network connections
+
+![alt text](az3.png)
+
+This example container group:
+
+- Is scheduled on a single host machine.
+- Is assigned a DNS name label.
+- Exposes a single public IP address, with one exposed port.
+- Consists of two containers. One container listens on port 80, while the other listens on port 5000.
+- Includes two Azure file shares as volume mounts, and each container mounts one of the shares locally.
+
+multi container usecases
+
+1. a container to host web application , a container to retrive and store logs
+2. a container to host front-end , a container to run back-end services
+
+### container restart policy
+
+| Restart policy | Description                                                                                                                                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Always         | Containers in the container group are always restarted. This is the default setting applied when no restart policy is specified at container creation.                                     |
+| Never          | Containers in the container group are never restarted. The containers run at most once.                                                                                                    |
+| OnFailure      | Containers in the container group are restarted only when the process executed in the container fails (when it terminates with a nonzero exit code). The containers are run at least once. |
+
+## Azure container Apps
+
+This service runs on top of Azure Kubernetes service, mainly used for
+
+- deploying api endpoints
+- running background services
+- running microservices
+- handling event-driven services
+
+All container Apps are serviced inside an Container Environment which shares the same virtual network resources and logging storage.
+
+`az group delete --name $myRG`
+
+Azure container Apps cannot run priviliged apps , no root access is provided to containers and it can run only linux/amd64 based images
+
+### Authorization and Authentication
+
+Azure containers provide both authN and authZ services when `allowInsecure` is disabled and require authetication is enabled in the configuration settings.
+
+In this Arch , both the authN and authZ run as sidecar containers running parallely.
+
+![alt text](az4.png)
+
+services provided by the middleware
+
+- authN and authZ operations for selectede identity provider
+- maintain session
+- inject http headers with identity information
+
+### revisions and secrets
+
+- revisions : The version management is acheived through revisions, any specific container can have a current revision and can make updates to the current using an revision policy.
+
+All the available revisions can be listed at
+
+`az containerapp revision list`
+
+- secrets : Secrets in container apps are declared at environment level, a change in secret doesn't creat or modify an exisiting revision. secrets are declared using the `--secret` variable during the init of the container and accessed using `secretref:`
+
+### DAPR integration
+
+Dapr --> Distributed Application Runtime
+
+- it provides and acts as a medium to allow connections between containers to allow pub/sub messages and service to service call initiations
+- Azure provides dapr and manages updates to it.
+
+Services provided
+
+1. service to service invocation - this allows discovery of the services andn service to service calls along with authN
+2. state management - containers are stateless apps , this provides state for transactions and CRUD opxns
+3. pub/sub - communication between containers through a middleware container
+4. bindings - triggers to initiate services
+5. actors - single thread workers which can be called or invoked through messages
+6. observability - used to monitor containers
+7. secrets - used to store secrets at dapr environment
+
+![alt text](az5.png)
+
+Dapr runs as side car containers in the container environment to provide services.
+
+## Microsoft Identity Platform
+
+Identify platform provides sdk and other options to let users sign in and use API's
+
+allows
+
+- microsoft entra accounts
+- personal
+- social
+
+when regstering an application to Entra ID , need to mention whether its used by single tenant or group
+
+- home tenant : home tenant of an application create an application object
+- others: all other tenants of the application use service objects which are blueprints of the main application object class
+
+### Authorization
+
+- Oauth 2.0 : This service allows a third party app to use the application using mrst identity platform
+- access to individual resources is provided by defining a scope, scopes are attached at the end of the resource URI
+  e.g , accessing calender from the graph API
+  `https://graph.microsoft.com/Calender.Read`
+- graph --> service provider , Calender.Read --> scope
+- permission types
+
+1. delegate - user or app requests for access
+2. app only - consent provided by admin for daemon processes
+
+- consent types
+
+1. static - provided by admin prior to accessing the app
+2. dynamic - request access at run time
+3. admin - high previlage access
+
+### MSAL
+
+the Microsoft Authorization Library offers services to authenticate users using Azure AD and provide access to secured web API's
+
+Uses
+
+- fetch tokens on behalf of application or an user
+- handles a token cache repository , which auto issues tokens post ttl
+- specify the audience to the application
+
+Different types of authentication
+
+| Flow               | Description                                                                   |
+| ------------------ | ----------------------------------------------------------------------------- |
+| Authorization code | Native and web apps securely obtain tokens in the name of the user            |
+| Client credentials | Service applications run without user interaction                             |
+| On-behalf-of       | The application calls a service/web API, which in turns calls Microsoft Graph |
+| Implicit           | Used in browser-based applications                                            |
+| Device code        | Enables sign-in to a device by using another device that has a browser        |
+| Integrated Windows | Windows computers silently acquire an access token when they're domain joined |
+| Interactive        | Mobile and desktops applications call Microsoft Graph in the name of a user   |
+| Username/password  | The application signs in a user by using their username and password          |
+
+Two different types of application clients are provided in azure
+
+1. public client - the devices not trusted to store secrets and easy to access, they use web api's to fetch the secrets
+2. confidential client - the devices which are trusted and hard to access , all the web api run on these servers.
+
+with MSAL.NET , we can use `publicCLientApplicationBuilder`, `confidentialClientApplicationBuilder` methods to create these clients
+
+Before the init process of the application , need to register the application in the azure identity, post that fetch the following from the portal
+
+1. client id --> id of the application
+2. identity provider URL
+3. tenant ID --> used if the application group tenant application (organization)
+4. appication secrets
+5. redirectURI - the url to which user should be redirected along with tokens
+
+#### Initiating Clients
+
+- public client :
+
+```
+IPublicClientApplication app = PublicClientApplicationBuilder.Create(clientId).Build();
+```
+
+- confidentital client:
+
+need to specify the redirect URI where the app server is running
+
+```
+string redirectUri = "https://myapp.azurewebsites.net";
+IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(clientId)
+    .WithClientSecret(clientSecret)
+    .WithRedirectUri(redirectUri )
+    .Build();
+```
+
+#### Access Modifiers
+
+Access modifiers for public clients
+
+| Modifier                                            | Description                                                                                                                                                                                                            |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .WithAuthority()                                    | Sets the application default authority to a Microsoft Entra authority, with the possibility of choosing the Azure Cloud, the audience, the tenant (tenant ID or domain name), or providing directly the authority URI. |
+| .WithTenantId(string tenantId)                      | Overrides the tenant ID, or the tenant description.                                                                                                                                                                    |
+| .WithClientId(string)                               | Overrides the client ID.                                                                                                                                                                                               |
+| .WithRedirectUri(string redirectUri)                | Overrides the default redirect URI. This is useful for scenarios requiring a broker.                                                                                                                                   |
+| .WithComponent(string)                              | Sets the name of the library using MSAL.NET (for telemetry reasons).                                                                                                                                                   |
+| .WithDebugLoggingCallback()                         | If called, the application calls Debug.Write simply enabling debugging traces.                                                                                                                                         |
+| .WithLogging()                                      | If called, the application calls a callback with debugging traces.                                                                                                                                                     |
+| .WithTelemetry(TelemetryCallback telemetryCallback) | Sets the delegate used to send telemetry.                                                                                                                                                                              |
+
+Access modifiers for confidential clients
+
+| Modifier                                       | Description                                                                                |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| .WithCertificate(X509Certificate2 certificate) | Sets the certificate identifying the application with Microsoft Entra ID.                  |
+| .WithClientSecret(string clientSecret)         | Sets the client secret (app password) identifying the application with Microsoft Entra ID. |
+
+## Shared Access
+
+A shared access signature (SAS) is a URI that grants restricted access rights to Azure Storage resources. You can provide a shared access signature to clients that you want to grant delegate access to certain storage account resources.
+
+Three types of shared access
+
+1. User SAS - SAS secured with Entra ID credentials , used for blob storage
+2. Service SAS - secured with storage account key , used to access blob storage, queue storage, files
+3. Account SAS - used to delegate access to resources dependent on storage
+
+When you use a SAS to access data stored in Azure Storage, you need two components. The first is a URI to the resource you want to access. The second part is a SAS token that you've created to authorize access to that resource.
+In a single URI, such as ``https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D``,
+
+you can separate the URI from the SAS token as follows:
+URI: `https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?`
+SAS token: `sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D`
+
+| Component                                            | Description                                                                                                                                                                                                    |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sp=r                                                 | Controls the access rights. The values can be a for add, c for create, d for delete, l for list, r for read, or w for write. This example is read only. The example sp=acdlrw grants all the available rights. |
+| st=2020-01-20T11:42:32Z                              | The date and time when access starts.                                                                                                                                                                          |
+| se=2020-01-20T19:42:32Z                              | The date and time when access ends. This example grants eight hours of access.                                                                                                                                 |
+| sv=2019-02-02                                        | The version of the storage API to use.                                                                                                                                                                         |
+| sr=b                                                 | The kind of storage being accessed. In this example, b is for blob.                                                                                                                                            |
+| sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D | The cryptographic signature.                                                                                                                                                                                   |
+
+----
+
+![alt text](az6.png)
+
+Use case
+
+- A client wants to read/write information to a storage account of another user/owner.
+- In order to facilitate this an SAS is required
+- A front end proxy server is established to validate the files if required and get an SAS
+- Post acquring the SAS , the files are sent to the storage account
+
+
+An extra level of security can be acheived by adding the storage access policy to a container to check on the server side before accessing the file
+
+- creating a storage access policy throuh azure-cli
+
+```
+az storage container policy create --name <stored access policy identifier> --container-name <container name> --start <start time UTC datetime> --expiry <expiry time UTC datetime> --permissions <(a)dd, (c)reate, (d)elete, (l)ist, (r)ead, or (w)rite> --account-key <storage account key> --account-name <storage account name>
+```
 
