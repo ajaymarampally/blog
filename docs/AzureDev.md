@@ -749,7 +749,7 @@ e.g adding headers to incoming request
 
 ------
 
-scope for API's
+### scope for API's
 
 - all : includes all the api endpoints with a single subscription key
 - a single api - specific to an API endpoint
@@ -767,7 +767,7 @@ curl https://<apim gateway>.azure-api.net/api/path?subscription-key=<key string>
 
 ------
 
-API security TLS
+### API security TLS
 
 Other way to authenticate is to set inbound rules to check
 
@@ -791,4 +791,79 @@ e.g checking thumbprint in inbound rule policies
 ```
 
 -------
+
+## Azure Event Grid
+
+Main use - Acts as an event handler and publisher to action taking subscribers
+
+- Events - What happened.
+- Event sources - Where the event took place.
+- Topics - The endpoint where publishers send events.
+- Event subscriptions - The endpoint or built-in mechanism to route events, sometimes to more than one handler. Subscriptions are also used by handlers to intelligently filter incoming events.
+- Event handlers - The app or service reacting to the event.
+
+------
+
+Event grid support two types of event schemes
+
+- Event Grid Event Scheme -> designed for setting up the azure event grid system.
+
+- Cloud Event Scheme --> used to define the data scheme for systems beyond azure event grid
+
+-------
+
+Dead letter events - after exhausting all the retry attemps or post the time to live (TTL) mentioned in the policy the azure event grid stores an dead letter event in the system.
+
+webhooks are used to receive events from azure event grid, post setting up the system access should be provided to the end point to receive POST requests
+
+e.g Azure functions with event grid trigger
+
+---------
+
+### Filters
+
+only a specific set of events can be filterd out from the event grid pool and passed to the webhook endpoint, different types of filters
+
+1. Event type - success or failure
+2. Subject begins with or ends with (filter a specific type of files )
+3. Advance filters - use the following fields
+
+- operator type - The type of comparison.
+- key - The field in the event data that you're using for filtering. It can be a number, boolean, or string.
+- value or values - The value or values to compare to the key.
+
+```json
+"filter": {
+  "advancedFilters": [
+    {
+      "operatorType": "NumberGreaterThanOrEquals",
+      "key": "Data.Key1",
+      "value": 5
+    },
+    {
+      "operatorType": "StringContains",
+      "key": "Subject",
+      "values": ["container1", "container2"]
+    }
+  ]
+}
+```
+
+----------
+
+## Azure Event Hub
+
+Event Hub is used to receive and process millions of events per second. It serves a front door to any event pipeline and acts as event ingestor.
+
+-----------
+
+### Architecture of Event Hub
+
+![alt text](az8.png)
+
+- Event producers (POST Requests): source of data (logs, telemetry, mobile app data,etc..)
+- protocol : either HTTPS or Kafka 1.0 protocol(streaming platforms) or Advanced Message Queue protocl (IoT messaging queues)
+- Azure event hubs: Main container to facilitate data, the total number of partitions should be defined at initialization, data is assigned at the end of each partition on any post event.
+- consumer group: The main consumers of the event hubs , each consumer is connected to an partion and receives events in a continuos stream.
+- Event Receivers (GET Requests): The Endpoint which receives events from IoT devices , this receivers mainly use ACMP protocol.
 
