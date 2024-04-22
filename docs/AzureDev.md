@@ -611,3 +611,184 @@ An extra level of security can be acheived by adding the storage access policy t
 ```bash
 az storage container policy create --name <stored access policy identifier> --container-name <container name> --start <start time UTC datetime> --expiry <expiry time UTC datetime> --permissions <(a)dd, (c)reate, (d)elete, (l)ist, (r)ead, or (w)rite> --account-key <storage account key> --account-name <storage account name>
 ```
+
+---
+
+## Microsoft Graph
+
+Microsoft graph API provides sdk and rest endpoints to access the data stored in azure services.
+
+![alt text](az7.png)
+
+It consists of three components
+
+- Graph Connectors: Used to deliver all the incoming data into the Azure Storage , all the popular services have connectors (Drive,Salesforce,Box)
+
+- Data Connect: used to deliver all the data from the graph to the azure internal tools for development
+
+- Rest Endpoint: The graph library provides the endpoint `https://graph.microsoft.com/` to provide endpoint to API and SDK's.
+
+---
+
+- url pattern to fetch records
+
+`{HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}`
+
+1. HTTP method - the operation that would be performed (GET,PUT,POST,PATCH,DELETE)
+2. version - version of the graph API used
+3. resource - indicating the id of the resource (me/Email)
+4. query-paremeters - includes a set of query options to be performed ($skip, $sort, $top)
+
+- Pattern of the Response
+
+1. Status Code
+2. Response
+3. nextLink - used when response is long.
+
+## Azure key vault
+
+Azure key value is used to store sensitive information such as API Keys, app secrets, certificates and cryptographic keys
+
+- useful in maintaining keys if an application has multiple versions
+- authN is provided by Entra ID and authZ is provided by role bases Acess or key valut policies
+
+-----
+
+- managed identity
+
+1. system managed: In this type of approach , whenever we need access from key valut system auto manages it.
+
+process included
+
+- ARM creates a identity for the resources in the Entra ID and assigns to the resoruce for the whole lifecycle
+- whenever a resource requires authN, azure auto manages it
+
+2. user managed: In this type of approach the user has to manually register the service in the entra ID.
+
+- Whenever authN is required a request has to be sent to `vault.azure.net\token`
+
+-----
+
+## Azure API Management
+
+Api Management is composed of three components
+
+- API gateway
+
+1. Accept incoming calls and route to backend
+2. Request and response transformations
+3. rate limit
+4. caching and logs
+
+- Management plane
+
+1. manage users
+2. transformation on request
+3. define api schema
+
+- Developer portal
+
+1. Documentation
+2. create and manage keys
+
+----
+
+available policies in gateway are `inbound`,`outbound`,`onError`
+
+e.g adding headers to incoming request
+
+```XML
+<policies>
+    <inbound>
+        <base />
+        <set-header name="x-request-context-data" exists-action="override">
+            <value>@(context.User.Id)</value>
+            <value>@(context.Deployment.Region)</value>
+      </set-header>
+    </inbound>
+</policies>
+```
+
+----
+
+### Advanced policies
+
+1. control flow - Apply policy statements based on conditional boolean expressions
+
+2. forward request - this policy forwards the request to specified context.forwardRef , if not mentioned the outbound policy would be executed
+
+```xml
+<forward-request timeout="time in seconds" follow-redirects="true | false"/>
+```
+
+3. limit concurency - this policy limits incoming requests, return an HTTP 429 - Too many requests status code
+
+```xml
+<limit-concurrency key="expression" max-count="number">
+        <!— nested policy statements -->
+</limit-concurrency>
+```
+
+4. log to event hub - send particular request for event analysis
+
+5. mock response - used for test purposes
+
+6. Retry - execute a set of child policies until retry condition is false or time is exhausted
+
+```xml
+<retry
+    condition="boolean expression or literal"
+    count="number of retry attempts"
+    interval="retry interval in seconds"
+    max-interval="maximum retry interval in seconds"
+    delta="retry interval delta in seconds"
+    first-fast-retry="boolean expression or literal">
+        <!-- One or more child policies. No restrictions -->
+</retry>
+```
+
+------
+
+scope for API's
+
+- all : includes all the api endpoints with a single subscription key
+- a single api - specific to an API endpoint
+- product - specific to a group of products
+
+default header name - `Ocp-Apim-Subscription-Key`
+
+```shell
+curl --header "Ocp-Apim-Subscription-Key: <key string>" https://<apim gateway>.azure-api.net/api/path
+```
+default query parameter - `subscription-Key`
+```bash
+curl https://<apim gateway>.azure-api.net/api/path?subscription-key=<key string>
+```
+
+------
+
+API security TLS
+
+Other way to authenticate is to set inbound rules to check
+
+1. Certificate Authority
+2. Thumbprint
+3. Subject
+4. Expiry date
+
+useful to authenticate azure functions
+
+e.g checking thumbprint in inbound rule policies
+
+```xml
+<choose>
+    <when condition="@(context.Request.Certificate == null || context.Request.Certificate.Thumbprint != "desired-thumbprint")" >
+        <return-response>
+            <set-status code="403" reason="Invalid client certificate" />
+        </return-response>
+    </when>
+</choose>
+```
+
+-------
+
