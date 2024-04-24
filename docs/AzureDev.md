@@ -578,10 +578,13 @@ Three types of shared access
 3. Account SAS - used to delegate access to resources dependent on storage
 
 When you use a SAS to access data stored in Azure Storage, you need two components. The first is a URI to the resource you want to access. The second part is a SAS token that you've created to authorize access to that resource.
+
 In a single URI, such as ``https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D``,
 
 you can separate the URI from the SAS token as follows:
+
 URI: `https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?`
+
 SAS token: `sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D`
 
 | Component                                            | Description                                                                                                                                                                                                    |
@@ -623,9 +626,7 @@ Microsoft graph API provides sdk and rest endpoints to access the data stored in
 It consists of three components
 
 - Graph Connectors: Used to deliver all the incoming data into the Azure Storage , all the popular services have connectors (Drive,Salesforce,Box)
-
 - Data Connect: used to deliver all the data from the graph to the azure internal tools for development
-
 - Rest Endpoint: The graph library provides the endpoint `https://graph.microsoft.com/` to provide endpoint to API and SDK's.
 
 ---
@@ -652,7 +653,7 @@ Azure key value is used to store sensitive information such as API Keys, app sec
 - useful in maintaining keys if an application has multiple versions
 - authN is provided by Entra ID and authZ is provided by role bases Acess or key valut policies
 
------
+---
 
 - managed identity
 
@@ -667,7 +668,7 @@ process included
 
 - Whenever authN is required a request has to be sent to `vault.azure.net\token`
 
------
+---
 
 ## Azure API Management
 
@@ -691,7 +692,7 @@ Api Management is composed of three components
 1. Documentation
 2. create and manage keys
 
-----
+---
 
 available policies in gateway are `inbound`,`outbound`,`onError`
 
@@ -709,12 +710,11 @@ e.g adding headers to incoming request
 </policies>
 ```
 
-----
+---
 
 ### Advanced policies
 
 1. control flow - Apply policy statements based on conditional boolean expressions
-
 2. forward request - this policy forwards the request to specified context.forwardRef , if not mentioned the outbound policy would be executed
 
 ```xml
@@ -730,9 +730,7 @@ e.g adding headers to incoming request
 ```
 
 4. log to event hub - send particular request for event analysis
-
 5. mock response - used for test purposes
-
 6. Retry - execute a set of child policies until retry condition is false or time is exhausted
 
 ```xml
@@ -747,7 +745,7 @@ e.g adding headers to incoming request
 </retry>
 ```
 
-------
+---
 
 ### scope for API's
 
@@ -760,12 +758,14 @@ default header name - `Ocp-Apim-Subscription-Key`
 ```shell
 curl --header "Ocp-Apim-Subscription-Key: <key string>" https://<apim gateway>.azure-api.net/api/path
 ```
+
 default query parameter - `subscription-Key`
+
 ```bash
 curl https://<apim gateway>.azure-api.net/api/path?subscription-key=<key string>
 ```
 
-------
+---
 
 ### API security TLS
 
@@ -790,7 +790,7 @@ e.g checking thumbprint in inbound rule policies
 </choose>
 ```
 
--------
+---
 
 ## Azure Event Grid
 
@@ -802,15 +802,14 @@ Main use - Acts as an event handler and publisher to action taking subscribers
 - Event subscriptions - The endpoint or built-in mechanism to route events, sometimes to more than one handler. Subscriptions are also used by handlers to intelligently filter incoming events.
 - Event handlers - The app or service reacting to the event.
 
-------
+---
 
 Event grid support two types of event schemes
 
 - Event Grid Event Scheme -> designed for setting up the azure event grid system.
-
 - Cloud Event Scheme --> used to define the data scheme for systems beyond azure event grid
 
--------
+---
 
 Dead letter events - after exhausting all the retry attemps or post the time to live (TTL) mentioned in the policy the azure event grid stores an dead letter event in the system.
 
@@ -818,7 +817,7 @@ webhooks are used to receive events from azure event grid, post setting up the s
 
 e.g Azure functions with event grid trigger
 
----------
+---
 
 ### Filters
 
@@ -849,13 +848,21 @@ only a specific set of events can be filterd out from the event grid pool and pa
 }
 ```
 
-----------
+---
 
 ## Azure Event Hub
 
 Event Hub is used to receive and process millions of events per second. It serves a front door to any event pipeline and acts as event ingestor.
 
------------
+Auth --> Microsoft Entra ID or SAS
+
+- usecase scenario
+
+As an example scenario, consider a home security company that monitors 100,000 homes. Every minute, it gets data from various sensors such as a motion detector, door/window open sensor, glass break detector, and so on, installed in each home. The company provides a web site for residents to monitor the activity of their home in near real time.
+
+Each sensor pushes data to an event hub. The event hub is configured with 16 partitions. On the consuming end, you need a mechanism that can read these events, consolidate them, and dump the aggregate to a storage blob, which is then projected to a user-friendly web page.
+
+---
 
 ### Architecture of Event Hub
 
@@ -865,5 +872,57 @@ Event Hub is used to receive and process millions of events per second. It serve
 - protocol : either HTTPS or Kafka 1.0 protocol(streaming platforms) or Advanced Message Queue protocl (IoT messaging queues)
 - Azure event hubs: Main container to facilitate data, the total number of partitions should be defined at initialization, data is assigned at the end of each partition on any post event.
 - consumer group: The main consumers of the event hubs , each consumer is connected to an partion and receives events in a continuos stream.
-- Event Receivers (GET Requests): The Endpoint which receives events from IoT devices , this receivers mainly use ACMP protocol.
+- Event Receivers (GET Requests): The Endpoint which receives events from IoT devices , this receivers mainly use AMQ protocol.
+
+All the captured data is stored in Apache Avro format.
+
+location of an example file can be
+
+```
+https://mystorageaccount.blob.core.windows.net/mycontainer/mynamespace/myeventhub/0/2017/12/08/03/03/17.avro
+```
+
+naming convention used
+
+```
+{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}
+```
+
+--------
+
+## Azure Message Queues
+
+Two types of queues are supported
+
+- Service Bus Queue : main part of the azure messaging infc., supports pub/sub and other models. Useful for parallel queuing.
+
+- Storage queue : queue built in the main infrastructe of the azure storage.useful for long queues (supports upto 80gb)
+
+The Queue used for stream uses FIFO, these are load leveling nodes as client and publisher might have different stream rates
+
+Two modes of subscriptions are available for consumers
+
+- Receive and delete : the consumer sends a request for message, the service bus processes the request and marks it as consumed , in case of downtime or restarts the request is lost.
+
+- peek and lock : In this mode , once a request is received from the consumer , the service bus locks the next request and processes the current. This makes it fault tolerant , in case of any issues the lock is removed either by abandoing or a ttl.
+
+------
+
+### Different types of message routings
+
+- Simple Request/reply: The producer pushes a message to the queue with the field `ReplyTo` , all the consumers send their status to the address
+
+- Multicast request/reply: The producer pushes a message to the queue and multi consumers send their status to the `ReplyTo` field.
+
+- Multiplexing - A `sessionID` field is assigned to the message and all consumers listen on the active session.
+
+- Multiplexing Request/reply: Multiple Producers share a `SessionID` and all the consumers respons to `ReplyToSessionID` address.
+
+Azure logic Apps maintain the routing in the service bus.
+
+--------
+
+### [Exercise](https://learn.microsoft.com/en-us/training/modules/discover-azure-message-queue/6-send-receive-messages-service-bus)
+
+---------
 
