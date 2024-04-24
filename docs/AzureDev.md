@@ -37,11 +37,11 @@ HTTP-based service for hosting web application , REST API's and back ends. Runs 
 
 1. Components of the App service
 
-   1.Operating System (Windows, Linux)
-   2.Region (West US, East US, etc.)
-   3.Number of VM instances
-   4.Size of VM instances (Small, Medium, Large)
-   5.Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2)
+   1. Operating System (Windows, Linux)
+   2. Region (West US, East US, etc.)
+   3. Number of VM instances
+   4. Size of VM instances (Small, Medium, Large)
+   5. Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2 PremiumV3, Isolated, IsolatedV2)
 2. Deployment
 
    - Azure DevOps Services: You can push your code to Azure DevOps Services, build your code in the cloud, run the tests, generate a release from the code, and finally, push your code to an Azure Web App.
