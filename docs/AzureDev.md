@@ -2,16 +2,10 @@
 
 `Credits` - [Microsoft Learning](https://learn.microsoft.com/en-us/training/courses/az-204t00?ns-enrollment-type=Collection&ns-enrollment-id=e21nurz5wk3m71#course-syllabus)
 
-## Table of contents
 
-| Concept                                      | Primary Usages                     |
-| -------------------------------------------- | ---------------------------------- |
-| AZ:900: Azure Fundamentals                   | Introduction to Azure Fundamentals |
-| AZ-204: Implement Azure App Service Web Apps |                                    |
+## Azure Fundamentals
 
-### Azure Fundamentals
-
-## shared responsibility model
+### shared responsibility model
 
 In this model, the responsibilites are shared between the cloud provider and the client, for instance in case of cloud SQL server, the provider is responsible for setting up the instances whereas the client is responsible for data ingestion and providing access.
 
@@ -25,17 +19,17 @@ Different Cloud Service types
 
 ![alt text](az1.png)
 
-## Vertical Scaling
+### Vertical Scaling
 
 The ability to add more compute power, in case of app development adding more cpu power is vertical scaling
 
-## Horizontal scaling
+### Horizontal scaling
 
 The ability to add more machines or containers to support the demand(either auto or manual)
 
-### AZ:204 - Azure App service
+## AZ:204 - Azure App service
 
-## Azure App service
+### Azure App service
 
 ```
 HTTP-based service for hosting web application , REST API's and back ends. Runs on both linux and windows environments.
@@ -888,14 +882,13 @@ naming convention used
 {Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}
 ```
 
---------
+---
 
 ## Azure Message Queues
 
 Two types of queues are supported
 
 - Service Bus Queue : main part of the azure messaging infc., supports pub/sub and other models. Useful for parallel queuing.
-
 - Storage queue : queue built in the main infrastructe of the azure storage.useful for long queues (supports upto 80gb)
 
 The Queue used for stream uses FIFO, these are load leveling nodes as client and publisher might have different stream rates
@@ -903,26 +896,84 @@ The Queue used for stream uses FIFO, these are load leveling nodes as client and
 Two modes of subscriptions are available for consumers
 
 - Receive and delete : the consumer sends a request for message, the service bus processes the request and marks it as consumed , in case of downtime or restarts the request is lost.
-
 - peek and lock : In this mode , once a request is received from the consumer , the service bus locks the next request and processes the current. This makes it fault tolerant , in case of any issues the lock is removed either by abandoing or a ttl.
 
-------
+---
 
 ### Different types of message routings
 
 - Simple Request/reply: The producer pushes a message to the queue with the field `ReplyTo` , all the consumers send their status to the address
-
 - Multicast request/reply: The producer pushes a message to the queue and multi consumers send their status to the `ReplyTo` field.
-
 - Multiplexing - A `sessionID` field is assigned to the message and all consumers listen on the active session.
-
 - Multiplexing Request/reply: Multiple Producers share a `SessionID` and all the consumers respons to `ReplyToSessionID` address.
 
 Azure logic Apps maintain the routing in the service bus.
 
---------
+---
 
 ### [Exercise](https://learn.microsoft.com/en-us/training/modules/discover-azure-message-queue/6-send-receive-messages-service-bus)
 
----------
+---
 
+## Azure Cache for Redis
+
+Used for the following scenarios
+
+- Data cache : A chunk of frequenty used data from source is stored in cache and frequently updated
+- Static content : store contents of the static websites
+- session storage : alternative to cookies to improve performance
+- Distributed transactions: Useful to maintain the atomicity of transactions, it keeps a log of transactions and rolls back in case of failure.
+
+-------
+command format for redis
+
+```
+COMMAND parameter1 parameter2 parameter3
+```
+
+| Command               | Description                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ping                  | Ping the server. Returns "PONG".                                                                                                                 |
+| set [key] [value]     | Sets a key/value in the cache. Returns "OK" on success.                                                                                          |
+| get [key]             | Gets a value from the cache.                                                                                                                     |
+| exists [key]          | Returns '1' if the key exists in the cache, '0' if it doesn't.                                                                                   |
+| type [key]            | Returns the type associated to the value for the given key.                                                                                      |
+| incr [key]            | Increment the given value associated with key by '1'. The value must be an integer or double value. This returns the new value.                  |
+| incrby [key] [amount] | Increment the given value associated with key by the specified amount. The value must be an integer or double value. This returns the new value. |
+| del [key]             | Deletes the value associated with the key.                                                                                                       |
+| flushdb               | Delete all keys and values in the database.                                                                                                      |
+------
+
+## storage on CDN's
+
+azure offers several POP (point of presence) edge servers spread across serveral geo locations
+
+main features
+
+1. site load time accelaration
+2. https configurations
+3. file compressions
+4. geo filtering
+5. diagnostic logs
+
+### Content updating
+
+In normal workflow, whenever a file is uploaded to the cdn, its considered as fresh until the ttl expired, post that server fetches a new file and updates the ttl.
+
+In alternative, it can force purge and load files onto CDN through cli to improve the experience.
+
+```bash
+az cdn endpoint purge \
+    --content-paths '/css/*' '/js/app.js' \
+    --name ContosoEndpoint \
+    --profile-name DemoProfile \
+    --resource-group ExampleGroup
+```
+
+```bash
+az cdn endpoint load \
+    --content-paths '/img/*' '/js/module.js' \
+    --name ContosoEndpoint \
+    --profile-name DemoProfile \
+    --resource-group ExampleGroup
+```
