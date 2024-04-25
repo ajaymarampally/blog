@@ -35,7 +35,7 @@ The ability to add more machines or containers to support the demand(either auto
 HTTP-based service for hosting web application , REST API's and back ends. Runs on both linux and windows environments.
 ```
 
-1. Components of the App service
+- Components of the App service
 
    1. Operating System (Windows, Linux)
    2. Region (West US, East US, etc.)
@@ -199,11 +199,11 @@ useCase --> whenever a message is added to Azure Queue , add a table row to Azur
 }
 ```
 
-`type` --> trigger type
-`direction` --> data binding direction (in,out)
-`name` --> data parameter
-`queueName` --> name of queue column (name of the trigger)
-`connection` --> connection String
+- `type` --> trigger type
+- `direction` --> data binding direction (in,out)
+- `name` --> data parameter
+- `queueName` --> name of queue column (name of the trigger)
+- `connection` --> connection String
 
 The Functions can also be triggered using class libraries , in this case the function.json file is not required.
 
