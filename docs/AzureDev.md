@@ -977,3 +977,33 @@ az cdn endpoint load \
     --profile-name DemoProfile \
     --resource-group ExampleGroup
 ```
+
+--------
+
+## Exam Topics
+
+- Develop Azure compute solutions (25-30%)
+- Develop Azure storage (15-20%)
+- Implement Azure Security (20-25%)
+- Monitor, troubleshoot, and optimize Azure solutions (15-20%)
+- Connect to and consume Azure services and third-party services (15-20%)
+
+## Practice Questions
+
+- az webapp deploy --clean true --> target folder is cleaned before deployment
+- az webapp deploy --restart true --> restart the service after deployment , default service of the zip deployment
+- ARR (Application Request Routing ) affinity parameter is used to always route to the proper App service instance
+- fan-out/fan-in pattern of the azure functinos enables parallel processing
+- timer trigger notations:
+
+
+- detailed error logs of azure web app service is used to check for 400 errors
+- In production, the version must be pinned. The only way to achieve that is by using a tag that follows the convention {major}.{minor}.{patch}.
+- az eventhubs eventhub update adds partitions to an existing event hub.
+- az eventhubs eventhub consumer-group update updates the event hub consumer group.
+- EventProcessorClient balances the load between multiple instances of a program in newer .NET versions (version 5.0). EventHubConsumerClient balances the load between multiple instances of a program in Python and JavaScript. EventProcessorHost balances the load between multiple instances of a program in earlier .NET versions. The EventHubProducerClient class is used to send events to an event hub.
+- The Rotate operation will generate a new version of the key based on the key policy. The Rotation Policy operation updates the rotation policy of a key vault key. The Purge Deleted Key operation is applicable for soft-delete enabled vaults or HSMs. The Set Attributes operation changes specified attributes of a stored key.
+- This item tests the candidate’s knowledge of implementing solutions that use Azure Service Bus.
+A SqlFilter holds a SQL-like conditional expression that is evaluated in the broker against the arriving message’s user-defined properties and system properties. The TrueFilter and FalseFilter either cause all arriving messages (true) or none of the arriving messages (false) to be selected for the subscription. A CorrelationFilter holds a set of conditions that are matched against one or more of an arriving message's user and system properties. Size Filter and Content are not valid options for Service Bus topic filtering.
+
+
