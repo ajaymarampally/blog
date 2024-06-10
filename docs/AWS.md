@@ -10,7 +10,7 @@ Domains of the course [Course-Link](https://d1.awsstatic.com/training-and-certif
 
 130 minutes - 65 questions
 
-# IAM
+## IAM
 
 IAM - Identity Access Management
 
@@ -63,4 +63,8 @@ E.g - creating a new policy and attaching a role to it
 }
 
 ```
+
+To check if a policy can perform a set of actions we can use
+
+- [Policy Sim](https://policysim.aws.amazon.com)
 
