@@ -68,3 +68,55 @@ To check if a policy can perform a set of actions we can use
 
 - [Policy Sim](https://policysim.aws.amazon.com)
 
+## EC2
+
+- Elastic Cloud Compute
+
+- pricing types
+
+1. on Demand (pay per use)
+2. Reserved (prepay and long term)
+3. spot (fix a max price , the instances are balanced dynamically)
+4. dedicated
+
+EBS storage types
+
+1. gp2 , gp3 - general purpose (3000 - 16000 IOPS)
+2. io1,io2,SAN - faster access (16000 - 64000 IOPS)
+3. SAN - (256000 IOPS)
+4. st1 (500 mbps), sc1 (250mbps) - hdd storage
+
+- ec2 instance and ebs volume should be in the same availability zone in order to attach them.
+
+## Elastic Load Balancer
+
+types
+
+1. application (http / https requests)
+2. network load (tcp)
+3. gateway load balancers (used to serve third party applications such as firewalls)
+
+- Main use case is to efficiently forward requests to the appropriate server
+- the load balancer has a private address by default , it used the x-forwarded-by property to find the ip address of end user
+
+![alt text](aws1.png)
+
+## RDS
+
+- main use case: In case of Transaction data , use RDS if use case need to perform analysis on large data use RedShift
+
+to improve performance - Read replica snapshots of rds instances are provided
+to resolve disasters - Multiple rds instances are allocated in different Availability zones
+
+
+- two different options to perform backups
+
+1. automated - handled by aws , these are performed in definitive time window, can be stored across multiple time zones
+
+2. manual - a snapshot is created manually by the user and its stored in an s3 bucket (charged) , this snapshot would be having a different RDS endpoint compared to the parent
+
+- An unencrypted RDS instance can be encrypted by making a manual snaphot and encrypting it.
+
+![alt text](aws2.png)
+
+
