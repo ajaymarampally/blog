@@ -222,6 +222,10 @@ diff types of serverless arch
 1. change in s3 bucket, dynamo table (any changes to resources)
 2. user requests (api gateway to invoke requests)
 
+- increasing the memory of a lambda function automatically add CPU to the instance.
+
+- error handling in lambda functions can be handled by usage of dead letter queues which send the error logs using the sns service.
+
 ### API Gateway
 
 - service which sits in front of all RestFul API sockets and handles incoming requests.
@@ -243,4 +247,14 @@ diff types of serverless arch
 2. parallel tasks
 3. series + parallel
 4. branching (conditional statements)
+
+### Data storage in lambda functions
+
+By default lambda functions are stateless, different options to provide storage to lambda functions
+
+1. /tmp (accessible from 512mb to 10gb, works in the same environment and can be shared by all functions using the runtime)
+2. layers (used to manage all the libraries required for the runtime (50mb ))
+3. EFS (File system which can be mounted at runtime , it should be in the same vpc as the lambda function, allows dynamic read and writes)
+4. DynamoDB (files or value directly stored to DB)
+5. S3 (store files in s3)
 
