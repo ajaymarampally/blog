@@ -232,6 +232,19 @@ diff types of serverless arch
 
 - All requests made to API gateway are logged in cloudWatch
 
+- API gateway allows importing of the openAPI profile and also allows SOAP protocol by transforming XML into JSON formats
+- API gateway also allows mock integration endpoints for testing, use case when a front end dev team finsihes their code and wants to test but theres no available back end , they can create mock tests to test out the routes
+- fields in the mock test
+1. status code
+2. body message
+
+- API Gateway also provides option of caching , in this option all the responses are cached with a ttl of 300 seconds , any new request made to gateway uses the cache
+
+- API gateway also allows throttling of the request.
+
+1. by default it allows 10,000 requests per second
+2. if we get more no of requests than the limit , the requests are throttled to the next second without resulting in an 429 server overload response code.
+
 ### version control
 
 - lambda offers version control to manage different stage od SDLC , $LATEST sign indicates the default version. We can also create aliases in the functions to route traffic between two different versions of the code.
@@ -257,4 +270,38 @@ By default lambda functions are stateless, different options to provide storage 
 3. EFS (File system which can be mounted at runtime , it should be in the same vpc as the lambda function, allows dynamic read and writes)
 4. DynamoDB (files or value directly stored to DB)
 5. S3 (store files in s3)
+
+## DynamoDB
+
+- NoSQL database servie provide by aws, it does not have any schema structure , data is stored in tables , each row is an item and each column of the table is an attribute , the data is stored in json format
+
+- two types of keys can be used to indicate the primary key
+1. partition key
+2. partition key + sort key (when a same user has multiple records , a student taking multiple course, in this case user_id+course_id is the PK)
+
+- access to the DDB is controlled through IAM roles, access can be blocked by adding conditinal statements in policy
+
+![alt text](aws6.png)
+
+- in this example policy , the condition states only matching records with `user_id` should be displayed or queried as response.
+
+- a local secondary index can also be used to query results along with a single partition key , a local secondary index must be created at the creation time
+- a global secondary index on other hand can be paired up with multiple partion keys spread across table and can be created at any time.
+
+### Read and write capacities
+
+- dynamo db provides Read and write capacity units as metrics
+- each `READ` unit can read 4kb per second data in eventual consistency and 2KB/sec in stong consistency.
+- each `WRITE` unit can write 1kb/sec
+
+### DAX
+
+- dynamo db offers in memory cache which sits infront of the db
+- workflow --> when ever a user queries , it first checks the DAX if its a cache hit , return res, else query db
+- usefull in case of eventual read consistency and heavy read intensive applciations , black friday sales
+
+### TTL
+
+- dynambo db offers the service to auto remove objects from the table based on a defined ttl.
+- the attribute used to set ttl must be in `epoch-time` format
 
