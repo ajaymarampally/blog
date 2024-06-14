@@ -305,3 +305,33 @@ By default lambda functions are stateless, different options to provide storage 
 - dynambo db offers the service to auto remove objects from the table based on a defined ttl.
 - the attribute used to set ttl must be in `epoch-time` format
 
+### DynamoDB Streams
+
+- its a service which stores time - ordered sequence data in table
+- it stores the data for 24 hours
+- it has a different api than the dynamo db , its usefull as a trigger for lambda functions.
+- all the records are cleaned after 24 hours
+
+- usecase
+1. when ever a payment record is stored in the db stream , a lambda event is triggered
+2. the lambda event sends a sns notification and adds the item to sqs queue which is processed and a reciet is genereated
+
+
+### ProvisionedThroughPutException
+
+- when the request exceed the read and write units quota .this exception is thrown
+- to avoid this a `exponential backoff` pattern is followed, (e.g first try 50ms ,second - 100ms , third -200)
+
+## KMS
+
+- AWS key management service, it can be inherited by other storage services to encrypt / decrypt incoming and outgoing data
+- it follows envolope encryption method , where a master key encrypts a data key which in turn is used to encrypt the main data files
+
+- useful commands in kms
+1. encrypt , decrypt
+2. rotate key (periodically update the customer master key)
+3. generate data key (used to generate a new key , which in turn can be used to encrypt and decrypt other data contents)
+
+- GenerateDataKeyAPI is used in envolope encryption process
+- envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
+
