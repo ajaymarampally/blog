@@ -187,3 +187,60 @@ additional topics - AWS WAF (firewall) --> mainly used to restrict all the incom
 2. GET, HEAD, OPTIONS (request_to_know_allowed_methods) (read-only)
 3. GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE (read-only and write)
 
+
+## Athena
+
+Service used to run SQL queries on data stored in s3 buckets
+
+usecases - log analysis, generating reports based on s3 data, click data analysis
+
+- need to create a new s3 bucket before analysis to store all the results of the queries.
+
+![alt text](aws4.png)
+
+## ServerLess Architectures
+
+diff types of serverless arch
+
+1. lambda
+2. sqs
+3. sns
+4. api gateway
+5. dynamodb
+6. s3
+
+![alt text](aws5.png)
+
+### lamda
+
+- serverless arch to run applications and microservices , the run time environment is handled by aws
+
+- priced based on number of requests and memory consumption of the program
+
+- different triggers to invove a lamda function
+
+1. change in s3 bucket, dynamo table (any changes to resources)
+2. user requests (api gateway to invoke requests)
+
+### API Gateway
+
+- service which sits in front of all RestFul API sockets and handles incoming requests.
+
+- All requests made to API gateway are logged in cloudWatch
+
+### version control
+
+- lambda offers version control to manage different stage od SDLC , $LATEST sign indicates the default version. We can also create aliases in the functions to route traffic between two different versions of the code.
+
+- lambda function can join a vpc and connect or create elastic resources in that particular vpc, need to add additional policies to acheive this.
+
+### step functions
+
+- service to orchestrate several serverless functions, the step function consists of a state machine which handles all the tasks in it.
+
+- different types of executions
+1. series tasks
+2. parallel tasks
+3. series + parallel
+4. branching (conditional statements)
+
