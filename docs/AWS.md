@@ -450,5 +450,37 @@ In this case, new instance for each existing instance is initialized before depl
 - If an RDS instance is included during the build process of the EBS instance, whenever we terminate the instace the RDS will be terminated and lost.
 - To avoid this we can create the RDS instance seperately and include both EBS and RDS inside a security group and pass the database connection details as environment variables.
 
+## CI/CD
+
+- aws provides option of maintaining an git repository through codeRepostiory service
+
+## codeDeploy
+
+- provided options for code deployment
+
+1. in-place deployment (replace each instance, will be having reduced performance)
+2. blue/green deployment (new instances are issued and new verision is deployed in the green instance, onSuccess the traffic is routed to the new version and the slots are swapped)
+
+- All the main aspects of the deployment life cycle and configuration files should be present in the `appspec.yml` file
+
+- example of appsec.yml file
+
+![alt text](aws14.png)
+
+- The phases of the deployment life cycle
+
+1. beforeBlockTraffic (tasks before de-regestering from load balancer)
+2. blockTraffic (task to de-register from load balancer)
+3. afterBlockTraffic (tasks post de-registering from load balancer)
+4. applicationStop (tasks to stop the application)
+5. DownloadBundle (fetch resources from the repo.)
+6. BeforeInstall (backing up current version)
+7. Install (copy files to the dest.)
+8. postInstall (clean up scripts, set permissions)
+9. ApplicationStart
+10. ValidateStart
+
+![alt text](aws15.png)
+
 
 
