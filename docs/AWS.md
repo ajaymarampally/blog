@@ -420,3 +420,35 @@ In this case, new instance for each existing instance is initialized before depl
 
 - In case of immutatble deployment option, a portion of traffic is routed to the new version for a test period, post test pass checks, the slots are swapped.
 
+### Advanced EBS
+
+#### Script Files
+
+- In pre amazon linux 2 environments, all the configurations such as packages to install, shell commands, creating users, enabling services,configuring load balanncers are present in the .config file
+- the .config file should be located in the .ebconfig folder at the root dir
+
+![alt text](aws10.png)
+
+- In latest versions, the same functionalities are divided into different sections offering modularity
+
+1. BuildFile
+
+- used to run commands that run for a short time and exit
+- format --> <process_name>:<command>
+
+2. ProcFile
+- used for running long commands post start of instance
+![alt text](aws11.png)
+
+3.PlatformHooks
+- this files are used to run scripts after the environment is set up in the EBS. Different scripts can be run at different stages of the application runtime.
+
+![alt text](aws12.png)
+
+#### RDS Connections
+
+- If an RDS instance is included during the build process of the EBS instance, whenever we terminate the instace the RDS will be terminated and lost.
+- To avoid this we can create the RDS instance seperately and include both EBS and RDS inside a security group and pass the database connection details as environment variables.
+
+
+
