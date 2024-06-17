@@ -335,3 +335,88 @@ By default lambda functions are stateless, different options to provide storage 
 - GenerateDataKeyAPI is used in envolope encryption process
 - envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
 
+## SQS
+
+- usecase -> its a pull based queue service sitting between the receiving end and the output receiving end. API calls are made to poll the events from queue
+- every item has a visibility timeout (30sec), if the event is not processed within the time limits, its pushed back onto the queue to reprocess.
+- default retention period of sqs is 4 days and each item can be <=250kb
+
+two types of queue are presnet
+
+1. standard (default, allows duplicated and can be unordered)
+2. FIFO (ordered queue , rate limit at 300 TPS)
+
+- Delays can be introduced into the SQS to properly allow the functioning of async operations. default is 0 , max is 900 seconds
+- if file size is >256kb , can use s3 to store the data, in order to perform this the components needed are
+
+1. SQS Extended client for java
+2. aws sdk java
+
+![alt text](aws7.png)
+
+## SNS
+
+- simple notification service , used a pub/sub model to deliver notifications
+- a topic is created and all the consumers subscribe to that topic
+- can be used to trigger lambda functions
+
+### SES
+
+- simple email service , its similar to SNS but only for emails , supports both incoming and outgoing mails , mails are stored in an s3 bucket.
+- used for marketing , can be used as a trigger to lambda function
+
+## Kinesis
+
+- service to provide real time data analyis services , three different types
+1. kinesis streams
+2. kinesis data firehose
+3. data analytics
+
+![alt text](aws8.png)
+
+### streams
+
+- mainly used for data stream analysis or video analysis
+- the whole input stream is divided into multiple shards which define the rate limit of the stream
+- can connect to lambda for processing and store in s3, or emr or redshift
+
+### data firehose
+
+- similar to streams but has no shards or no retention
+- directly stores data onto the storage units
+
+### data analytics
+
+- sits in between the kinesis stream and the storage units
+- can run on demands sql queries related to BI and store the results in storage units
+
+### consumers
+
+- The kinesis provides a Client library which handles the connections between the consumers and the shards
+- its a one:many relation , one consumer can process multiple shards.
+- whenever a reshard occurs the client library handles the load balancing of the consumers.
+
+## Elastic Bean Stack
+
+- PaaS service , which handles all the infrastructer and deploys the applications
+- supports docker container or recommended servers
+
+### deployment options
+
+- for this use case consider all the instances running v1 and need to update to v2
+
+![alt text](aws9.png)
+
+1. All at once:
+In this case , all the existing instances are deployed at once , the system is offline during the deployment phase , suitable for testing
+2. rolling:
+In this case , the instances are divided into batches and each batch is updated concurrently , suitable for less load servers
+3. rolling with additional batch :
+In this case , a additional batch of instances of batch size is initialized , and the batches are deployed by concurrently , no down time of the servers
+4. immutable:
+In this case, new instance for each existing instance is initialized before deployment, after the complete deployment the intances are swapped , no down time, preferrable for production servers
+
+### traffic splitting
+
+- In case of immutatble deployment option, a portion of traffic is routed to the new version for a test period, post test pass checks, the slots are swapped.
+
