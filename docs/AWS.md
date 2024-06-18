@@ -68,6 +68,22 @@ To check if a policy can perform a set of actions we can use
 
 - [Policy Sim](https://policysim.aws.amazon.com)
 
+### AWS Cognito
+
+- service to provide authz and authn features with the aws resources
+- `User Pool` contains information such as the JWT token issued by third party authN providers
+- `Identity Pool` contains information which is used to assign a new IAM role to the user and provide temporary access to the aws resources
+
+- Different policy types offered in IAM
+1. inline policy --> this is a policy which can be attached to a single user or a single group and maintains a 1:1 relation (i.e only can be used by them, whenever the user is deleted the policy is deleted)
+2. AWS managed --> this is a default policy which is authored and managed by aws, it has policy .for each service
+3. customer managed --> this type of policy is used when organization need tailoring of the aws managed policies.
+
+### STS
+
+- aws provides the service to access the resource in a different aws account through sts AssumeRole policy
+- a new IAM role is created in the main account which is shared with the second account to share access to the resources
+
 ## EC2
 
 - Elastic Cloud Compute
@@ -520,3 +536,6 @@ In this case, new instance for each existing instance is initialized before depl
 - The CDK code is compiled into a cloudFormation template post which it's pushed onto the cloudFormation stack.
 
 ![alt text](aws16.png)
+
+
+
