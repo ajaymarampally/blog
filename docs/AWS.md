@@ -482,5 +482,41 @@ In this case, new instance for each existing instance is initialized before depl
 
 ![alt text](aws15.png)
 
+## CodePipeline
 
+- All the stages of the deployments can be included into a pipeline
+- It used triggers of cloudWatch to look for changes and initiate pipeline
 
+## ECS
+
+- Elastic Container Service - orchestration service
+- service to run containers on ec2 instances, each container has its own virtual env, which are run on docker containers
+- Two different options are provided
+1. Running on ec2 instances (option to manage the underlying arch,)
+2. AWS Fargate (serverless containers, aws manages the ec2 instances)
+
+- All the images meants for ECS are stored in Elastic Container Registry
+
+## CloudFormation
+
+- service used to allocate resources based on a template
+- used to allocate many resource at a single task , it creates a stack and run's all the queries in the json file
+- all the required instances are defined in the `resources` section
+- includes import and export features, to include the features of one template into another and chain the stacks
+
+### Severless Application Model
+
+- this service is used mainly to create serverless application instances based on the cloudFormation template
+- uses the functions `package` and `deploy` for its operations
+
+## CDK
+
+- service which is used to allocate and deploy resources based on a code.
+- the components of the cdk include
+1. App context (main object)
+2. Stack (container which is used to define resources)
+3. constructs (individual items inside stack which define the resources)
+
+- The CDK code is compiled into a cloudFormation template post which it's pushed onto the cloudFormation stack.
+
+![alt text](aws16.png)
