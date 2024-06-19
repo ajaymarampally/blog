@@ -537,5 +537,13 @@ In this case, new instance for each existing instance is initialized before depl
 
 ![alt text](aws16.png)
 
+## cloudWatch
 
+- service to monitor the aws services
+- can be attached to any instance and fetch information at a defined regular intervals
+- can install a cloudWatch agent in ec2 instances to collect operating system level information
+- can create alarms and triggers use the metrics
 
+## Additional Resources
+
+![alt text](aws17.png)
