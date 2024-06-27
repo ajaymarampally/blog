@@ -82,6 +82,21 @@ To check if a policy can perform a set of actions we can use
 - Guest user's can be authenticated into the application by use of an identity pool created for guest with an IAM role which specifies which resources can be accessed by them
 -
 
+### RBAC
+
+- Role Based Access Control, in this model a role is created with a certain policies attaced to it to satisty a job, this model is adopted by the IAM.
+
+### Active Directory
+
+- Identity Provider Store(Idp)
+1. contains details about the authentication for the users
+2. mentions the access and actions which each user can perform
+3. can use the IAM or connect to an extrenal Active Directory which can be cannonical to Idp
+
+- Identity Broker
+1. It acts as a central checkpoint for multiple Idp's
+2. Cognito can assume this role to validate credentials from multiple third party applications
+
 ### STS
 
 - aws provides the service to access the resource in a different aws account through sts AssumeRole policy
@@ -99,6 +114,11 @@ To check if a policy can perform a set of actions we can use
 2. configure the ~./aws/credentials file to read the credentials
 3. the AWS_SDK_LOAD_CONFIG variable which points to the path of credentials folder or file
 4. `aws.config.loadFromPath` function which reads the credentials from a json file.
+
+## ACM
+- AWS certiicate Manager, services used to create, store and renew public and private ssl/tls certificates
+- acm wildcard certificates can be used to protect the subdomains, when the keys are signed by acm certificate authority(CA) they can be used everywhere in the companies public key infrastructure (PKI)
+
 
 
 ## EC2
@@ -125,6 +145,9 @@ EBS storage types
 - throughput optimized - streaming data
 - cold hdd - used for infrequent data
 - provisioned i/o - critical sustained processing
+
+- instance profile in ec2 are used to attach the IAM roles to the instace, a single role can be shared by multiple ec2 instances.
+
 
 ## Elastic Load Balancer
 
@@ -168,6 +191,16 @@ In memory storage in aws, two types are available
 2. Redis (complex datatypes, larger applications such as online gaming)
 
 MemoryDB for redis is alternative to an RDS service
+
+### Caching Strategies
+
+- different caching strategies in cache
+1. write - through --> add data to cache first before writing to the database
+2. read-through --> first queries the cache before making a request to database, then updating the cache
+3. lazy loading --> load items into the cache only when the items are required to be loaded into cache
+4. adding ttl --> put a new ttl record to each item , this would reduce the cluttering of the cache and frequent update of the cache.
+
+
 
 ## Parameter Store
 
@@ -230,6 +263,10 @@ additional topics - AWS WAF (firewall) --> mainly used to restrict all the incom
 2. GET, HEAD, OPTIONS (request_to_know_allowed_methods) (read-only)
 3. GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE (read-only and write)
 
+### OAC
+
+- OAC controls access to the origin source in cloudFront
+- this acts as a special identity
 
 ## Athena
 
@@ -268,6 +305,9 @@ diff types of serverless arch
 - increasing the memory of a lambda function automatically add CPU to the instance.
 
 - error handling in lambda functions can be handled by usage of dead letter queues which send the error logs using the sns service.
+
+- lambda provides `alias` option to maintain different versions of the function, each alias has a unique ARN
+- an alias cannot point to another alias, alias routing configuration can be used for sending a specific portion of the incoming traffic to a different version of the function
 
 ### API Gateway
 
@@ -555,6 +595,10 @@ In this case, new instance for each existing instance is initialized before depl
 - all the required instances are defined in the `resources` section
 - includes import and export features, to include the features of one template into another and chain the stacks
 
+- in the cloudFormation.yaml file
+1. cfn-init is used to retrieve metadata, install packages, create files and start services
+2. cfn-signal is used to indicate the completion of a process in the stack
+
 ### Severless Application Model
 
 - this service is used mainly to create serverless application instances based on the cloudFormation template
@@ -594,7 +638,15 @@ In this case, new instance for each existing instance is initialized before depl
 3. api - manage all the profiling groups
 - this service can be attached to an repository to perform code analyis and provide recommendations
 
+## AWS DirectLink , PrivateLink
 
+- DirectLink
+1. dedicated infrastrcuter provided between the aws resources and the on-prem servers, avoid network traffic congestion
+2. useful for tranferring large datasets, hybrid cloud archs,cost-effective data transfers
+
+- PrivateLink
+1. this service is used to create a secure tunnel between the aws resources of other accounts, this avoid connection to the public internet
+2. useful for secure access and maintaining data privacy
 
 ## Additional Resources
 
