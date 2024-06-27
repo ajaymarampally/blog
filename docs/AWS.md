@@ -426,6 +426,8 @@ By default lambda functions are stateless, different options to provide storage 
 - GenerateDataKeyAPI is used in envolope encryption process
 - envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
 
+- 
+
 ## SQS
 
 - usecase -> its a pull based queue service sitting between the receiving end and the output receiving end. API calls are made to poll the events from queue
