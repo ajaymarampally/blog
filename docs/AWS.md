@@ -79,10 +79,27 @@ To check if a policy can perform a set of actions we can use
 2. AWS managed --> this is a default policy which is authored and managed by aws, it has policy .for each service
 3. customer managed --> this type of policy is used when organization need tailoring of the aws managed policies.
 
+- Guest user's can be authenticated into the application by use of an identity pool created for guest with an IAM role which specifies which resources can be accessed by them
+-
+
 ### STS
 
 - aws provides the service to access the resource in a different aws account through sts AssumeRole policy
 - a new IAM role is created in the main account which is shared with the second account to share access to the resources
+- `credential_process` - in aws cli this is used to define a metadata parameter which specifies an external authentication connection to be used during the auth process
+- `credential_source` - in aws cli the credential source defines the method or source from which auth codes should be fetched , different options of auth are
+1. IAM role (sts assume-role)
+2. SSO (configure single sign on profile)
+3. web identity configuration (sts assume-role-with-web-identity, provide the token with parameter web-identity-token)
+4. export it as environmnet variables
+- both the `credential_process` and `credential_source` are present in the ~/.aws/config folder
+
+- different way to pass credentials to an aws sdk
+1. set environment variables and set the `credential_soruce` to fetch the creds
+2. configure the ~./aws/credentials file to read the credentials
+3. the AWS_SDK_LOAD_CONFIG variable which points to the path of credentials folder or file
+4. `aws.config.loadFromPath` function which reads the credentials from a json file.
+
 
 ## EC2
 
@@ -103,6 +120,11 @@ EBS storage types
 4. st1 (500 mbps), sc1 (250mbps) - hdd storage
 
 - ec2 instance and ebs volume should be in the same availability zone in order to attach them.
+
+- general purpose ssd - virtual desktops , test and dev env, low latency iot devices
+- throughput optimized - streaming data
+- cold hdd - used for infrequent data
+- provisioned i/o - critical sustained processing
 
 ## Elastic Load Balancer
 
@@ -183,6 +205,11 @@ Encryption types
 4. DSSE-KMS (dual encryption managed by kms)
 
 By default CORS is disabled between two s3 buckets , edit the properties and allow the host to enable CORS
+
+- in the lifecycle policy of the s3 , the following components are decided
+
+1. days after which the storage class should be changed
+2. days after which the object should be removed from the storage service
 
 ## CloudFront
 
@@ -303,6 +330,14 @@ By default lambda functions are stateless, different options to provide storage 
 
 - a local secondary index can also be used to query results along with a single partition key , a local secondary index must be created at the creation time
 - a global secondary index on other hand can be paired up with multiple partion keys spread across table and can be created at any time.
+
+- `Query` is used to scan items in the table based on a partition key along with sort key
+
+- `Scan` is used to scan all the items in the table , does not depend on the primary key or secondary key to scan the items.
+
+- dynamo tables are different in different regions `us-east-1` and `us-west-1` would be different.
+
+
 
 ### Read and write capacities
 
@@ -524,7 +559,13 @@ In this case, new instance for each existing instance is initialized before depl
 
 - this service is used mainly to create serverless application instances based on the cloudFormation template
 - uses the functions `package` and `deploy` for its operations
-
+- The sam cli can be used to test before deployment of the resources
+- use case testing a lambda function before deployment
+1. use `sam local start-lambda`
+2. this would create a docker container to simulate the environment along with mocking if the service requires access to s3 or dynamodb
+2. creates a local endpoint (localhost://3000)
+3. invoke the function using `sam local invoke`
+4. whenever a request arrives at the local end point , the cli routes it to the appropriate docker container and executes it
 ## CDK
 
 - service which is used to allocate and deploy resources based on a code.
@@ -544,6 +585,18 @@ In this case, new instance for each existing instance is initialized before depl
 - can install a cloudWatch agent in ec2 instances to collect operating system level information
 - can create alarms and triggers use the metrics
 
+## CodeGuru
+
+- service to provide a profiler for application running in aws services or on-premises
+- A profiler consits of
+1. agent - which is installed on application and sends its runtime state to the profiler
+2. console - provides data viz of the performance
+3. api - manage all the profiling groups
+- this service can be attached to an repository to perform code analyis and provide recommendations
+
+
+
 ## Additional Resources
 
 ![alt text](aws17.png)
+
