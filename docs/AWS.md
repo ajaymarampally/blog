@@ -119,7 +119,11 @@ To check if a policy can perform a set of actions we can use
 - AWS certiicate Manager, services used to create, store and renew public and private ssl/tls certificates
 - acm wildcard certificates can be used to protect the subdomains, when the keys are signed by acm certificate authority(CA) they can be used everywhere in the companies public key infrastructure (PKI)
 
+## VPC
 
+- NACL (Network ACL)
+1. use to protect the subnets traffic
+2. its stateless
 
 ## EC2
 
@@ -161,6 +165,8 @@ types
 - the load balancer has a private address by default , it used the x-forwarded-by property to find the ip address of end user
 
 ![alt text](aws1.png)
+
+- connection draining happens in elb when one of the instance is in draining stage and it reroutes the new requests to the healthy units
 
 ## RDS
 
@@ -426,7 +432,7 @@ By default lambda functions are stateless, different options to provide storage 
 - GenerateDataKeyAPI is used in envolope encryption process
 - envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
 
-- 
+-
 
 ## SQS
 
@@ -649,6 +655,18 @@ In this case, new instance for each existing instance is initialized before depl
 - PrivateLink
 1. this service is used to create a secure tunnel between the aws resources of other accounts, this avoid connection to the public internet
 2. useful for secure access and maintaining data privacy
+
+## AWS CLI
+
+- the order of presedence in fetching the credentials
+1. runtime (terminal or sdk runtime)
+2. environment variables
+3. ./aws/credentials
+4. ./aws/config
+5. ecs containers
+6. ec2 instance profiles
+
+
 
 ## Additional Resources
 
