@@ -7,7 +7,6 @@ Domains of the course [Course-Link, PluralSight](https://d1.awsstatic.com/traini
 3. deployment (24%)
 4. troubleshooting and optimization (18%)
 
-
 130 minutes - 65 questions
 
 ## IAM
@@ -26,6 +25,7 @@ A role can follow a set of policies to interact with
 E.g - creating a new policy and attaching a role to it
 
 - policy name - `ReadOnlyAccessToS3Bucket`
+
 ```json
 {
     "Version": "2012-10-17",
@@ -73,8 +73,8 @@ To check if a policy can perform a set of actions we can use
 - service to provide authz and authn features with the aws resources
 - `User Pool` contains information such as the JWT token issued by third party authN providers
 - `Identity Pool` contains information which is used to assign a new IAM role to the user and provide temporary access to the aws resources
-
 - Different policy types offered in IAM
+
 1. inline policy --> this is a policy which can be attached to a single user or a single group and maintains a 1:1 relation (i.e only can be used by them, whenever the user is deleted the policy is deleted)
 2. AWS managed --> this is a default policy which is authored and managed by aws, it has policy .for each service
 3. customer managed --> this type of policy is used when organization need tailoring of the aws managed policies.
@@ -89,11 +89,13 @@ To check if a policy can perform a set of actions we can use
 ### Active Directory
 
 - Identity Provider Store(Idp)
+
 1. contains details about the authentication for the users
 2. mentions the access and actions which each user can perform
 3. can use the IAM or connect to an extrenal Active Directory which can be cannonical to Idp
 
 - Identity Broker
+
 1. It acts as a central checkpoint for multiple Idp's
 2. Cognito can assume this role to validate credentials from multiple third party applications
 
@@ -103,32 +105,35 @@ To check if a policy can perform a set of actions we can use
 - a new IAM role is created in the main account which is shared with the second account to share access to the resources
 - `credential_process` - in aws cli this is used to define a metadata parameter which specifies an external authentication connection to be used during the auth process
 - `credential_source` - in aws cli the credential source defines the method or source from which auth codes should be fetched , different options of auth are
+
 1. IAM role (sts assume-role)
 2. SSO (configure single sign on profile)
 3. web identity configuration (sts assume-role-with-web-identity, provide the token with parameter web-identity-token)
 4. export it as environmnet variables
-- both the `credential_process` and `credential_source` are present in the ~/.aws/config folder
 
+- both the `credential_process` and `credential_source` are present in the ~/.aws/config folder
 - different way to pass credentials to an aws sdk
+
 1. set environment variables and set the `credential_soruce` to fetch the creds
 2. configure the ~./aws/credentials file to read the credentials
 3. the AWS_SDK_LOAD_CONFIG variable which points to the path of credentials folder or file
 4. `aws.config.loadFromPath` function which reads the credentials from a json file.
 
 ## ACM
+
 - AWS certiicate Manager, services used to create, store and renew public and private ssl/tls certificates
 - acm wildcard certificates can be used to protect the subdomains, when the keys are signed by acm certificate authority(CA) they can be used everywhere in the companies public key infrastructure (PKI)
 
 ## VPC
 
 - NACL (Network ACL)
+
 1. use to protect the subnets traffic
 2. its stateless
 
 ## EC2
 
 - Elastic Cloud Compute
-
 - pricing types
 
 1. on Demand (pay per use)
@@ -139,19 +144,16 @@ To check if a policy can perform a set of actions we can use
 EBS storage types
 
 1. gp2 , gp3 - general purpose (3000 - 16000 IOPS)
-2. io1,io2,SAN - faster access (16000 - 64000 IOPS)
+2. io1,io2,SAN - faster access (16000 - 64000 IOPS) , can be attached to mulitiple instances
 3. SAN - (256000 IOPS)
 4. st1 (500 mbps), sc1 (250mbps) - hdd storage
 
 - ec2 instance and ebs volume should be in the same availability zone in order to attach them.
-
 - general purpose ssd - virtual desktops , test and dev env, low latency iot devices
 - throughput optimized - streaming data
 - cold hdd - used for infrequent data
 - provisioned i/o - critical sustained processing
-
 - instance profile in ec2 are used to attach the IAM roles to the instace, a single role can be shared by multiple ec2 instances.
-
 
 ## Elastic Load Balancer
 
@@ -175,11 +177,9 @@ types
 to improve performance - Read replica snapshots of rds instances are provided
 to resolve disasters - Multiple rds instances are allocated in different Availability zones
 
-
 - two different options to perform backups
 
 1. automated - handled by aws , these are performed in definitive time window, can be stored across multiple time zones
-
 2. manual - a snapshot is created manually by the user and its stored in an s3 bucket (charged) , this snapshot would be having a different RDS endpoint compared to the parent
 
 - An unencrypted RDS instance can be encrypted by making a manual snaphot and encrypting it.
@@ -187,7 +187,6 @@ to resolve disasters - Multiple rds instances are allocated in different Availab
 ![alt text](aws2.png)
 
 - RDS proxy: its used to load balance all the incoming traffic to the rds instance , in case of any instance failures all the transactions are stored in the proxy servers and are resolved post failure resolving process.
-
 
 ## ElastiCache
 
@@ -201,12 +200,11 @@ MemoryDB for redis is alternative to an RDS service
 ### Caching Strategies
 
 - different caching strategies in cache
+
 1. write - through --> add data to cache first before writing to the database
 2. read-through --> first queries the cache before making a request to database, then updating the cache
 3. lazy loading --> load items into the cache only when the items are required to be loaded into cache
 4. adding ttl --> put a new ttl record to each item , this would reduce the cluttering of the cache and frequent update of the cache.
-
-
 
 ## Parameter Store
 
@@ -300,35 +298,35 @@ diff types of serverless arch
 ### lamda
 
 - serverless arch to run applications and microservices , the run time environment is handled by aws
-
 - priced based on number of requests and memory consumption of the program
-
 - different triggers to invove a lamda function
 
 1. change in s3 bucket, dynamo table (any changes to resources)
 2. user requests (api gateway to invoke requests)
 
 - increasing the memory of a lambda function automatically add CPU to the instance.
-
 - error handling in lambda functions can be handled by usage of dead letter queues which send the error logs using the sns service.
-
 - lambda provides `alias` option to maintain different versions of the function, each alias has a unique ARN
 - an alias cannot point to another alias, alias routing configuration can be used for sending a specific portion of the incoming traffic to a different version of the function
+
+- lambda functions using c#,java,python
+1. handler definition in python file_name.handler_function_name
+2. in Java, the main function implements the interface `RequestHandler`, the handler function is defined as `MainClass::MainFunction`
+3. in c#, the handler is defined as NameSpace::MainClass.FunctionName
+
 
 ### API Gateway
 
 - service which sits in front of all RestFul API sockets and handles incoming requests.
-
 - All requests made to API gateway are logged in cloudWatch
-
 - API gateway allows importing of the openAPI profile and also allows SOAP protocol by transforming XML into JSON formats
 - API gateway also allows mock integration endpoints for testing, use case when a front end dev team finsihes their code and wants to test but theres no available back end , they can create mock tests to test out the routes
 - fields in the mock test
+
 1. status code
 2. body message
 
 - API Gateway also provides option of caching , in this option all the responses are cached with a ttl of 300 seconds , any new request made to gateway uses the cache
-
 - API gateway also allows throttling of the request.
 
 1. by default it allows 10,000 requests per second
@@ -337,14 +335,13 @@ diff types of serverless arch
 ### version control
 
 - lambda offers version control to manage different stage od SDLC , $LATEST sign indicates the default version. We can also create aliases in the functions to route traffic between two different versions of the code.
-
 - lambda function can join a vpc and connect or create elastic resources in that particular vpc, need to add additional policies to acheive this.
 
 ### step functions
 
 - service to orchestrate several serverless functions, the step function consists of a state machine which handles all the tasks in it.
-
 - different types of executions
+
 1. series tasks
 2. parallel tasks
 3. series + parallel
@@ -363,8 +360,8 @@ By default lambda functions are stateless, different options to provide storage 
 ## DynamoDB
 
 - NoSQL database servie provide by aws, it does not have any schema structure , data is stored in tables , each row is an item and each column of the table is an attribute , the data is stored in json format
-
 - two types of keys can be used to indicate the primary key
+
 1. partition key
 2. partition key + sort key (when a same user has multiple records , a student taking multiple course, in this case user_id+course_id is the PK)
 
@@ -373,17 +370,11 @@ By default lambda functions are stateless, different options to provide storage 
 ![alt text](aws6.png)
 
 - in this example policy , the condition states only matching records with `user_id` should be displayed or queried as response.
-
 - a local secondary index can also be used to query results along with a single partition key , a local secondary index must be created at the creation time
 - a global secondary index on other hand can be paired up with multiple partion keys spread across table and can be created at any time.
-
 - `Query` is used to scan items in the table based on a partition key along with sort key
-
 - `Scan` is used to scan all the items in the table , does not depend on the primary key or secondary key to scan the items.
-
 - dynamo tables are different in different regions `us-east-1` and `us-west-1` would be different.
-
-
 
 ### Read and write capacities
 
@@ -408,11 +399,10 @@ By default lambda functions are stateless, different options to provide storage 
 - it stores the data for 24 hours
 - it has a different api than the dynamo db , its usefull as a trigger for lambda functions.
 - all the records are cleaned after 24 hours
-
 - usecase
+
 1. when ever a payment record is stored in the db stream , a lambda event is triggered
 2. the lambda event sends a sns notification and adds the item to sqs queue which is processed and a reciet is genereated
-
 
 ### ProvisionedThroughPutException
 
@@ -423,15 +413,14 @@ By default lambda functions are stateless, different options to provide storage 
 
 - AWS key management service, it can be inherited by other storage services to encrypt / decrypt incoming and outgoing data
 - it follows envolope encryption method , where a master key encrypts a data key which in turn is used to encrypt the main data files
-
 - useful commands in kms
+
 1. encrypt , decrypt
 2. rotate key (periodically update the customer master key)
 3. generate data key (used to generate a new key , which in turn can be used to encrypt and decrypt other data contents)
 
 - GenerateDataKeyAPI is used in envolope encryption process
 - envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
-
 -
 
 ## SQS
@@ -467,6 +456,7 @@ two types of queue are presnet
 ## Kinesis
 
 - service to provide real time data analyis services , three different types
+
 1. kinesis streams
 2. kinesis data firehose
 3. data analytics
@@ -507,13 +497,13 @@ two types of queue are presnet
 ![alt text](aws9.png)
 
 1. All at once:
-In this case , all the existing instances are deployed at once , the system is offline during the deployment phase , suitable for testing
+   In this case , all the existing instances are deployed at once , the system is offline during the deployment phase , suitable for testing
 2. rolling:
-In this case , the instances are divided into batches and each batch is updated concurrently , suitable for less load servers
+   In this case , the instances are divided into batches and each batch is updated concurrently , suitable for less load servers
 3. rolling with additional batch :
-In this case , a additional batch of instances of batch size is initialized , and the batches are deployed by concurrently , no down time of the servers
+   In this case , a additional batch of instances of batch size is initialized , and the batches are deployed by concurrently , no down time of the servers
 4. immutable:
-In this case, new instance for each existing instance is initialized before deployment, after the complete deployment the intances are swapped , no down time, preferrable for production servers
+   In this case, new instance for each existing instance is initialized before deployment, after the complete deployment the intances are swapped , no down time, preferrable for production servers
 
 ### traffic splitting
 
@@ -533,13 +523,15 @@ In this case, new instance for each existing instance is initialized before depl
 1. BuildFile
 
 - used to run commands that run for a short time and exit
-- format --> <process_name>:<command>
+- format --> <process_name>:`<command>`
 
 2. ProcFile
+
 - used for running long commands post start of instance
-![alt text](aws11.png)
+  ![alt text](aws11.png)
 
 3.PlatformHooks
+
 - this files are used to run scripts after the environment is set up in the EBS. Different scripts can be run at different stages of the application runtime.
 
 ![alt text](aws12.png)
@@ -561,7 +553,6 @@ In this case, new instance for each existing instance is initialized before depl
 2. blue/green deployment (new instances are issued and new verision is deployed in the green instance, onSuccess the traffic is routed to the new version and the slots are swapped)
 
 - All the main aspects of the deployment life cycle and configuration files should be present in the `appspec.yml` file
-
 - example of appsec.yml file
 
 ![alt text](aws14.png)
@@ -591,6 +582,7 @@ In this case, new instance for each existing instance is initialized before depl
 - Elastic Container Service - orchestration service
 - service to run containers on ec2 instances, each container has its own virtual env, which are run on docker containers
 - Two different options are provided
+
 1. Running on ec2 instances (option to manage the underlying arch,)
 2. AWS Fargate (serverless containers, aws manages the ec2 instances)
 
@@ -602,10 +594,12 @@ In this case, new instance for each existing instance is initialized before depl
 - used to allocate many resource at a single task , it creates a stack and run's all the queries in the json file
 - all the required instances are defined in the `resources` section
 - includes import and export features, to include the features of one template into another and chain the stacks
-
 - in the cloudFormation.yaml file
+
 1. cfn-init is used to retrieve metadata, install packages, create files and start services
 2. cfn-signal is used to indicate the completion of a process in the stack
+
+- deletion
 
 ### Severless Application Model
 
@@ -613,15 +607,18 @@ In this case, new instance for each existing instance is initialized before depl
 - uses the functions `package` and `deploy` for its operations
 - The sam cli can be used to test before deployment of the resources
 - use case testing a lambda function before deployment
+
 1. use `sam local start-lambda`
 2. this would create a docker container to simulate the environment along with mocking if the service requires access to s3 or dynamodb
-2. creates a local endpoint (localhost://3000)
-3. invoke the function using `sam local invoke`
-4. whenever a request arrives at the local end point , the cli routes it to the appropriate docker container and executes it
+3. creates a local endpoint (localhost://3000)
+4. invoke the function using `sam local invoke`
+5. whenever a request arrives at the local end point , the cli routes it to the appropriate docker container and executes it
+
 ## CDK
 
 - service which is used to allocate and deploy resources based on a code.
 - the components of the cdk include
+
 1. App context (main object)
 2. Stack (container which is used to define resources)
 3. constructs (individual items inside stack which define the resources)
@@ -641,24 +638,29 @@ In this case, new instance for each existing instance is initialized before depl
 
 - service to provide a profiler for application running in aws services or on-premises
 - A profiler consits of
+
 1. agent - which is installed on application and sends its runtime state to the profiler
 2. console - provides data viz of the performance
 3. api - manage all the profiling groups
+
 - this service can be attached to an repository to perform code analyis and provide recommendations
 
 ## AWS DirectLink , PrivateLink
 
 - DirectLink
+
 1. dedicated infrastrcuter provided between the aws resources and the on-prem servers, avoid network traffic congestion
 2. useful for tranferring large datasets, hybrid cloud archs,cost-effective data transfers
 
 - PrivateLink
+
 1. this service is used to create a secure tunnel between the aws resources of other accounts, this avoid connection to the public internet
 2. useful for secure access and maintaining data privacy
 
 ## AWS CLI
 
 - the order of presedence in fetching the credentials
+
 1. runtime (terminal or sdk runtime)
 2. environment variables
 3. ./aws/credentials
@@ -666,9 +668,171 @@ In this case, new instance for each existing instance is initialized before depl
 5. ecs containers
 6. ec2 instance profiles
 
+## Mock Test Important Topics
+
+### CloudWatch Agent vs. Athena Queries on S3 Storage
+- **CloudWatch Agents**: Used for monitoring resources.
+- **Athena Queries**: Used for log analysis, business intelligence, and making reports.
+
+### Reserved Concurrency vs. Provisioned Concurrency
+- **Reserved Concurrency**: Indicates the maximum instances of the Lambda function that can be invoked.
+- **Provisioned Concurrency**: Indicates the number of instances that are always available to reduce wake-up time.
+
+### When to Use System Parameter Store vs. Secrets Manager
+- Use **System Parameter Store** for non-sensitive data and configuration values.
+- Use **Secrets Manager** for managing sensitive information like database credentials, API keys, etc.
+
+### CloudWatch Metrics Costs
+- Metrics that incur costs include custom metrics, detailed monitoring for EC2 instances, and additional metrics for certain AWS services.
+
+### Lambda Function Alias
+- Used as a pointer to the version of the function available for deployment.
+
+### Strongly Consistent vs. Eventually Consistent
+- **Strongly Consistent**: Ensures immediate consistency across all copies.
+- **Eventually Consistent**: Ensures consistency over time, not immediately.
+
+### MFA Authentication Using CLI
+- Use `sts get-session-token` to receive temporary credentials valid for 1 hour.
+
+### Appspec.yaml File
+- Used in CodeDeploy to configure security and permissions.
+
+### EB CLI Commands
+- Commands include `-r` (region), `-ip` (instance profile), `-c` (subdomain), `-db` (relational database), `-db.i` (specify instance type), `-es` (enable spot instances), `-it` (list of EC2 instances required during deployment).
+
+### PHI and PII Data Types
+- **PHI**: Protected Health Information.
+- **PII**: Personally Identifiable Information.
+
+### AWS SWF
+- Service orchestration similar to Step Functions but used for large-scale workflows, capable of running workflows for months.
+
+### Amazon Macie
+- Service used to detect confidential information (PHI and PII data types) in S3 buckets using classification algorithms.
+
+### AWS PrivateLink
+- Allows resources inside a VPC to connect to services privately without exposing data to the public internet.
+
+### AWS Identity Center
+- Provides identity provider (IdP) and service provider (SP) services to the workforce.
+
+### Event Source Mapping (Lambda Functions)
+- Invocation of a function based on an SQS event.
+
+### AWS AD Services
+- Fully managed Microsoft AD on AWS Cloud, provides an adaptor to bridge on-premise AD and AWS resources.
+
+### AWS Snowball Edge
+- Used for data transfer and edge computing.
+
+### IAM Identity-Based Policies vs. IAM Resource-Based Policies
+- **Identity-Based Policies**: Attached to IAM users, roles, or groups to define what actions an identity can perform.
+- **Resource-Based Policies**: Attached directly to resources, defining who can access them.
+
+### WAF Use Cases
+- Protection against SQL injection, cross-site scripting, DDoS attacks, IP filtering, and restriction to specific URIs.
+
+### CloudTrail vs. CloudWatch
+- **CloudTrail**: Logs, API analytics, and security investigations.
+- **CloudWatch**: Performance monitoring, application-level monitoring.
+
+### S3 Security Best Practices
+- Use encryption, access control, and logging for securing S3 data.
+
+### EC2 Agent
+- Similar to CloudWatch agent, focusing on management of EC2 instances.
+
+### Using CodeDeploy to Launch Instances in Microsoft Azure
+- Install a CodeDeploy agent on the VM in another cloud provider to make it detectable in the CodeDeploy dashboard.
+
+### Availability of KMS Across Different Regions
+- KMS is region-specific and keys cannot be transferred using AWS Direct Connect.
+
+### STS Options for Getting Tokens and Changing Token Validity Time
+- Options include `AssumeRole`, `AssumeRoleWithSAML`, `AssumeRoleWithWebIdentity`.
+
+### Key Policy in KMS
+- Each KMS key has a policy attached to it, defining the identities who can use the key.
+
+### Default Retention Period of CloudWatch
+- 2 weeks (14 days).
+
+### AWS SSM Agent and Amazon QuickSight
+- **SSM Agent**: Installed on EC2, sends details about patches, inventory, and configurations to the System Manager.
+- **Amazon QuickSight**: BI service for data visualization.
+
+### Log Locations of Different Services in EC2 Instance
+- `app/access.log`: Info about the CodeDeploy agent.
+- `/var/log/messages`: Directory containing all logs.
+- `/etc/awslogs/awslogs.conf`: Info about the CloudWatch agent.
+
+### Specifying Resources Required in EBS Deployment
+- Use configuration files and CLI commands to specify resources.
+
+### When to Use AWS Pricing API
+- For complex architectures, to fetch all price values in JSON format.
+
+### Filters in DynamoDB
+- Annotations can be used for filter expressions. `GetTraceSummaries` API is used for grouping annotations.
+
+### Debugging Lambda Functions
+- Use CloudWatch logs and X-Ray for debugging.
+
+### Secondary Indexes in DynamoDB
+- Used to query data more efficiently.
+
+### Key Grants in AWS KMS and Providing Temporary Access to KMS Keys
+- Key grants provide temporary access to KMS keys.
+
+### Approving Every Stage in Code Deployment Pipeline Before Deployment
+- Use manual approval actions in CodePipeline.
+
+### Lambda Power Tuning
+- Tool to run several concurrent versions of Lambda functions at different memory configurations.
+
+### CloudWatch EMF
+- Embedded Metric Format used to publish logs to CloudWatch in a custom format.
+
+### JWT Structure
+- Consists of three sections: Header, Payload, and Signature.
+
+### AWS X-Ray
+- Used to find specific services with errors and high latency. The X-Ray daemon sends data to the API for analytics.
+
+### Instance Type Incompatibility with Elastic Beanstalk
+- Capacity reserved instances are incompatible with Elastic Beanstalk as they handle instance creation dynamically.
+
+### AWS SDK Client for S3
+- Can be used for client-side encryption before passing data to S3.
+
+### When to Use CodePipeline vs. CloudFormation
+- **CodePipeline**: For automated code delivery.
+- **CloudFormation**: For automated provisioning.
+
+### WebSocket API in API Gateway
+- Enables long-time connections with low latency.
+
+### AWS Transfer Family and Global Accelerator
+- **AWS Transfer Family**: For setting up SFTP, FTP servers.
+- **Global Accelerator**: Improves traffic performance using AWS network infrastructure, reducing latency.
+
+### AWS Database Migration Service
+- Moves on-premises databases to AWS, supports AWS-to-AWS migrations, and converts between different database services (e.g., MySQL to PostgreSQL).
+
+### Unauthorized or Anonymous Access in AWS Cognito
+- Create a `guest_role` for identity pools to define resources accessible by guest users.
+
+### Amazon Rekognition and Amazon Comprehend
+- **Amazon Rekognition**: Image and video analysis, object and scene detection, facial analysis, OCR, content moderation.
+- **Amazon Comprehend**: Natural language processing, sentiment analysis, entity recognition, topic modeling, key phrase extraction, language detection.
+
+### AWS AppConfig, AWS MSK, AWS AppSync
+- **AWS AppConfig**: Manages application configurations, controls feature rollouts.
+- **AWS MSK**: Managed streaming Kafka service for microservices and event-driven architectures.
+- **AWS AppSync**: Service to build data-driven apps with real-time updates and offline capabilities.
 
 
 ## Additional Resources
 
 ![alt text](aws17.png)
-
