@@ -667,6 +667,51 @@ class Solution {
 
 ## Graph
 
+### [2285. Maximum Total Importance of Roads](https://leetcode.com/problems/maximum-total-importance-of-roads/description/)
+
+```java
+class Solution {
+    public long maximumImportance(int n, int[][] roads) {
+        /*
+            base case: a maximum sum can be acheived if a city with more roads has higher weight attached to it. duplicates are fine as the order doesn't matter in sum calculation (2+3 = 5 or 3+2 = 5)
+
+            1. find the weights of each node in the graph and create a topological sort of the graph
+            2. run a loop on the input graph , for each edge calcuate the importance and store to res
+            3. return res
+        */
+
+
+        // Calculate the degree of each node
+        int[] degree = new int[n];
+        for (int[] road : roads) {
+            degree[road[0]]++;
+            degree[road[1]]++;
+        }
+
+        //  Sort cities by degree in descending order
+        Integer[] cities = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            cities[i] = i;
+        }
+        Arrays.sort(cities, (a, b) -> degree[b] - degree[a]);
+
+        // Assign values to cities based on sorted order
+        int[] values = new int[n];
+        for (int i = 0; i < n; i++) {
+            values[cities[i]] = n - i;
+        }
+
+        // Calculate the total importance
+        long res = 0;
+        for (int[] road : roads) {
+            res += values[road[0]] + values[road[1]];
+        }
+
+        return res;
+    }
+}
+```
+
 ### [127. Word Ladder](https://leetcode.com/problems/word-ladder/)
 
 ```java
