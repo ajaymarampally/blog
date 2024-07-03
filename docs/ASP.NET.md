@@ -2,6 +2,32 @@
 
 Course Link [Udemy- Mosh Hamedani](https://gale.udemy.com/course/the-complete-aspnet-mvc-5-course/learn/lecture/4847008#overview)
 
+## Topics
+
+
+
+## Introductions
+
+- entry point to the application is program.cs , which creates an app object and starts a kestrel web server. In production scenarios, IIS sits in front of multiple applications and forwards request to the kestrel server.
+
+### Dependency Injection
+
+- In the main application of the program `program.cs`, the dependencies required for the application should be registered, `build.Services` or `IServiceCollection` is the central container of all the dependencies in the application.
+- Using this approach, the classes do not have to create object instances whenever a specific dependency is required in a class
+- Instead the dependencies are passed to the application, through constructor.
+
+----
+- Life Cycle of the DI injection
+1. Service Registration (add methods to the `IServiceCollection`)
+- Different lifetime scopes of object
+    1. Singleton - a single instance is created for the entire runtime
+    2. scoped - a new instance is created for each request or every time its needed
+    3. transient - a new instance is created everytime a service is required ()
+2. class Dependency declaration (a class which requires the object declares the interface type as a parameter in its constructor)
+3. Object Creation and Injection
+- At run time, when the class requests to make an instance of the interface, the runtime looks up the registery and creates an instance based on the interface lifecycle and injects into the constructor
+
+
 ## MVC
 
 - Model : Representation of a data object used in other classes.
@@ -18,4 +44,33 @@ Course Link [Udemy- Mosh Hamedani](https://gale.udemy.com/course/the-complete-as
 - RedirectResult: This redirects the user's request to a different URL.
 - JsonResult: This returns data in JSON format, often used for AJAX requests in web applications.
 - JavaScriptResult: This returns a JavaScript code snippet that can be executed on the client-side.
+
+### Routing
+
+- two different methods of routing are offered in .net
+1. convention-based routing: In this method, inside the router class, a new map route can be created for a specific controller by passing the controller name and contional paratemers to match the route
+2. attribute routing: In this case, the routing is handled by the router class itself, `[Route]` attribute should be declared in the controller class
+
+## ORM
+
+- object Relational Mapper : creates objects based on the relational data from database
+
+- workflow
+
+1. a _DBContext is created to work on the database, a _DBSet is created to create a stack of all the operations to be performed
+2. through LINQ new queries are added to the _DBSet and executed on DB using the _DBContext
+3. use _DBContext.SaveChanges() to process all stacks
+
+- two different types of approached are followed in entity framework
+1. Database first: In this approach , the DB models are created first using which the EF , will create the model classes and controllers
+2. Code first: in this approach, the models and controllers are created through which the DB schema's are created. Can perform verisioning and migrations in this approach.
+
+- command line tools for migration `use-migration`,`add-migration`,`update database`
+
+### DTO
+
+- useful for delivering only the required data objects from a data model.
+- A new data object is create which caters the specific use , this new object will be sent over the network, without disclosing the details of the main model class.
+- AutoMapper can be used to create dto objects and tranform them in the controllers
+
 
