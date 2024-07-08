@@ -80,7 +80,6 @@ To check if a policy can perform a set of actions we can use
 3. customer managed --> this type of policy is used when organization need tailoring of the aws managed policies.
 
 - Guest user's can be authenticated into the application by use of an identity pool created for guest with an IAM role which specifies which resources can be accessed by them
--
 
 ### RBAC
 
@@ -308,12 +307,11 @@ diff types of serverless arch
 - error handling in lambda functions can be handled by usage of dead letter queues which send the error logs using the sns service.
 - lambda provides `alias` option to maintain different versions of the function, each alias has a unique ARN
 - an alias cannot point to another alias, alias routing configuration can be used for sending a specific portion of the incoming traffic to a different version of the function
-
 - lambda functions using c#,java,python
+
 1. handler definition in python file_name.handler_function_name
 2. in Java, the main function implements the interface `RequestHandler`, the handler function is defined as `MainClass::MainFunction`
 3. in c#, the handler is defined as NameSpace::MainClass.FunctionName
-
 
 ### API Gateway
 
@@ -671,167 +669,215 @@ two types of queue are presnet
 ## Mock Test Important Topics
 
 ### CloudWatch Agent vs. Athena Queries on S3 Storage
+
 - **CloudWatch Agents**: Used for monitoring resources.
 - **Athena Queries**: Used for log analysis, business intelligence, and making reports.
 
 ### Reserved Concurrency vs. Provisioned Concurrency
+
 - **Reserved Concurrency**: Indicates the maximum instances of the Lambda function that can be invoked.
 - **Provisioned Concurrency**: Indicates the number of instances that are always available to reduce wake-up time.
 
 ### When to Use System Parameter Store vs. Secrets Manager
+
 - Use **System Parameter Store** for non-sensitive data and configuration values.
 - Use **Secrets Manager** for managing sensitive information like database credentials, API keys, etc.
 
 ### CloudWatch Metrics Costs
+
 - Metrics that incur costs include custom metrics, detailed monitoring for EC2 instances, and additional metrics for certain AWS services.
 
 ### Lambda Function Alias
+
 - Used as a pointer to the version of the function available for deployment.
 
 ### Strongly Consistent vs. Eventually Consistent
+
 - **Strongly Consistent**: Ensures immediate consistency across all copies.
 - **Eventually Consistent**: Ensures consistency over time, not immediately.
 
 ### MFA Authentication Using CLI
+
 - Use `sts get-session-token` to receive temporary credentials valid for 1 hour.
 
 ### Appspec.yaml File
+
 - Used in CodeDeploy to configure security and permissions.
 
 ### EB CLI Commands
+
 - Commands include `-r` (region), `-ip` (instance profile), `-c` (subdomain), `-db` (relational database), `-db.i` (specify instance type), `-es` (enable spot instances), `-it` (list of EC2 instances required during deployment).
 
 ### PHI and PII Data Types
+
 - **PHI**: Protected Health Information.
 - **PII**: Personally Identifiable Information.
 
 ### AWS SWF
+
 - Service orchestration similar to Step Functions but used for large-scale workflows, capable of running workflows for months.
 
 ### Amazon Macie
+
 - Service used to detect confidential information (PHI and PII data types) in S3 buckets using classification algorithms.
 
 ### AWS PrivateLink
+
 - Allows resources inside a VPC to connect to services privately without exposing data to the public internet.
 
 ### AWS Identity Center
+
 - Provides identity provider (IdP) and service provider (SP) services to the workforce.
 
 ### Event Source Mapping (Lambda Functions)
+
 - Invocation of a function based on an SQS event.
 
 ### AWS AD Services
+
 - Fully managed Microsoft AD on AWS Cloud, provides an adaptor to bridge on-premise AD and AWS resources.
 
 ### AWS Snowball Edge
+
 - Used for data transfer and edge computing.
 
 ### IAM Identity-Based Policies vs. IAM Resource-Based Policies
+
 - **Identity-Based Policies**: Attached to IAM users, roles, or groups to define what actions an identity can perform.
 - **Resource-Based Policies**: Attached directly to resources, defining who can access them.
 
 ### WAF Use Cases
+
 - Protection against SQL injection, cross-site scripting, DDoS attacks, IP filtering, and restriction to specific URIs.
 
 ### CloudTrail vs. CloudWatch
+
 - **CloudTrail**: Logs, API analytics, and security investigations.
 - **CloudWatch**: Performance monitoring, application-level monitoring.
 
 ### S3 Security Best Practices
+
 - Use encryption, access control, and logging for securing S3 data.
 
 ### EC2 Agent
+
 - Similar to CloudWatch agent, focusing on management of EC2 instances.
 
 ### Using CodeDeploy to Launch Instances in Microsoft Azure
+
 - Install a CodeDeploy agent on the VM in another cloud provider to make it detectable in the CodeDeploy dashboard.
 
 ### Availability of KMS Across Different Regions
+
 - KMS is region-specific and keys cannot be transferred using AWS Direct Connect.
 
 ### STS Options for Getting Tokens and Changing Token Validity Time
+
 - Options include `AssumeRole`, `AssumeRoleWithSAML`, `AssumeRoleWithWebIdentity`.
 
 ### Key Policy in KMS
+
 - Each KMS key has a policy attached to it, defining the identities who can use the key.
 
 ### Default Retention Period of CloudWatch
+
 - 2 weeks (14 days).
 
 ### AWS SSM Agent and Amazon QuickSight
+
 - **SSM Agent**: Installed on EC2, sends details about patches, inventory, and configurations to the System Manager.
 - **Amazon QuickSight**: BI service for data visualization.
 
 ### Log Locations of Different Services in EC2 Instance
+
 - `app/access.log`: Info about the CodeDeploy agent.
 - `/var/log/messages`: Directory containing all logs.
 - `/etc/awslogs/awslogs.conf`: Info about the CloudWatch agent.
 
 ### Specifying Resources Required in EBS Deployment
+
 - Use configuration files and CLI commands to specify resources.
 
 ### When to Use AWS Pricing API
+
 - For complex architectures, to fetch all price values in JSON format.
 
 ### Filters in DynamoDB
+
 - Annotations can be used for filter expressions. `GetTraceSummaries` API is used for grouping annotations.
 
 ### Debugging Lambda Functions
+
 - Use CloudWatch logs and X-Ray for debugging.
 
 ### Secondary Indexes in DynamoDB
+
 - Used to query data more efficiently.
 
 ### Key Grants in AWS KMS and Providing Temporary Access to KMS Keys
+
 - Key grants provide temporary access to KMS keys.
 
 ### Approving Every Stage in Code Deployment Pipeline Before Deployment
+
 - Use manual approval actions in CodePipeline.
 
 ### Lambda Power Tuning
+
 - Tool to run several concurrent versions of Lambda functions at different memory configurations.
 
 ### CloudWatch EMF
+
 - Embedded Metric Format used to publish logs to CloudWatch in a custom format.
 
 ### JWT Structure
+
 - Consists of three sections: Header, Payload, and Signature.
 
 ### AWS X-Ray
+
 - Used to find specific services with errors and high latency. The X-Ray daemon sends data to the API for analytics.
 
 ### Instance Type Incompatibility with Elastic Beanstalk
+
 - Capacity reserved instances are incompatible with Elastic Beanstalk as they handle instance creation dynamically.
 
 ### AWS SDK Client for S3
+
 - Can be used for client-side encryption before passing data to S3.
 
 ### When to Use CodePipeline vs. CloudFormation
+
 - **CodePipeline**: For automated code delivery.
 - **CloudFormation**: For automated provisioning.
 
 ### WebSocket API in API Gateway
+
 - Enables long-time connections with low latency.
 
 ### AWS Transfer Family and Global Accelerator
+
 - **AWS Transfer Family**: For setting up SFTP, FTP servers.
 - **Global Accelerator**: Improves traffic performance using AWS network infrastructure, reducing latency.
 
 ### AWS Database Migration Service
+
 - Moves on-premises databases to AWS, supports AWS-to-AWS migrations, and converts between different database services (e.g., MySQL to PostgreSQL).
 
 ### Unauthorized or Anonymous Access in AWS Cognito
+
 - Create a `guest_role` for identity pools to define resources accessible by guest users.
 
 ### Amazon Rekognition and Amazon Comprehend
+
 - **Amazon Rekognition**: Image and video analysis, object and scene detection, facial analysis, OCR, content moderation.
 - **Amazon Comprehend**: Natural language processing, sentiment analysis, entity recognition, topic modeling, key phrase extraction, language detection.
 
 ### AWS AppConfig, AWS MSK, AWS AppSync
+
 - **AWS AppConfig**: Manages application configurations, controls feature rollouts.
 - **AWS MSK**: Managed streaming Kafka service for microservices and event-driven architectures.
 - **AWS AppSync**: Service to build data-driven apps with real-time updates and offline capabilities.
-
 
 ## Additional Resources
 
