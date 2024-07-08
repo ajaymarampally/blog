@@ -79,8 +79,6 @@ To check if a policy can perform a set of actions we can use
 2. AWS managed --> this is a default policy which is authored and managed by aws, it has policy .for each service
 3. customer managed --> this type of policy is used when organization need tailoring of the aws managed policies.
 
-- Guest user's can be authenticated into the application by use of an identity pool created for guest with an IAM role which specifies which resources can be accessed by them
-
 ### RBAC
 
 - Role Based Access Control, in this model a role is created with a certain policies attaced to it to satisty a job, this model is adopted by the IAM.
