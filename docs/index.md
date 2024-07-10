@@ -12,7 +12,7 @@ hide:
 
 Welcome to my personal website! I am a passionate software engineer with a keen interest in solving complex problems and developing innovative solutions.
 <p align="center">
-    <img src="swe.jpeg" alt="Software Engineering" widht="300px" height="300px">
+    <img src="swe.jpeg" alt="Software Engineering" widht="200px" height="200px">
 </p>
 
 ## Contact Information
