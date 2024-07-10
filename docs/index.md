@@ -4,13 +4,16 @@ hide:
     - toc
 ---
 
-# Introduction
-
-# Ajay Marampalli
+<p align="center">
+    <h1>
+         Ajay Marampalli
+    </h1>
+</p>
 
 Welcome to my personal website! I am a passionate software engineer with a keen interest in solving complex problems and developing innovative solutions.
-
-![Software Engineering](swe.jpeg){: width="400px" height="400px"}
+<p align="center">
+    <img src="swe.jpeg" alt="Software Engineering" widht="300px" height="300px">
+</p>
 
 ## Contact Information
 
