@@ -85,9 +85,9 @@ I have a deep love for coding and enjoy tackling challenges on platforms like Le
 
 Feel free to explore the other sections of my website:
 
-- [ASP.NET](ASP.NET.md.md)
-- [AWS](AWS.md)
-- [AzureDev](AzureDev.md)
-- [C#](C#.md)
-- [LeetCode](LeetCode.md)
-- [Low Level Design](lld.md)
+- [ASP.NET](https://ajaymarampally.github.io/blog/ASP.NET/)
+- [AWS](https://ajaymarampally.github.io/blog/AWS/)
+- [AzureDev](https://ajaymarampally.github.io/blog/AzureDev/)
+- [C#](https://ajaymarampally.github.io/blog/C%23/)
+- [LeetCode](https://ajaymarampally.github.io/blog/LeetCode/)
+- [Low Level Design](https://ajaymarampally.github.io/blog/lld/)
