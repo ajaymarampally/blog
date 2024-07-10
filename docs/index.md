@@ -1,10 +1,16 @@
+---
+hide:
+    - navigation
+    - toc
+---
+
 # Introduction
 
 # Ajay Marampalli
 
 Welcome to my personal website! I am a passionate software engineer with a keen interest in solving complex problems and developing innovative solutions.
 
-![Software Engineering](swe.jpeg)
+![Software Engineering](swe.jpeg){: width="400px" height="400px"}
 
 ## Contact Information
 
