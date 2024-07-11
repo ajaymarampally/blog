@@ -3958,6 +3958,60 @@ class TimeMap {
 
 ## Stack
 
+### [1190. Reverse Substrings Between Each Pair of Parentheses](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/description/)
+
+```java
+class Solution {
+
+    private void util(char[] arr, int left, int right){
+        //util to reverse the string
+        while(left<right){
+            char tmp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = tmp;
+            left++;
+            right--;
+        }
+    }
+
+    public String reverseParentheses(String s) {
+        /*
+            algo:
+                (ed(et(oc))el)
+                co --> etco --> octe --> edocteel --> leetcode
+                1.store the index of '(', at first occurence of ')', take the largest index and reverse the substring between the index in the string, remove the brackets
+                2. continue until the index array is empty
+                3. return the string
+
+                t.c --> O(n): traversing the string
+                s.c --> O(n): charArray and stack
+        */
+
+        Stack<Integer> st = new Stack<>();
+        char[] ca = s.toCharArray();
+
+        for(int ind=0;ind<ca.length;ind++){
+            if(ca[ind]=='('){
+                st.push(ind);
+            }
+            else if(ca[ind]==')'){
+                int leftIndex = st.pop();
+                util(ca,leftIndex+1,ind-1);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(char c:ca){
+            if(c!='(' && c!=')'){
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
+}
+```
+
 ### [22.Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
 
 <img src="22.png" alt="Alt text" style="aspect-ratio: 1/0.6";>
