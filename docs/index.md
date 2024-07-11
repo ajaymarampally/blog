@@ -61,7 +61,7 @@ I have a deep love for coding and enjoy tackling challenges on platforms like Le
 
 ## Certifications
 
-- **[AWS Certified Developer – Associate](https://www.credly.com/badges/43a3b0c0-e7b2-4eaf-b91b-8ebd17d55d36)**
+- **[AWS Certified Developer – Associate](https://www.credly.com/badges/9b2e8713-b40f-45a0-bfe0-893a6a1199ee/linked_in_profile)**
   - Key Skills: Lambda, EC2, ECS, API Gateway, IAM, Cognito, CDK, CloudFormation, DynamoDB, RDS, S3
 
 ## Projects
