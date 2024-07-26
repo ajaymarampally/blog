@@ -95,3 +95,9 @@ Course Link [Udemy- Mosh Hamedani](https://gale.udemy.com/course/the-complete-as
 2. serilization and deserialization is performed by protocol buffer or protobuffers
 3. a contract is signed between the parties prior to connection to determine the formats
 
+## EF Core
+
+- EF was initially introduced to manage the database objects and connections to the database, EF core was later introduced to support the cross platform functionality
+
+### Fundamentals of ORM
+

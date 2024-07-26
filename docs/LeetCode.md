@@ -667,6 +667,76 @@ class Solution {
 
 ## Graph
 
+### [1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/?envType=daily-question&envId=2024-07-26)
+```java
+class Solution {
+
+    public int[][] floydWarshall(int n,int[][] edges,int distanceThreshold){
+        /*
+            1.start with the base distance arr(A) which consists of n*n distances to each node
+            2.start from node 0, use the base arr and compute a new array
+            3. for each comparision A[i,j] = min(A[i,j] , prevArr[i,current_index]+[current_index,j])
+            4. return the final array consisting of minimum distance to reach each node
+        */
+
+        int[][] dist = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dist[i], distanceThreshold+1);
+            dist[i][i] = 0; // Distance to itself is 0
+        }
+        //make the distance array
+        for(int[] edge: edges){
+            int p1 = edge[0];
+            int p2 = edge[1];
+            int d = edge[2];
+
+            dist[p1][p2] = d;
+            dist[p2][p1] = d;
+        }
+
+
+        for(int k=0;k<n;k++){
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n;j++){
+                    dist[i][j] = Math.min(dist[i][j], (dist[i][k]+dist[k][j]));
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+        /*
+            floyd - warshall algo (to find shortest path using all pairs , advancement of djikstras)
+            time: O(n^3)
+            space: O(n^2)
+        */
+
+        int[][] minDist = floydWarshall(n,edges,distanceThreshold);
+        int res = -1;
+
+        int minCity = n;
+
+        for(int i=0;i<minDist.length;i++){
+            int cityCount = 0;
+            for(int j=0;j<minDist.length;j++){
+                if(i!=j && minDist[i][j]<=distanceThreshold){
+                    cityCount++;
+                }
+            }
+            if(cityCount<=minCity){
+                res = i;
+                minCity = cityCount;
+            }
+        }
+
+        return res;
+    }
+}
+```
+
 ### [2285. Maximum Total Importance of Roads](https://leetcode.com/problems/maximum-total-importance-of-roads/description/)
 
 ```java
