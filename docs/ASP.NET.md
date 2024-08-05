@@ -99,5 +99,22 @@ Course Link [Udemy- Mosh Hamedani](https://gale.udemy.com/course/the-complete-as
 
 - EF was initially introduced to manage the database objects and connections to the database, EF core was later introduced to support the cross platform functionality
 
-### Fundamentals of ORM
+
+## Testing
+
+Automated tests are used to improve relaibility and are included in the build process or CI/CD pipeline
+
+- Unit Testing: A small chunk or a responsibility of a component is tested, this approach is used to find the error easily rather than going into the rabbit hole
+
+- Integration testing: Mainly used to check if two components are properly configured to execute their tasks (connecting to database , a controller calling a service appropriately)
+
+- Functional Test: Mainly used to test end to end functionality of the application, it tests the complete life cycle.
+
+Different steps in the testing
+
+1. Action - Define the workflow of the testing proc.
+2. Mock - Create all the objects and variables required for performing the action.
+3. Assert - Post performing the action, check if the required response is noted.
+
+
 
