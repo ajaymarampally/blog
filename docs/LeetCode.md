@@ -1,5 +1,56 @@
 # LeetCode Solutions
 
+## Intervals
+
+### [57. Insert Interval](https://leetcode.com/problems/insert-interval/description/)
+
+```java
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+
+        /*
+            algo:
+                three cases
+                1. if the interval is less than newInterval; skip
+                2. merge: if the interval lies in the range, update the newInterval
+                3. if the interval is greater than newInterval; skip
+            t.c - o(n)
+            s.c - o(n)
+        */
+
+        List<int[]> res = new ArrayList<>();
+        int n = intervals.length;
+        int ind = 0;
+
+        //case 1 [1,2] --> [4,8] (greater)
+        while(ind<n && (newInterval[0]>intervals[ind][1])){
+            res.add(intervals[ind]);
+            ind++;
+        }
+
+        //case 2 [3,5] --> [4,8] (merge)
+        while(ind<n && (newInterval[1]>=intervals[ind][0])){
+            //update the newInterval
+            newInterval[0] = Math.min(intervals[ind][0],newInterval[0]);
+            newInterval[1] = Math.max(intervals[ind][1],newInterval[1]);
+            ind++;
+        }
+
+        //after merge add it to res
+        res.add(newInterval);
+
+        //case 3 , add the rest of the elements greater than newInterval [6,9] [2,5]
+        while(ind<n){
+            res.add(intervals[ind]);
+            ind++;
+        }
+
+        return res.toArray(int[][]::new);
+    }
+}
+```
+
+
 ## DP
 
 ### [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/)
