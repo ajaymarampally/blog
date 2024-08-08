@@ -2,6 +2,67 @@
 
 ## Intervals
 
+### [1851. Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/description/)
+
+```java
+class Solution {
+    public int[] minInterval(int[][] intervals, int[] queries) {
+        /*
+            edge cases:
+                1. if just one elem exists in the intervals, return the size of the container, if the querie exists in the range of the interval
+            algo:
+                1. sort the intervals and queries to avoid iterating over more elements
+                2. init a minheap to store the matching intervals for each query
+                3. iterate over the intervals to check for match, and offer to minheap
+                4. after iterating, poll from the minheap and pick the least value
+                5. assing it to the originalindex in the res
+            t.c - O(nlogn + qlogn) - iterate over the intervals, and iterate over each interval
+            s.c - O(queriesIndex) + O(res) + O(minHeap)
+
+        */
+        int n = intervals.length;
+        int qlen = queries.length;
+        int[][] queriesIndex = new int[qlen][2];
+        int[] res = new int[qlen];
+
+        //map the queriesIndex to maintain the original order
+        for(int ind=0;ind<qlen;ind++){
+            queriesIndex[ind] = new int[]{queries[ind],ind};
+        }
+
+        //sort the arrays based on the starting index in asc order
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+
+        //sort the queries in asc order
+        Arrays.sort(queriesIndex,(a,b)->a[0]-b[0]);
+
+        //maintain a minHeap (pq) to return the least interval size container for each querie
+        PriorityQueue<int[]> mh = new PriorityQueue<>((a, b) -> (a[1] - a[0] + 1) - (b[1] - b[0] + 1));
+
+        //process each query
+        int index = 0;
+        for(int[] q:queriesIndex){
+            int query = q[0];
+            int originalInd = q[1];
+            while(index<n && intervals[index][0]<=query){
+                //found interval with a match offer to min heap
+                mh.offer(intervals[index]);
+                index++;
+            }
+
+            //poll from the min heap and assign the min value to the res[originalIndex]
+            while(!mh.isEmpty() && mh.peek()[1]<query){
+                //poll
+                mh.poll();
+            }
+
+            res[originalInd] = mh.isEmpty()?-1:(mh.peek()[1]-mh.peek()[0])+1;
+        }
+        return res;
+    }
+}
+```
+
 ### [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/description/)
 
 ```java
