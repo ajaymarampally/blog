@@ -2,6 +2,87 @@
 
 ## Intervals
 
+### [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/description/)
+
+```java
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        /*
+            edge cases:
+                1. If there’s only one interval, return 0 since no overlaps are possible.
+                2. In the case [a1, b1], [a2, b2] if b1 == a2, do not count it as an overlap.
+
+            algo:
+                1. Sort the intervals based on their end time to facilitate minimizing removals.
+                2. Iterate through the sorted intervals and count overlaps by comparing the start of the current interval with the end of the previous non-overlapping interval.
+                3. Return the number of intervals removed to eliminate all overlaps.
+
+            t.c - o(nlogn) due to sorting.
+            s.c - o(logn) for the stack space used by sorting.
+        */
+
+        if (intervals.length <= 1) {
+            return 0;
+        }
+
+        // Sort intervals by their end time in ascending order
+        Arrays.sort(intervals, (a, b) -> a[1] - b[1]);
+
+        int res = 0;  // To count the number of removed intervals
+        int prevEnd = intervals[0][1];
+
+        for (int i = 1; i < intervals.length; i++) {
+            // If current interval starts before the end of the previous non-overlapping interval, it's an overlap
+            if (intervals[i][0] < prevEnd) {
+                res++;
+            } else {
+                // Update prevEnd to the end time of the current interval if there's no overlap
+                prevEnd = intervals[i][1];
+            }
+        }
+
+        return res;
+    }
+}
+```
+
+### [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/description/)
+
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        /*
+            algo:
+                1. sort the intervals to avoid mixup and missing ranges
+                2. if the intervals match merge
+                return;
+            t.c - o(nlogn)
+            s.c - o(n)
+        */
+
+        List<int[]> res = new ArrayList<>();
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+
+        res.add(intervals[0]);
+
+        for(int ind=1;ind<intervals.length;ind++){
+            //get the last element from the arraylist and check with the curr
+            int[] last = res.get(res.size()-1);
+            if(last[1]>=intervals[ind][0]){
+                // [1,3] [2,6] --> merge and update the last
+                last[1] = Math.max(last[1],intervals[ind][1]);
+            }
+            else{
+                // ranges do not match add to res
+                res.add(intervals[ind]);
+            }
+        }
+
+        return res.toArray(int[][]::new);
+    }
+}
+```
+
 ### [57. Insert Interval](https://leetcode.com/problems/insert-interval/description/)
 
 ```java
