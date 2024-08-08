@@ -62,8 +62,6 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tabbed:
       alternate_style: true
-  - admonition
-  - attr_list
 
 copyright: |
   &copy; 2024 <a href="https://github.com/ajaymarampally"  target="_blank" rel="noopener">Ajay Marampalli</a>
