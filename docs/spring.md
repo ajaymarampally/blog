@@ -16,3 +16,20 @@ Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutori
 
 - Spring framework uses spring container, to handle the Ioc functionalities
 
+### Annotations
+
+- In spring application, the Application context contains the bean factory, by default spring does not create any class objects but by using the @component annotation, we can notify the bean factory.
+
+- If we have multiple class dependencies, the spring framework is notified to fetch required beans using the @AutoWired annotation.
+
+- scopes for objects, singleton and prototype (creates multiple objects each type getBean() is called)
+
+## @Configuration
+
+- Annotation used to define class, which would be used to create the bean factory
+
+## @Bean
+
+- This tag is used to declare beans inside the config file, all beans would be declared and made available during the init process
+
+
