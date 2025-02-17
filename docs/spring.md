@@ -32,4 +32,38 @@ Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutori
 
 - This tag is used to declare beans inside the config file, all beans would be declared and made available during the init process
 
+### @Value
 
+- sets the value in a bean, when its created
+
+## Layers
+
+### Controller
+
+- responsible for handling all the incoming connections, use @RestController annotation, swagger can be integrated into the controller layer
+
+### Service
+
+- responsible for handling all the bussiness logic, use @Service annotation
+
+### Respository
+
+- responsible for connecting to the database, use @Repository annotation
+
+## JPA
+
+- Java Persistence API, its a form of contract used to connect and talk with different databases
+- ORM (object relation mapper) is the tool which translates java objects into data base schemas and data rows
+
+## Spring AOP
+
+
+Aspect Oriented Programming Concepts in a Nutshell
+1. Join Point (When): Think of it as a scene in the movie of your program's execution.
+It's where the action happens!
+2. Advice (What): This is the action! It's what happens at a particular scene (Join Point). It's like a plot twist in your program's execution.
+3. Aspect (Where-Conceptual): It's the script of your movie. It defines what plot twists (Advice) happen and where (Pointcut).
+4. Pointcut (Where-Operational): It's the specific scenes (Join Points) where the plot twists (Advice) occur. It's like a bookmark in your script (Aspect).
+5. Target Object (Whom): This is the main character. It's the object that experiences the plot twists (Advice).
+6. Weaving (How): This is the director's job. It's how the script (Aspect) is turned into a movie. In Spring AOP, this happens at runtime.
+7. Proxy (The Double): This is the stunt double in your movie. In Spring AOP, it's the object that is created after applying advice to the target object. It's the one that takes the hits, performs the stunts, and makes the main character (Target Object) look good.
