@@ -79,3 +79,40 @@ Aspect Oriented Programming Concepts in a Nutshell
 5. Target Object (Whom): This is the main character. It's the object that experiences the plot twists (Advice).
 6. Weaving (How): This is the director's job. It's how the script (Aspect) is turned into a movie. In Spring AOP, this happens at runtime.
 7. Proxy (The Double): This is the stunt double in your movie. In Spring AOP, it's the object that is created after applying advice to the target object. It's the one that takes the hits, performs the stunts, and makes the main character (Target Object) look good.
+
+
+## Reactive Programming
+
+process - a singular unit with a set of resources attached to it and used at the runtime
+thread - a singular unit in a process, which would share the resources and perform its actions
+scheduler - a part of the OS, which determines the duration for which a thread can execute
+
+different types of IO calls
+
+sync + blocking - thread sends a request, sits idle until response is available
+async - a thread, creates a new thread and delegates its task to fetch the results
+non-blocking - a thread perfroms the fetch request from the source and gets a call back when the response is ready
+non-blocking + async - a thread, creates a new thread to deleagate, the new thread reaches out to source and gets notified when response is delivered
+
+- communication patterns
+
+1. request --> response : classic type of communication, for each request a response is delivered
+2. request --> streaming response: A single request is made and stream of response are delivered
+(booked a cab (req), server sends stream responses , (driver details, time to arrival))
+3. streaming request --> response : A single request is initiated to the server, and multiple requests are made
+(Galaxy watch sending sensor data to the server)
+4. bi directional : multiple requests and multiple responses (singular connections, but stream of req's and responses)
+
+At the heart and core, reactive programming depends on the observer pattern
+
+- in this pattern, a set of chained reactive calls are made, when any change is observed
+(input height in number --> conversion in diff units)
+
+- pub/sub communication model
+
+![1741056841892](image/spring/1741056841892.png)
+
+- processors - the intermit units between the publishers and subscribers who can acts as the both
+
+- Reactor is the implementation of the pub/sub commnication model
+
