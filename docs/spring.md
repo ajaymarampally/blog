@@ -110,9 +110,18 @@ At the heart and core, reactive programming depends on the observer pattern
 
 - pub/sub communication model
 
+(
+   workflow --> whenever a subscriber wants to connect to a publisher a subscription is generated which implements all the methods
+)
+
 ![1741056841892](image/spring/1741056841892.png)
 
 - processors - the intermit units between the publishers and subscribers who can acts as the both
 
 - Reactor is the implementation of the pub/sub commnication model
+
+- Mono: in this model, the publisher always emits 0 or 1 item
+- Flux: in this model, publisher can emit 0 .. N items at once
+
+- backpressure --> occurs when producers sends more data than a consumer can handle
 
