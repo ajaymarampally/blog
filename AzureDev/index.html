@@ -1,0 +1,2574 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ajaymarampally.github.io/blog/AzureDev/">
+      
+      
+        <link rel="prev" href="../AWS/">
+      
+      
+        <link rel="next" href="../C%23/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Azure Developer Associate - Ajay Marampalli</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-CS24T0932L"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-CS24T0932L",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-CS24T0932L",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#azure-developer-associate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ajay Marampalli" class="md-header__button md-logo" aria-label="Ajay Marampalli" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ajay Marampalli
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Azure Developer Associate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ajaymarampally/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ajaymarampally/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ASP.NET/" class="md-tabs__link">
+        
+  
+    
+  
+  ASP.NET
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../AWS/" class="md-tabs__link">
+        
+  
+    
+  
+  AWS - Developer Associate Certificate
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Azure Developer Associate
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../C%23/" class="md-tabs__link">
+        
+  
+    
+  
+  C# Documentation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../LeetCode/" class="md-tabs__link">
+        
+  
+    
+  
+  LeetCode Solutions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../lld/" class="md-tabs__link">
+        
+  
+    
+  
+  Low Level Design Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../spring/" class="md-tabs__link">
+        
+  
+    
+  
+  Java Spring FrameWork
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ajay Marampalli" class="md-nav__button md-logo" aria-label="Ajay Marampalli" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Ajay Marampalli
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ajaymarampally/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ajaymarampally/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ASP.NET/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ASP.NET
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS - Developer Associate Certificate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Azure Developer Associate
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Azure Developer Associate
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#azure-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Fundamentals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Fundamentals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shared-responsibility-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      shared responsibility model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertical-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vertical Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal scaling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#az204-azure-app-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      AZ:204 - Azure App service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AZ:204 - Azure App service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-app-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure App service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-app-service-authentication-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure App service Authentication providers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      how it works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-options-are-provided-for-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two options are provided for authentication:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorization-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization Modes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Store
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Certificates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics-for-autoscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics for AutoScale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slot-swapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      slot swapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function App
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Blob Storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Blob Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blob-lifecycle-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      blob lifecycle policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rehydrate-blob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rehydrate blob
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-storage-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Storage Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-header-for-blobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP header for blobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-cosmos-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure COSMOS DB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-container-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Container Registry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Container Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      DockerFile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-container-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Container Instances
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Container Instances">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-restart-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      container restart policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-container-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure container Apps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure container Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorization-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization and Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisions-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      revisions and secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dapr-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAPR integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-identity-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Identity Platform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Identity Platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msal" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSAL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MSAL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initiating-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initiating Clients
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-modifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Modifiers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure key vault
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-api-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure API Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure API Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope-for-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      scope for API's
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-security-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      API security TLS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-event-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Event Grid
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Event Grid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-event-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Event Hub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Event Hub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-of-event-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture of Event Hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-message-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Message Queues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Azure Message Queues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#different-types-of-message-routings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Different types of message routings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-cache-for-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Cache for Redis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-on-cdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage on CDN's
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="storage on CDN&#39;s">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-updating" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content updating
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exam Topics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C# Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LeetCode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LeetCode Solutions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lld/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Low Level Design Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Spring FrameWork
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="azure-developer-associate">Azure Developer Associate</h1>
+<p><code>Credits</code> - <a href="https://learn.microsoft.com/en-us/training/courses/az-204t00?ns-enrollment-type=Collection&amp;ns-enrollment-id=e21nurz5wk3m71#course-syllabus">Microsoft Learning</a></p>
+<h2 id="azure-fundamentals">Azure Fundamentals</h2>
+<h3 id="shared-responsibility-model">shared responsibility model</h3>
+<p>In this model, the responsibilites are shared between the cloud provider and the client, for instance in case of cloud SQL server, the provider is responsible for setting up the instances whereas the client is responsible for data ingestion and providing access.</p>
+<p>Different Cloud Service types</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>1. Infrastructure as a Service (IAAS) - client is most responsible - Lift and shift
+2. Platform as a Service (PAAS) - middle ground - Development Kits
+3. Software as a Service (SAAS) - cloud provider is most responsible - Email Service
+</code></pre></div></td></tr></table></div>
+<p><img alt="alt text" src="../az1.png" /></p>
+<h3 id="vertical-scaling">Vertical Scaling</h3>
+<p>The ability to add more compute power, in case of app development adding more cpu power is vertical scaling</p>
+<h3 id="horizontal-scaling">Horizontal scaling</h3>
+<p>The ability to add more machines or containers to support the demand(either auto or manual)</p>
+<h2 id="az204-azure-app-service">AZ:204 - Azure App service</h2>
+<h3 id="azure-app-service">Azure App service</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>HTTP-based service for hosting web application , REST API&#39;s and back ends. Runs on both linux and windows environments.
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>Components of the App service</p>
+</li>
+<li>
+<p>Operating System (Windows, Linux)</p>
+</li>
+<li>Region (West US, East US, etc.)</li>
+<li>Number of VM instances</li>
+<li>Size of VM instances (Small, Medium, Large)</li>
+<li>Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2 PremiumV3, Isolated, IsolatedV2)</li>
+<li>
+<p>Deployment</p>
+</li>
+<li>
+<p>Azure DevOps Services: You can push your code to Azure DevOps Services, build your code in the cloud, run the tests, generate a release from the code, and finally, push your code to an Azure Web App.</p>
+</li>
+<li>GitHub: connect production branch to directly make changes to App service.</li>
+<li>Bitbucket: With its similarities to GitHub, you can configure an automated deployment with Bitbucket.</li>
+</ul>
+<p>Manual:</p>
+<ul>
+<li>CLI: webapp up is a feature of the az command-line interface that packages your app and deploys it. Unlike other deployment methods, az webapp up can create a new App Service web app for you if you haven't already created one.</li>
+<li>Zip deploy: Use curl or a similar HTTP utility to send a ZIP of your application files to App Service.</li>
+<li>FTP/S: FTP or FTPS is a traditional way of pushing your code to many hosting environments, including App Service.</li>
+</ul>
+<p>We can use deployment swaps method to save time , in this method we deploy to staging and swap the production build.</p>
+<h2 id="security">Security</h2>
+<h3 id="azure-app-service-authentication-providers">Azure App service Authentication providers</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Sign-in endpoint</th>
+<th>How-To guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft identity platform</td>
+<td>/.auth/login/aad</td>
+<td>App Service Microsoft identity platform login</td>
+</tr>
+<tr>
+<td>Facebook</td>
+<td>/.auth/login/facebook</td>
+<td>App Service Facebook login</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>/.auth/login/google</td>
+<td>App Service Google login</td>
+</tr>
+<tr>
+<td>Twitter</td>
+<td>/.auth/login/twitter</td>
+<td>App Service Twitter login</td>
+</tr>
+<tr>
+<td>Any OpenID Connect provider</td>
+<td>/.auth/login/providername</td>
+<td>App Service OpenID Connect login</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>/.auth/login/github</td>
+<td>App Service GitHub login</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-it-works">how it works</h3>
+<p>Both the authetication and Authorization modules run in same sandbox, before the http request hit the App service they are processed.services provided by this module are</p>
+<ul>
+<li>validate, store and refresh OAuth tokens provided by identity providers</li>
+<li>Manage the authenticated sessions</li>
+<li>inject identity information into http headers</li>
+</ul>
+<h3 id="authentication-flow">Authentication Flow</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Without provider SDK</th>
+<th>With provider SDK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sign user in</td>
+<td>Redirects client to /.auth/login/provider.</td>
+<td>Client code signs user in directly with provider's SDK and receives an authentication token. For information, see the provider's documentation.</td>
+</tr>
+<tr>
+<td>Post-authentication</td>
+<td>Provider redirects client to /.auth/login/provider/callback.</td>
+<td>Client code posts token from provider to /.auth/login/provider for validation.</td>
+</tr>
+<tr>
+<td>Establish authenticated session</td>
+<td>App Service adds authenticated cookie to response.</td>
+<td>App Service returns its own authentication token to client code.</td>
+</tr>
+<tr>
+<td>Serve authenticated content</td>
+<td>Client includes authentication cookie in subsequent requests (automatically handled by browser).</td>
+<td>Client code presents authentication token in X-ZUMO-AUTH header (automatically handled by Mobile Apps client SDKs).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="two-options-are-provided-for-authentication">Two options are provided for authentication:</h3>
+<ul>
+<li>without provider sdk: The browser app provides the auth login page to the user, the server code manages the sign in process thus making it server-directed flow</li>
+<li>with provider sdk: The client application signs into the provider manually and submits the token to the App server, this is client-directed flow and mainly used in browser-less apps, RestAPI's, Azure functions</li>
+</ul>
+<h3 id="authorization-modes">Authorization Modes</h3>
+<ul>
+<li>unauthenticated --&gt; The App Server allows unautheticated traffic to App server, can add a step to inject http headers.</li>
+<li>authenticated --&gt; The App server rejects all the unauth traffic, a redirect is issued to <code>.\auth\login\&lt;provider&gt;</code></li>
+</ul>
+<h3 id="token-store">Token Store</h3>
+<p>App Service provides in-built token store at the init of the application, when authetication is enabled with any provider a default token store is provided.</p>
+<h3 id="networking">Networking</h3>
+<p>In Standard plans , all the Apps in the service run under the same worker node, similarly all the outbound addresses for the application are shared. All the possible IP's are listed under the <code>possibleOutboundIPAddresses</code> property.</p>
+<p>in azure shell</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>webapp<span class="w"> </span>show<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resource-group<span class="w"> </span>&lt;group_name&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>&lt;app_name&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--query<span class="w"> </span>outboundIpAddresses<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span>tsv
+</code></pre></div></td></tr></table></div>
+<h3 id="application-settings">Application Settings</h3>
+<p>All the environmental variables of the application are controller through appSettings Configuaration file, this files will be used for connecting to Azure MySQL servers in production env. , the contents of web.config and appsettings.json by default are used for development env.</p>
+<h3 id="security-certificates">Security Certificates</h3>
+<p>A certificate is shared between app services in the same resourceGroup and region combination.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create a free App Service managed certificate</td>
+<td>A private certificate that's free of charge and easy to use if you just need to secure your custom domain in App Service.</td>
+</tr>
+<tr>
+<td>Purchase an App Service certificate</td>
+<td>A private certificate that's managed by Azure. It combines the simplicity of automated certificate management and the flexibility of renewal and export options.</td>
+</tr>
+<tr>
+<td>Import a certificate from Key Vault</td>
+<td>Useful if you use Azure Key Vault to manage your certificates.</td>
+</tr>
+<tr>
+<td>Upload a private certificate</td>
+<td>If you already have a private certificate from a third-party provider, you can upload it.</td>
+</tr>
+<tr>
+<td>Upload a public certificate</td>
+<td>Public certificates aren't used to secure custom domains, but you can load them into your code if you need them to access remote resources.</td>
+</tr>
+</tbody>
+</table>
+<p>All the certifcates purchased through azure are stored in <code>azure keyValut</code></p>
+<h3 id="metrics-for-autoscale">Metrics for AutoScale</h3>
+<p>Autoscaling by metric requires that you define one or more autoscale rules. An autoscale rule specifies a metric to monitor, and how autoscaling should respond when this metric crosses a defined threshold. The metrics you can monitor for a web app are:</p>
+<ul>
+<li>CPU Percentage. This metric is an indication of the CPU utilization across all instances. A high value shows that instances are becoming CPU-bound, which could cause delays in processing client requests.</li>
+<li>Memory Percentage. This metric captures the memory occupancy of the application across all instances. A high value indicates that free memory could be running low, and could cause one or more instances to fail.</li>
+<li>Disk Queue Length. This metric is a measure of the number of outstanding I/O requests across all instances. A high value means that disk contention could be occurring.</li>
+<li>Http Queue Length. This metric shows how many client requests are waiting for processing by the web app. If this number is large, client requests might fail with HTTP 408 (Timeout) errors.</li>
+<li>Data In. This metric is the number of bytes received across all instances.</li>
+<li>Data Out. This metric is the number of bytes sent by all instances.</li>
+</ul>
+<p>A duration is defined for capturing the Autoscale metrics , the whole duration is divided into equal time grains.</p>
+<h3 id="slot-swapping">slot swapping</h3>
+<p>The following is carried out during swap</p>
+<ul>
+<li>All the settings of the target(production build) are copied into source slot</li>
+<li>HTTP requests are sent to all instances in the source , if a response is recived the slot is considered warmed up.</li>
+<li>Once All the instances are warmed up, the route configurations are swapped to route the traffic to new slot</li>
+</ul>
+<h3 id="routing">Routing</h3>
+<p>To get user feedback for the new features, a portion of the production traffic can be routed to the new staging slot randomly. The user is pointed to the staging slot until the end of client session. A cookie <code>x-ms-routing-name=staging</code> indicates the same.</p>
+<ul>
+<li>Azure WebJob contents --&gt; these are the background workers which process specific tasks on http requests or message queues</li>
+<li>Azure webjob schedulers --&gt; these are background workers which trigger on a scheduled basis mainly used for data synchronization.</li>
+</ul>
+<h2 id="azure-functions">Azure Functions</h2>
+<p>Azure functions are similar to WebJobs of the App Service , but have more flexible triggers and standalone properties. It is also similar to Azure Logic Apps in terms of functionality but has a different development approach, Logic Apps are design driven where as Functions are code-first architecture.</p>
+<p><code>functionAppScaleLimit</code> is used to fix the scale Limit for the Azure Function lies in range(0-max(200))</p>
+<p>A function contains two components code and config.json file, A function can have only one trigger.</p>
+<h3 id="function-app">Function App</h3>
+<p>A Function App is a holder for all the functions, all the items share same deployment method and runtime.</p>
+<p>Data required for the functions is passed as parameters and the function returns the output. No services are connected in this way.</p>
+<p><code>dataType</code> property is used to define the binding type, it's required in interpretted languages, in compiled languages the type is inferred from runtime.</p>
+<p>useCase --&gt; whenever a message is added to Azure Queue , add a table row to Azure table Storage.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>{
+  &quot;bindings&quot;: [
+    {
+      &quot;type&quot;: &quot;queueTrigger&quot;,
+      &quot;direction&quot;: &quot;in&quot;,
+      &quot;name&quot;: &quot;order&quot;,
+      &quot;queueName&quot;: &quot;myqueue-items&quot;,
+      &quot;connection&quot;: &quot;MY_STORAGE_ACCT_APP_SETTING&quot;
+    },
+    {
+      &quot;type&quot;: &quot;table&quot;,
+      &quot;direction&quot;: &quot;out&quot;,
+      &quot;name&quot;: &quot;$return&quot;,
+      &quot;tableName&quot;: &quot;outTable&quot;,
+      &quot;connection&quot;: &quot;MY_TABLE_STORAGE_ACCT_APP_SETTING&quot;
+    }
+  ]
+}
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>type</code> --&gt; trigger type</li>
+<li><code>direction</code> --&gt; data binding direction (in,out)</li>
+<li><code>name</code> --&gt; data parameter</li>
+<li><code>queueName</code> --&gt; name of queue column (name of the trigger)</li>
+<li><code>connection</code> --&gt; connection String</li>
+</ul>
+<p>The Functions can also be triggered using class libraries , in this case the function.json file is not required.</p>
+<p>e.g</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">QueueTriggerTableOutput</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[FunctionName(&quot;QueueTriggerTableOutput&quot;)]</span>
+<span class="w">    </span><span class="na">[return: Table(&quot;outTable&quot;, Connection = &quot;MY_TABLE_STORAGE_ACCT_APP_SETTING&quot;)]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">Run</span><span class="p">(</span>
+<span class="w">        </span><span class="na">[QueueTrigger(&quot;myqueue-items&quot;, Connection = &quot;MY_STORAGE_ACCT_APP_SETTING&quot;)]</span><span class="n">JObject</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ILogger</span><span class="w"> </span><span class="n">log</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">Person</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">PartitionKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Orders&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">RowKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="p">[</span><span class="s">&quot;Name&quot;</span><span class="p">].</span><span class="n">ToString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">MobileNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="p">[</span><span class="s">&quot;MobileNumber&quot;</span><span class="p">].</span><span class="n">ToString</span><span class="p">()</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">PartitionKey</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">RowKey</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">MobileNumber</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>All the required parameters are passed in the class as annotations.</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cfunctionsv2&amp;pivots=programming-language-csharp">HTTP Triggers</a></li>
+</ul>
+<h2 id="azure-blob-storage">Azure Blob Storage</h2>
+<p>Three types of resources</p>
+<ul>
+<li>Storage Account - endpoint of the azure storage blob e.g mystorageaccount</li>
+</ul>
+<p><code>http://mystorageaccount.blob.core.windows.net</code></p>
+<ul>
+<li>container -&gt; organizes a set of blobs , a storage account can have unlimited containers</li>
+</ul>
+<p><code>https://myaccount.blob.core.windows.net/mycontainer</code></p>
+<ul>
+<li>blobs</li>
+<li>block blobs - text and binary</li>
+<li>append blobs - logs</li>
+<li>page blobs - images for vm</li>
+</ul>
+<p><code>https://myaccount.blob.core.windows.net/mycontainer/myvirtualdirectory/myblob</code></p>
+<h3 id="security_1">Security</h3>
+<p>All files stored in azure storage are by default encrypted with 256 bit AES. A user can choose manual encryption by adding a key in microsoft valut</p>
+<ul>
+<li>customer managed key - A specific key is used to encrypt all the incoming data</li>
+<li>customer provided key - A key is provided in the request to read or write data in azure storage</li>
+</ul>
+<h3 id="blob-lifecycle-policies">blob lifecycle policies</h3>
+<p>Any rule in a policy contains a filter set and a action set, filter set defines a set of data blobs and action set defines a particular action to be performed on the filtered set</p>
+<h3 id="rehydrate-blob">Rehydrate blob</h3>
+<p>Once a blob is in archive tier its considered as an offline resource, to make it alive , two options</p>
+<ul>
+<li>copy the contents of the blob to a new cool or hot tier blob</li>
+<li>set the existing blob to new tier</li>
+</ul>
+<h3 id="azure-storage-client">Azure Storage Client</h3>
+<p>Azure storage provides classes for .NET to interact with the storage</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BlobServiceClient</td>
+<td>Represents the storage account, and provides operations to retrieve and configure account properties, and to work with blob containers in the storage account.</td>
+</tr>
+<tr>
+<td>BlobContainerClient</td>
+<td>Represents a specific blob container, and provides operations to work with the container and the blobs within.</td>
+</tr>
+<tr>
+<td>BlobClient</td>
+<td>Represents a specific blob, and provides general operations to work with the blob, including operations to upload, download, delete, and create snapshots.</td>
+</tr>
+<tr>
+<td>AppendBlobClient</td>
+<td>Represents an append blob, and provides operations specific to append blobs, such as appending log data.</td>
+</tr>
+<tr>
+<td>BlockBlobClient</td>
+<td>Represents a block blob, and provides operations specific to block blobs, such as staging and then committing blocks of data.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>exercise to create blob storage using asp.net sdk client</li>
+</ul>
+<p>/az-204/azblob/program.cs</p>
+<ol>
+<li>create a new dotnet console app</li>
+<li>add the azure sdk dependency</li>
+<li>create a storage account , set up a container in it</li>
+<li>use the BlobContainer class to update contents to it</li>
+<li>clean up</li>
+</ol>
+<h3 id="http-header-for-blobs">HTTP header for blobs</h3>
+<p>The standard HTTP headers supported on blobs include:</p>
+<ol>
+<li>ETag</li>
+<li>Last-Modified</li>
+<li>Content-Length</li>
+<li>Content-Type</li>
+<li>Content-MD5</li>
+<li>Content-Encoding</li>
+<li>Content-Language</li>
+<li>Cache-Control</li>
+<li>Origin</li>
+<li>Range</li>
+</ol>
+<h2 id="azure-cosmos-db">Azure COSMOS DB</h2>
+<p>Azure cosmos DB is a NOSQL database which offers multi-master replication across all regions</p>
+<p>hierarchy</p>
+<p>DB account --&gt; Databases --&gt; container --&gt; DB Items</p>
+<p><img alt="alt text" src="../az2.png" /></p>
+<p>Cosmos DB supports stored procedures in interpretted languages (JS), all the procedures are time bound, during the creation of procedures a boolean return is expected indicating the status of the procedure</p>
+<p>cosmos DB also offeres</p>
+<ul>
+<li>pre triggers --&gt; these are initiated before making changes in the DB , used for formatting data, data validation</li>
+<li>post triggers --&gt; these are initiated after making a change in DB , used for logging or sending an email</li>
+</ul>
+<p>all the triggers are part of an single transaction, i.e if an trigger even fails the whole transaction is rolled back to initial state</p>
+<p>A change feed is offered for a container in cosmos db , azure .net sdk or java sdk can be used to interact with it.</p>
+<p>four steps in changed feed processor</p>
+<ol>
+<li>connect to the container on which feed is required</li>
+<li>A lease instance is issued to store the feed temporarily</li>
+<li>A compute instance is initiated can be a app service or VM or physical</li>
+<li>bussiness logic associated with change feed</li>
+</ol>
+<h2 id="azure-container-registry">Azure Container Registry</h2>
+<p>Azure Container Registry (ACR) hosts all the services for a smooth CI/CD pipelines.</p>
+<p>different tasks to build and maintain container images</p>
+<ul>
+<li>Quick task : build a single image and push to ACR</li>
+<li>Trigger Update: Source code trigger, Image update</li>
+<li>Multi updates: upgrades at container level , helm upgrades</li>
+</ul>
+<h3 id="dockerfile">DockerFile</h3>
+<p>A Dockerfile is a script that contains a series of instructions that are used to build a Docker image. Dockerfiles typically include the following information:</p>
+<ul>
+<li>The base or parent image we use to create the new image</li>
+<li>Commands to update the base OS and install other software</li>
+<li>Build artifacts to include, such as a developed application</li>
+<li>Services to expose, such a storage and network configuration</li>
+<li>Command to run when the container is launched</li>
+</ul>
+<h2 id="azure-container-instances">Azure Container Instances</h2>
+<p>It's a serveless container service in azure, main difference from the ACR is the ability to run container without managing the underlying images, useful for microservices , batch process and it provides various start and stop policies</p>
+<p>Top level resource in ACI is <code>container-group</code> , it hosts multiple container under same host machine , all the containers share same life-cycle, resources and network connections</p>
+<p><img alt="alt text" src="../az3.png" /></p>
+<p>This example container group:</p>
+<ul>
+<li>Is scheduled on a single host machine.</li>
+<li>Is assigned a DNS name label.</li>
+<li>Exposes a single public IP address, with one exposed port.</li>
+<li>Consists of two containers. One container listens on port 80, while the other listens on port 5000.</li>
+<li>Includes two Azure file shares as volume mounts, and each container mounts one of the shares locally.</li>
+</ul>
+<p>multi container usecases</p>
+<ol>
+<li>a container to host web application , a container to retrive and store logs</li>
+<li>a container to host front-end , a container to run back-end services</li>
+</ol>
+<h3 id="container-restart-policy">container restart policy</h3>
+<table>
+<thead>
+<tr>
+<th>Restart policy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Always</td>
+<td>Containers in the container group are always restarted. This is the default setting applied when no restart policy is specified at container creation.</td>
+</tr>
+<tr>
+<td>Never</td>
+<td>Containers in the container group are never restarted. The containers run at most once.</td>
+</tr>
+<tr>
+<td>OnFailure</td>
+<td>Containers in the container group are restarted only when the process executed in the container fails (when it terminates with a nonzero exit code). The containers are run at least once.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="azure-container-apps">Azure container Apps</h2>
+<p>This service runs on top of Azure Kubernetes service, mainly used for</p>
+<ul>
+<li>deploying api endpoints</li>
+<li>running background services</li>
+<li>running microservices</li>
+<li>handling event-driven services</li>
+</ul>
+<p>All container Apps are serviced inside an Container Environment which shares the same virtual network resources and logging storage.</p>
+<p>Azure container Apps cannot run priviliged apps , no root access is provided to containers and it can run only linux/amd64 based images</p>
+<h3 id="authorization-and-authentication">Authorization and Authentication</h3>
+<p>Azure containers provide both authN and authZ services when <code>allowInsecure</code> is disabled and require authetication is enabled in the configuration settings.</p>
+<p>In this Arch , both the authN and authZ run as sidecar containers running parallely.</p>
+<p><img alt="alt text" src="../az4.png" /></p>
+<p>services provided by the middleware</p>
+<ul>
+<li>authN and authZ operations for selectede identity provider</li>
+<li>maintain session</li>
+<li>inject http headers with identity information</li>
+</ul>
+<h3 id="revisions-and-secrets">revisions and secrets</h3>
+<ul>
+<li>revisions : The version management is acheived through revisions, any specific container can have a current revision and can make updates to the current using an revision policy.</li>
+</ul>
+<p>All the available revisions can be listed at</p>
+<p><code>az containerapp revision list</code></p>
+<ul>
+<li>secrets : Secrets in container apps are declared at environment level, a change in secret doesn't creat or modify an exisiting revision. secrets are declared using the <code>--secret</code> variable during the init of the container and accessed using <code>secretref:</code></li>
+</ul>
+<h3 id="dapr-integration">DAPR integration</h3>
+<p>Dapr --&gt; Distributed Application Runtime</p>
+<ul>
+<li>it provides and acts as a medium to allow connections between containers to allow pub/sub messages and service to service call initiations</li>
+<li>Azure provides dapr and manages updates to it.</li>
+</ul>
+<p>Services provided</p>
+<ol>
+<li>service to service invocation - this allows discovery of the services andn service to service calls along with authN</li>
+<li>state management - containers are stateless apps , this provides state for transactions and CRUD opxns</li>
+<li>pub/sub - communication between containers through a middleware container</li>
+<li>bindings - triggers to initiate services</li>
+<li>actors - single thread workers which can be called or invoked through messages</li>
+<li>observability - used to monitor containers</li>
+<li>secrets - used to store secrets at dapr environment</li>
+</ol>
+<p><img alt="alt text" src="../az5.png" /></p>
+<p>Dapr runs as side car containers in the container environment to provide services.</p>
+<h2 id="microsoft-identity-platform">Microsoft Identity Platform</h2>
+<p>Identify platform provides sdk and other options to let users sign in and use API's</p>
+<p>allows</p>
+<ul>
+<li>microsoft entra accounts</li>
+<li>personal</li>
+<li>social</li>
+</ul>
+<p>when regstering an application to Entra ID , need to mention whether its used by single tenant or group</p>
+<ul>
+<li>home tenant : home tenant of an application create an application object</li>
+<li>others: all other tenants of the application use service objects which are blueprints of the main application object class</li>
+</ul>
+<h3 id="authorization">Authorization</h3>
+<ul>
+<li>Oauth 2.0 : This service allows a third party app to use the application using mrst identity platform</li>
+<li>access to individual resources is provided by defining a scope, scopes are attached at the end of the resource URI
+  e.g , accessing calender from the graph API
+  <code>https://graph.microsoft.com/Calender.Read</code></li>
+<li>graph --&gt; service provider , Calender.Read --&gt; scope</li>
+<li>
+<p>permission types</p>
+</li>
+<li>
+<p>delegate - user or app requests for access</p>
+</li>
+<li>
+<p>app only - consent provided by admin for daemon processes</p>
+</li>
+<li>
+<p>consent types</p>
+</li>
+<li>
+<p>static - provided by admin prior to accessing the app</p>
+</li>
+<li>dynamic - request access at run time</li>
+<li>admin - high previlage access</li>
+</ul>
+<h3 id="msal">MSAL</h3>
+<p>the Microsoft Authorization Library offers services to authenticate users using Azure AD and provide access to secured web API's</p>
+<p>Uses</p>
+<ul>
+<li>fetch tokens on behalf of application or an user</li>
+<li>handles a token cache repository , which auto issues tokens post ttl</li>
+<li>specify the audience to the application</li>
+</ul>
+<p>Different types of authentication</p>
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization code</td>
+<td>Native and web apps securely obtain tokens in the name of the user</td>
+</tr>
+<tr>
+<td>Client credentials</td>
+<td>Service applications run without user interaction</td>
+</tr>
+<tr>
+<td>On-behalf-of</td>
+<td>The application calls a service/web API, which in turns calls Microsoft Graph</td>
+</tr>
+<tr>
+<td>Implicit</td>
+<td>Used in browser-based applications</td>
+</tr>
+<tr>
+<td>Device code</td>
+<td>Enables sign-in to a device by using another device that has a browser</td>
+</tr>
+<tr>
+<td>Integrated Windows</td>
+<td>Windows computers silently acquire an access token when they're domain joined</td>
+</tr>
+<tr>
+<td>Interactive</td>
+<td>Mobile and desktops applications call Microsoft Graph in the name of a user</td>
+</tr>
+<tr>
+<td>Username/password</td>
+<td>The application signs in a user by using their username and password</td>
+</tr>
+</tbody>
+</table>
+<p>Two different types of application clients are provided in azure</p>
+<ol>
+<li>public client - the devices not trusted to store secrets and easy to access, they use web api's to fetch the secrets</li>
+<li>confidential client - the devices which are trusted and hard to access , all the web api run on these servers.</li>
+</ol>
+<p>with MSAL.NET , we can use <code>publicCLientApplicationBuilder</code>, <code>confidentialClientApplicationBuilder</code> methods to create these clients</p>
+<p>Before the init process of the application , need to register the application in the azure identity, post that fetch the following from the portal</p>
+<ol>
+<li>client id --&gt; id of the application</li>
+<li>identity provider URL</li>
+<li>tenant ID --&gt; used if the application group tenant application (organization)</li>
+<li>appication secrets</li>
+<li>redirectURI - the url to which user should be redirected along with tokens</li>
+</ol>
+<h4 id="initiating-clients">Initiating Clients</h4>
+<ul>
+<li>public client :</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">IPublicClientApplication</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PublicClientApplicationBuilder</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">clientId</span><span class="p">).</span><span class="n">Build</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>confidentital client:</li>
+</ul>
+<p>need to specify the redirect URI where the app server is running</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">string</span><span class="w"> </span><span class="n">redirectUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://myapp.azurewebsites.net&quot;</span><span class="p">;</span>
+<span class="n">IConfidentialClientApplication</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfidentialClientApplicationBuilder</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">clientId</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">WithClientSecret</span><span class="p">(</span><span class="n">clientSecret</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">WithRedirectUri</span><span class="p">(</span><span class="n">redirectUri</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="access-modifiers">Access Modifiers</h4>
+<p>Access modifiers for public clients</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.WithAuthority()</td>
+<td>Sets the application default authority to a Microsoft Entra authority, with the possibility of choosing the Azure Cloud, the audience, the tenant (tenant ID or domain name), or providing directly the authority URI.</td>
+</tr>
+<tr>
+<td>.WithTenantId(string tenantId)</td>
+<td>Overrides the tenant ID, or the tenant description.</td>
+</tr>
+<tr>
+<td>.WithClientId(string)</td>
+<td>Overrides the client ID.</td>
+</tr>
+<tr>
+<td>.WithRedirectUri(string redirectUri)</td>
+<td>Overrides the default redirect URI. This is useful for scenarios requiring a broker.</td>
+</tr>
+<tr>
+<td>.WithComponent(string)</td>
+<td>Sets the name of the library using MSAL.NET (for telemetry reasons).</td>
+</tr>
+<tr>
+<td>.WithDebugLoggingCallback()</td>
+<td>If called, the application calls Debug.Write simply enabling debugging traces.</td>
+</tr>
+<tr>
+<td>.WithLogging()</td>
+<td>If called, the application calls a callback with debugging traces.</td>
+</tr>
+<tr>
+<td>.WithTelemetry(TelemetryCallback telemetryCallback)</td>
+<td>Sets the delegate used to send telemetry.</td>
+</tr>
+</tbody>
+</table>
+<p>Access modifiers for confidential clients</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.WithCertificate(X509Certificate2 certificate)</td>
+<td>Sets the certificate identifying the application with Microsoft Entra ID.</td>
+</tr>
+<tr>
+<td>.WithClientSecret(string clientSecret)</td>
+<td>Sets the client secret (app password) identifying the application with Microsoft Entra ID.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shared-access">Shared Access</h2>
+<p>A shared access signature (SAS) is a URI that grants restricted access rights to Azure Storage resources. You can provide a shared access signature to clients that you want to grant delegate access to certain storage account resources.</p>
+<p>Three types of shared access</p>
+<ol>
+<li>User SAS - SAS secured with Entra ID credentials , used for blob storage</li>
+<li>Service SAS - secured with storage account key , used to access blob storage, queue storage, files</li>
+<li>Account SAS - used to delegate access to resources dependent on storage</li>
+</ol>
+<p>When you use a SAS to access data stored in Azure Storage, you need two components. The first is a URI to the resource you want to access. The second part is a SAS token that you've created to authorize access to that resource.</p>
+<p>In a single URI, such as <code>https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?sp=r&amp;st=2020-01-20T11:42:32Z&amp;se=2020-01-20T19:42:32Z&amp;spr=https&amp;sv=2019-02-02&amp;sr=b&amp;sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D</code>,</p>
+<p>you can separate the URI from the SAS token as follows:</p>
+<p>URI: <code>https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?</code></p>
+<p>SAS token: <code>sp=r&amp;st=2020-01-20T11:42:32Z&amp;se=2020-01-20T19:42:32Z&amp;spr=https&amp;sv=2019-02-02&amp;sr=b&amp;sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D</code></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sp=r</td>
+<td>Controls the access rights. The values can be a for add, c for create, d for delete, l for list, r for read, or w for write. This example is read only. The example sp=acdlrw grants all the available rights.</td>
+</tr>
+<tr>
+<td>st=2020-01-20T11:42:32Z</td>
+<td>The date and time when access starts.</td>
+</tr>
+<tr>
+<td>se=2020-01-20T19:42:32Z</td>
+<td>The date and time when access ends. This example grants eight hours of access.</td>
+</tr>
+<tr>
+<td>sv=2019-02-02</td>
+<td>The version of the storage API to use.</td>
+</tr>
+<tr>
+<td>sr=b</td>
+<td>The kind of storage being accessed. In this example, b is for blob.</td>
+</tr>
+<tr>
+<td>sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D</td>
+<td>The cryptographic signature.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><img alt="alt text" src="../az6.png" /></p>
+<p>Use case</p>
+<ul>
+<li>A client wants to read/write information to a storage account of another user/owner.</li>
+<li>In order to facilitate this an SAS is required</li>
+<li>A front end proxy server is established to validate the files if required and get an SAS</li>
+<li>Post acquring the SAS , the files are sent to the storage account</li>
+</ul>
+<p>An extra level of security can be acheived by adding the storage access policy to a container to check on the server side before accessing the file</p>
+<ul>
+<li>creating a storage access policy throuh azure-cli</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>storage<span class="w"> </span>container<span class="w"> </span>policy<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>&lt;stored<span class="w"> </span>access<span class="w"> </span>policy<span class="w"> </span>identifier&gt;<span class="w"> </span>--container-name<span class="w"> </span>&lt;container<span class="w"> </span>name&gt;<span class="w"> </span>--start<span class="w"> </span>&lt;start<span class="w"> </span><span class="nb">time</span><span class="w"> </span>UTC<span class="w"> </span>datetime&gt;<span class="w"> </span>--expiry<span class="w"> </span>&lt;expiry<span class="w"> </span><span class="nb">time</span><span class="w"> </span>UTC<span class="w"> </span>datetime&gt;<span class="w"> </span>--permissions<span class="w"> </span>&lt;<span class="o">(</span>a<span class="o">)</span>dd,<span class="w"> </span><span class="o">(</span>c<span class="o">)</span>reate,<span class="w"> </span><span class="o">(</span>d<span class="o">)</span>elete,<span class="w"> </span><span class="o">(</span>l<span class="o">)</span>ist,<span class="w"> </span><span class="o">(</span>r<span class="o">)</span>ead,<span class="w"> </span>or<span class="w"> </span><span class="o">(</span>w<span class="o">)</span>rite&gt;<span class="w"> </span>--account-key<span class="w"> </span>&lt;storage<span class="w"> </span>account<span class="w"> </span>key&gt;<span class="w"> </span>--account-name<span class="w"> </span>&lt;storage<span class="w"> </span>account<span class="w"> </span>name&gt;
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="microsoft-graph">Microsoft Graph</h2>
+<p>Microsoft graph API provides sdk and rest endpoints to access the data stored in azure services.</p>
+<p><img alt="alt text" src="../az7.png" /></p>
+<p>It consists of three components</p>
+<ul>
+<li>Graph Connectors: Used to deliver all the incoming data into the Azure Storage , all the popular services have connectors (Drive,Salesforce,Box)</li>
+<li>Data Connect: used to deliver all the data from the graph to the azure internal tools for development</li>
+<li>Rest Endpoint: The graph library provides the endpoint <code>https://graph.microsoft.com/</code> to provide endpoint to API and SDK's.</li>
+</ul>
+<hr />
+<ul>
+<li>url pattern to fetch records</li>
+</ul>
+<p><code>{HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}</code></p>
+<ol>
+<li>HTTP method - the operation that would be performed (GET,PUT,POST,PATCH,DELETE)</li>
+<li>version - version of the graph API used</li>
+<li>resource - indicating the id of the resource (me/Email)</li>
+<li>
+<p>query-paremeters - includes a set of query options to be performed ($skip, $sort, $top)</p>
+</li>
+<li>
+<p>Pattern of the Response</p>
+</li>
+<li>
+<p>Status Code</p>
+</li>
+<li>Response</li>
+<li>nextLink - used when response is long.</li>
+</ol>
+<h2 id="azure-key-vault">Azure key vault</h2>
+<p>Azure key value is used to store sensitive information such as API Keys, app secrets, certificates and cryptographic keys</p>
+<ul>
+<li>useful in maintaining keys if an application has multiple versions</li>
+<li>authN is provided by Entra ID and authZ is provided by role bases Acess or key valut policies</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>managed identity</p>
+</li>
+<li>
+<p>system managed: In this type of approach , whenever we need access from key valut system auto manages it.</p>
+</li>
+</ul>
+<p>process included</p>
+<ul>
+<li>ARM creates a identity for the resources in the Entra ID and assigns to the resoruce for the whole lifecycle</li>
+<li>
+<p>whenever a resource requires authN, azure auto manages it</p>
+</li>
+<li>
+<p>user managed: In this type of approach the user has to manually register the service in the entra ID.</p>
+</li>
+<li>
+<p>Whenever authN is required a request has to be sent to <code>vault.azure.net\token</code></p>
+</li>
+</ul>
+<hr />
+<h2 id="azure-api-management">Azure API Management</h2>
+<p>Api Management is composed of three components</p>
+<ul>
+<li>
+<p>API gateway</p>
+</li>
+<li>
+<p>Accept incoming calls and route to backend</p>
+</li>
+<li>Request and response transformations</li>
+<li>rate limit</li>
+<li>
+<p>caching and logs</p>
+</li>
+<li>
+<p>Management plane</p>
+</li>
+<li>
+<p>manage users</p>
+</li>
+<li>transformation on request</li>
+<li>
+<p>define api schema</p>
+</li>
+<li>
+<p>Developer portal</p>
+</li>
+<li>
+<p>Documentation</p>
+</li>
+<li>create and manage keys</li>
+</ul>
+<hr />
+<p>available policies in gateway are <code>inbound</code>,<code>outbound</code>,<code>onError</code></p>
+<p>e.g adding headers to incoming request</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;policies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;inbound&gt;</span>
+<span class="w">        </span><span class="nt">&lt;base</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;set-header</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;x-request-context-data&quot;</span><span class="w"> </span><span class="na">exists-action=</span><span class="s">&quot;override&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;value&gt;</span>@(context.User.Id)<span class="nt">&lt;/value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;value&gt;</span>@(context.Deployment.Region)<span class="nt">&lt;/value&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/set-header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/inbound&gt;</span>
+<span class="nt">&lt;/policies&gt;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="advanced-policies">Advanced policies</h3>
+<ol>
+<li>control flow - Apply policy statements based on conditional boolean expressions</li>
+<li>forward request - this policy forwards the request to specified context.forwardRef , if not mentioned the outbound policy would be executed</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;forward-request</span><span class="w"> </span><span class="na">timeout=</span><span class="s">&quot;time in seconds&quot;</span><span class="w"> </span><span class="na">follow-redirects=</span><span class="s">&quot;true | false&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>limit concurency - this policy limits incoming requests, return an HTTP 429 - Too many requests status code</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;limit-concurrency</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;expression&quot;</span><span class="w"> </span><span class="na">max-count=</span><span class="s">&quot;number&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cp">&lt;!— nested policy statements --&gt;</span>
+<span class="nt">&lt;/limit-concurrency&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>log to event hub - send particular request for event analysis</li>
+<li>mock response - used for test purposes</li>
+<li>Retry - execute a set of child policies until retry condition is false or time is exhausted</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;retry</span>
+<span class="w">    </span><span class="na">condition=</span><span class="s">&quot;boolean expression or literal&quot;</span>
+<span class="w">    </span><span class="na">count=</span><span class="s">&quot;number of retry attempts&quot;</span>
+<span class="w">    </span><span class="na">interval=</span><span class="s">&quot;retry interval in seconds&quot;</span>
+<span class="w">    </span><span class="na">max-interval=</span><span class="s">&quot;maximum retry interval in seconds&quot;</span>
+<span class="w">    </span><span class="na">delta=</span><span class="s">&quot;retry interval delta in seconds&quot;</span>
+<span class="w">    </span><span class="na">first-fast-retry=</span><span class="s">&quot;boolean expression or literal&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- One or more child policies. No restrictions --&gt;</span>
+<span class="nt">&lt;/retry&gt;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="scope-for-apis">scope for API's</h3>
+<ul>
+<li>all : includes all the api endpoints with a single subscription key</li>
+<li>a single api - specific to an API endpoint</li>
+<li>product - specific to a group of products</li>
+</ul>
+<p>default header name - <code>Ocp-Apim-Subscription-Key</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>--header<span class="w"> </span><span class="s2">&quot;Ocp-Apim-Subscription-Key: &lt;key string&gt;&quot;</span><span class="w"> </span>https://&lt;apim<span class="w"> </span>gateway&gt;.azure-api.net/api/path
+</code></pre></div></td></tr></table></div>
+<p>default query parameter - <code>subscription-Key</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>https://&lt;apim<span class="w"> </span>gateway&gt;.azure-api.net/api/path?subscription-key<span class="o">=</span>&lt;key<span class="w"> </span>string&gt;
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="api-security-tls">API security TLS</h3>
+<p>Other way to authenticate is to set inbound rules to check</p>
+<ol>
+<li>Certificate Authority</li>
+<li>Thumbprint</li>
+<li>Subject</li>
+<li>Expiry date</li>
+</ol>
+<p>useful to authenticate azure functions</p>
+<p>e.g checking thumbprint in inbound rule policies</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;choose&gt;</span>
+<span class="w">    </span><span class="nt">&lt;when</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;@(context.Request.Certificate == null || context.Request.Certificate.Thumbprint != &quot;</span><span class="err">desired-thumbprint&quot;)&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;return-response&gt;</span>
+<span class="w">            </span><span class="nt">&lt;set-status</span><span class="w"> </span><span class="na">code=</span><span class="s">&quot;403&quot;</span><span class="w"> </span><span class="na">reason=</span><span class="s">&quot;Invalid client certificate&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/return-response&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/when&gt;</span>
+<span class="nt">&lt;/choose&gt;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="azure-event-grid">Azure Event Grid</h2>
+<p>Main use - Acts as an event handler and publisher to action taking subscribers</p>
+<ul>
+<li>Events - What happened.</li>
+<li>Event sources - Where the event took place.</li>
+<li>Topics - The endpoint where publishers send events.</li>
+<li>Event subscriptions - The endpoint or built-in mechanism to route events, sometimes to more than one handler. Subscriptions are also used by handlers to intelligently filter incoming events.</li>
+<li>Event handlers - The app or service reacting to the event.</li>
+</ul>
+<hr />
+<p>Event grid support two types of event schemes</p>
+<ul>
+<li>Event Grid Event Scheme -&gt; designed for setting up the azure event grid system.</li>
+<li>Cloud Event Scheme --&gt; used to define the data scheme for systems beyond azure event grid</li>
+</ul>
+<hr />
+<p>Dead letter events - after exhausting all the retry attemps or post the time to live (TTL) mentioned in the policy the azure event grid stores an dead letter event in the system.</p>
+<p>webhooks are used to receive events from azure event grid, post setting up the system access should be provided to the end point to receive POST requests</p>
+<p>e.g Azure functions with event grid trigger</p>
+<hr />
+<h3 id="filters">Filters</h3>
+<p>only a specific set of events can be filterd out from the event grid pool and passed to the webhook endpoint, different types of filters</p>
+<ol>
+<li>Event type - success or failure</li>
+<li>Subject begins with or ends with (filter a specific type of files )</li>
+<li>
+<p>Advance filters - use the following fields</p>
+</li>
+<li>
+<p>operator type - The type of comparison.</p>
+</li>
+<li>key - The field in the event data that you're using for filtering. It can be a number, boolean, or string.</li>
+<li>value or values - The value or values to compare to the key.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;advancedFilters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;operatorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NumberGreaterThanOrEquals&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data.Key1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;operatorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;StringContains&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Subject&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;container1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;container2&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="azure-event-hub">Azure Event Hub</h2>
+<p>Event Hub is used to receive and process millions of events per second. It serves a front door to any event pipeline and acts as event ingestor.</p>
+<p>Auth --&gt; Microsoft Entra ID or SAS</p>
+<ul>
+<li>usecase scenario</li>
+</ul>
+<p>As an example scenario, consider a home security company that monitors 100,000 homes. Every minute, it gets data from various sensors such as a motion detector, door/window open sensor, glass break detector, and so on, installed in each home. The company provides a web site for residents to monitor the activity of their home in near real time.</p>
+<p>Each sensor pushes data to an event hub. The event hub is configured with 16 partitions. On the consuming end, you need a mechanism that can read these events, consolidate them, and dump the aggregate to a storage blob, which is then projected to a user-friendly web page.</p>
+<hr />
+<h3 id="architecture-of-event-hub">Architecture of Event Hub</h3>
+<p><img alt="alt text" src="../az8.png" /></p>
+<ul>
+<li>Event producers (POST Requests): source of data (logs, telemetry, mobile app data,etc..)</li>
+<li>protocol : either HTTPS or Kafka 1.0 protocol(streaming platforms) or Advanced Message Queue protocl (IoT messaging queues)</li>
+<li>Azure event hubs: Main container to facilitate data, the total number of partitions should be defined at initialization, data is assigned at the end of each partition on any post event.</li>
+<li>consumer group: The main consumers of the event hubs , each consumer is connected to an partion and receives events in a continuos stream.</li>
+<li>Event Receivers (GET Requests): The Endpoint which receives events from IoT devices , this receivers mainly use AMQ protocol.</li>
+</ul>
+<p>All the captured data is stored in Apache Avro format.</p>
+<p>location of an example file can be</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>https://mystorageaccount.blob.core.windows.net/mycontainer/mynamespace/myeventhub/0/2017/12/08/03/03/17.avro
+</code></pre></div></td></tr></table></div>
+<p>naming convention used</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="azure-message-queues">Azure Message Queues</h2>
+<p>Two types of queues are supported</p>
+<ul>
+<li>Service Bus Queue : main part of the azure messaging infc., supports pub/sub and other models. Useful for parallel queuing.</li>
+<li>Storage queue : queue built in the main infrastructe of the azure storage.useful for long queues (supports upto 80gb)</li>
+</ul>
+<p>The Queue used for stream uses FIFO, these are load leveling nodes as client and publisher might have different stream rates</p>
+<p>Two modes of subscriptions are available for consumers</p>
+<ul>
+<li>Receive and delete : the consumer sends a request for message, the service bus processes the request and marks it as consumed , in case of downtime or restarts the request is lost.</li>
+<li>peek and lock : In this mode , once a request is received from the consumer , the service bus locks the next request and processes the current. This makes it fault tolerant , in case of any issues the lock is removed either by abandoing or a ttl.</li>
+</ul>
+<hr />
+<h3 id="different-types-of-message-routings">Different types of message routings</h3>
+<ul>
+<li>Simple Request/reply: The producer pushes a message to the queue with the field <code>ReplyTo</code> , all the consumers send their status to the address</li>
+<li>Multicast request/reply: The producer pushes a message to the queue and multi consumers send their status to the <code>ReplyTo</code> field.</li>
+<li>Multiplexing - A <code>sessionID</code> field is assigned to the message and all consumers listen on the active session.</li>
+<li>Multiplexing Request/reply: Multiple Producers share a <code>SessionID</code> and all the consumers respons to <code>ReplyToSessionID</code> address.</li>
+</ul>
+<p>Azure logic Apps maintain the routing in the service bus.</p>
+<hr />
+<h3 id="exercise"><a href="https://learn.microsoft.com/en-us/training/modules/discover-azure-message-queue/6-send-receive-messages-service-bus">Exercise</a></h3>
+<hr />
+<h2 id="azure-cache-for-redis">Azure Cache for Redis</h2>
+<p>Used for the following scenarios</p>
+<ul>
+<li>Data cache : A chunk of frequenty used data from source is stored in cache and frequently updated</li>
+<li>Static content : store contents of the static websites</li>
+<li>session storage : alternative to cookies to improve performance</li>
+<li>Distributed transactions: Useful to maintain the atomicity of transactions, it keeps a log of transactions and rolls back in case of failure.</li>
+</ul>
+<hr />
+<p>command format for redis</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>COMMAND parameter1 parameter2 parameter3
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ping</td>
+<td>Ping the server. Returns "PONG".</td>
+</tr>
+<tr>
+<td>set [key] [value]</td>
+<td>Sets a key/value in the cache. Returns "OK" on success.</td>
+</tr>
+<tr>
+<td>get [key]</td>
+<td>Gets a value from the cache.</td>
+</tr>
+<tr>
+<td>exists [key]</td>
+<td>Returns '1' if the key exists in the cache, '0' if it doesn't.</td>
+</tr>
+<tr>
+<td>type [key]</td>
+<td>Returns the type associated to the value for the given key.</td>
+</tr>
+<tr>
+<td>incr [key]</td>
+<td>Increment the given value associated with key by '1'. The value must be an integer or double value. This returns the new value.</td>
+</tr>
+<tr>
+<td>incrby [key] [amount]</td>
+<td>Increment the given value associated with key by the specified amount. The value must be an integer or double value. This returns the new value.</td>
+</tr>
+<tr>
+<td>del [key]</td>
+<td>Deletes the value associated with the key.</td>
+</tr>
+<tr>
+<td>flushdb</td>
+<td>Delete all keys and values in the database.</td>
+</tr>
+<tr>
+<td>------</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="storage-on-cdns">storage on CDN's</h2>
+<p>azure offers several POP (point of presence) edge servers spread across serveral geo locations</p>
+<p>main features</p>
+<ol>
+<li>site load time accelaration</li>
+<li>https configurations</li>
+<li>file compressions</li>
+<li>geo filtering</li>
+<li>diagnostic logs</li>
+</ol>
+<h3 id="content-updating">Content updating</h3>
+<p>In normal workflow, whenever a file is uploaded to the cdn, its considered as fresh until the ttl expired, post that server fetches a new file and updates the ttl.</p>
+<p>In alternative, it can force purge and load files onto CDN through cli to improve the experience.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cdn<span class="w"> </span>endpoint<span class="w"> </span>purge<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--content-paths<span class="w"> </span><span class="s1">&#39;/css/*&#39;</span><span class="w"> </span><span class="s1">&#39;/js/app.js&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>ContosoEndpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile-name<span class="w"> </span>DemoProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resource-group<span class="w"> </span>ExampleGroup
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cdn<span class="w"> </span>endpoint<span class="w"> </span>load<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--content-paths<span class="w"> </span><span class="s1">&#39;/img/*&#39;</span><span class="w"> </span><span class="s1">&#39;/js/module.js&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>ContosoEndpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile-name<span class="w"> </span>DemoProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resource-group<span class="w"> </span>ExampleGroup
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="exam-topics">Exam Topics</h2>
+<ul>
+<li>Develop Azure compute solutions (25-30%)</li>
+<li>Develop Azure storage (15-20%)</li>
+<li>Implement Azure Security (20-25%)</li>
+<li>Monitor, troubleshoot, and optimize Azure solutions (15-20%)</li>
+<li>Connect to and consume Azure services and third-party services (15-20%)</li>
+</ul>
+<h2 id="practice-questions">Practice Questions</h2>
+<ul>
+<li>az webapp deploy --clean true --&gt; target folder is cleaned before deployment</li>
+<li>az webapp deploy --restart true --&gt; restart the service after deployment , default service of the zip deployment</li>
+<li>ARR (Application Request Routing ) affinity parameter is used to always route to the proper App service instance</li>
+<li>fan-out/fan-in pattern of the azure functinos enables parallel processing</li>
+<li>
+<p>timer trigger notations:</p>
+</li>
+<li>
+<p>detailed error logs of azure web app service is used to check for 400 errors</p>
+</li>
+<li>In production, the version must be pinned. The only way to achieve that is by using a tag that follows the convention {major}.{minor}.{patch}.</li>
+<li>az eventhubs eventhub update adds partitions to an existing event hub.</li>
+<li>az eventhubs eventhub consumer-group update updates the event hub consumer group.</li>
+<li>EventProcessorClient balances the load between multiple instances of a program in newer .NET versions (version 5.0). EventHubConsumerClient balances the load between multiple instances of a program in Python and JavaScript. EventProcessorHost balances the load between multiple instances of a program in earlier .NET versions. The EventHubProducerClient class is used to send events to an event hub.</li>
+<li>The Rotate operation will generate a new version of the key based on the key policy. The Rotation Policy operation updates the rotation policy of a key vault key. The Purge Deleted Key operation is applicable for soft-delete enabled vaults or HSMs. The Set Attributes operation changes specified attributes of a stored key.</li>
+<li>This item tests the candidate’s knowledge of implementing solutions that use Azure Service Bus.
+A SqlFilter holds a SQL-like conditional expression that is evaluated in the broker against the arriving message’s user-defined properties and system properties. The TrueFilter and FalseFilter either cause all arriving messages (true) or none of the arriving messages (false) to be selected for the subscription. A CorrelationFilter holds a set of conditions that are matched against one or more of an arriving message's user and system properties. Size Filter and Content are not valid options for Service Bus topic filtering.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/ajaymarampally"  target="_blank" rel="noopener">Ajay Marampalli</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ajaymarampally" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/ajay_marampalli" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/ajaymarampally" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
