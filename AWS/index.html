@@ -1,0 +1,2814 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ajaymarampally.github.io/blog/AWS/">
+      
+      
+        <link rel="prev" href="../ASP.NET/">
+      
+      
+        <link rel="next" href="../AzureDev/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>AWS - Developer Associate Certificate - Ajay Marampalli</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-CS24T0932L"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-CS24T0932L",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-CS24T0932L",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-developer-associate-certificate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ajay Marampalli" class="md-header__button md-logo" aria-label="Ajay Marampalli" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ajay Marampalli
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS - Developer Associate Certificate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ajaymarampally/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ajaymarampally/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ASP.NET/" class="md-tabs__link">
+        
+  
+    
+  
+  ASP.NET
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  AWS - Developer Associate Certificate
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../AzureDev/" class="md-tabs__link">
+        
+  
+    
+  
+  Azure Developer Associate
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../C%23/" class="md-tabs__link">
+        
+  
+    
+  
+  C# Documentation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../LeetCode/" class="md-tabs__link">
+        
+  
+    
+  
+  LeetCode Solutions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../lld/" class="md-tabs__link">
+        
+  
+    
+  
+  Low Level Design Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../spring/" class="md-tabs__link">
+        
+  
+    
+  
+  Java Spring FrameWork
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ajay Marampalli" class="md-nav__button md-logo" aria-label="Ajay Marampalli" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Ajay Marampalli
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ajaymarampally/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ajaymarampally/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ASP.NET/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ASP.NET
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AWS - Developer Associate Certificate
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    AWS - Developer Associate Certificate
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Cognito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Active Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sts" class="md-nav__link">
+    <span class="md-ellipsis">
+      STS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-load-balancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elastic Load Balancer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticache" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElastiCache
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ElastiCache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Store
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets Manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-image-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC2 Image Builder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudFront
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFront">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowed-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Allowed Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oac" class="md-nav__link">
+    <span class="md-ellipsis">
+      OAC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#athena" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serverless-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServerLess Architectures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ServerLess Architectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lamda" class="md-nav__link">
+    <span class="md-ellipsis">
+      lamda
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      version control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      step functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage-in-lambda-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data storage in lambda functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      DynamoDB
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DynamoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-and-write-capacities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read and write capacities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dax" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      TTL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamodb-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      DynamoDB Streams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provisionedthroughputexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProvisionedThroughPutException
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kms" class="md-nav__link">
+    <span class="md-ellipsis">
+      KMS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envolope-encryption-process-is-used-to-avoid-the-transfer-of-big-data-files-into-kms-server-instead-it-would-just-transfer-just-the-data-key-over-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ses" class="md-nav__link">
+    <span class="md-ellipsis">
+      SES
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kinesis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kinesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      streams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-firehose" class="md-nav__link">
+    <span class="md-ellipsis">
+      data firehose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      data analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumers" class="md-nav__link">
+    <span class="md-ellipsis">
+      consumers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-bean-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elastic Bean Stack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elastic Bean Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      deployment options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      traffic splitting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-ebs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced EBS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced EBS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rds-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDS Connections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI/CD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      codeDeploy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      CodePipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecs" class="md-nav__link">
+    <span class="md-ellipsis">
+      ECS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudFormation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CloudFormation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#severless-application-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severless Application Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      CDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      cloudWatch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codeguru" class="md-nav__link">
+    <span class="md-ellipsis">
+      CodeGuru
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-directlink-privatelink" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS DirectLink , PrivateLink
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS CLI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mock-test-important-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mock Test Important Topics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mock Test Important Topics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloudwatch-agent-vs-athena-queries-on-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudWatch Agent vs. Athena Queries on S3 Storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reserved-concurrency-vs-provisioned-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reserved Concurrency vs. Provisioned Concurrency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-system-parameter-store-vs-secrets-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use System Parameter Store vs. Secrets Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudwatch-metrics-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudWatch Metrics Costs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-function-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lambda Function Alias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strongly-consistent-vs-eventually-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strongly Consistent vs. Eventually Consistent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mfa-authentication-using-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      MFA Authentication Using CLI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appspecyaml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appspec.yaml File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eb-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      EB CLI Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phi-and-pii-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHI and PII Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-swf" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS SWF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-macie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Macie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-privatelink" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS PrivateLink
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-identity-center" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Identity Center
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-source-mapping-lambda-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Source Mapping (Lambda Functions)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-ad-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS AD Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-snowball-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Snowball Edge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-identity-based-policies-vs-iam-resource-based-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM Identity-Based Policies vs. IAM Resource-Based Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waf-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      WAF Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudtrail-vs-cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudTrail vs. CloudWatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3 Security Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ec2-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC2 Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-codedeploy-to-launch-instances-in-microsoft-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using CodeDeploy to Launch Instances in Microsoft Azure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#availability-of-kms-across-different-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Availability of KMS Across Different Regions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sts-options-for-getting-tokens-and-changing-token-validity-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      STS Options for Getting Tokens and Changing Token Validity Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-policy-in-kms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Policy in KMS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-retention-period-of-cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Retention Period of CloudWatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-ssm-agent-and-amazon-quicksight" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS SSM Agent and Amazon QuickSight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-locations-of-different-services-in-ec2-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Locations of Different Services in EC2 Instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-resources-required-in-ebs-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying Resources Required in EBS Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-aws-pricing-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use AWS Pricing API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters-in-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filters in DynamoDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-lambda-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Lambda Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secondary-indexes-in-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secondary Indexes in DynamoDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-grants-in-aws-kms-and-providing-temporary-access-to-kms-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Grants in AWS KMS and Providing Temporary Access to KMS Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approving-every-stage-in-code-deployment-pipeline-before-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approving Every Stage in Code Deployment Pipeline Before Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-power-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lambda Power Tuning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudwatch-emf" class="md-nav__link">
+    <span class="md-ellipsis">
+      CloudWatch EMF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-x-ray" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS X-Ray
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-type-incompatibility-with-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance Type Incompatibility with Elastic Beanstalk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-sdk-client-for-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS SDK Client for S3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-codepipeline-vs-cloudformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use CodePipeline vs. CloudFormation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket-api-in-api-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebSocket API in API Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-transfer-family-and-global-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Transfer Family and Global Accelerator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-database-migration-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Database Migration Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized-or-anonymous-access-in-aws-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized or Anonymous Access in AWS Cognito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-rekognition-and-amazon-comprehend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Rekognition and Amazon Comprehend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-appconfig-aws-msk-aws-appsync" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS AppConfig, AWS MSK, AWS AppSync
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AzureDev/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure Developer Associate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C%23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C# Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LeetCode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LeetCode Solutions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lld/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Low Level Design Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Spring FrameWork
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-developer-associate-certificate">AWS - Developer Associate Certificate</h1>
+<p>Domains of the course <a href="https://d1.awsstatic.com/training-and-certification/docs-dev-associate/AWS-Certified-Developer-Associate_Exam-Guide.pdf">Course-Link, PluralSight</a></p>
+<ol>
+<li>Development of aws services (32%)</li>
+<li>security (26%)</li>
+<li>deployment (24%)</li>
+<li>troubleshooting and optimization (18%)</li>
+</ol>
+<p>130 minutes - 65 questions</p>
+<h2 id="iam">IAM</h2>
+<p>IAM - Identity Access Management</p>
+<p>main usage - to controll acess to the resources
+end points - users, groups , roles , policies</p>
+<ul>
+<li>roles - defines a set of conditions on resources , users or group or applications inherit these properties</li>
+<li>A role provides a dynamic way to provide permission of interact with the resoruces</li>
+<li>policies - A direct way to interact way with resources.</li>
+</ul>
+<p>A role can follow a set of policies to interact with</p>
+<p>E.g - creating a new policy and attaching a role to it</p>
+<ul>
+<li>policy name - <code>ReadOnlyAccessToS3Bucket</code></li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;s3:ListBucket&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;arn:aws:s3:::example-bucket&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;arn:aws:s3:::example-bucket/*&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>Role Name: EC2ReadOnlyS3Role</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ec2.amazonaws.com&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>To check if a policy can perform a set of actions we can use</p>
+<ul>
+<li><a href="https://policysim.aws.amazon.com">Policy Sim</a></li>
+</ul>
+<h3 id="aws-cognito">AWS Cognito</h3>
+<ul>
+<li>service to provide authz and authn features with the aws resources</li>
+<li><code>User Pool</code> contains information such as the JWT token issued by third party authN providers</li>
+<li><code>Identity Pool</code> contains information which is used to assign a new IAM role to the user and provide temporary access to the aws resources</li>
+<li>
+<p>Different policy types offered in IAM</p>
+</li>
+<li>
+<p>inline policy --&gt; this is a policy which can be attached to a single user or a single group and maintains a 1:1 relation (i.e only can be used by them, whenever the user is deleted the policy is deleted)</p>
+</li>
+<li>AWS managed --&gt; this is a default policy which is authored and managed by aws, it has policy .for each service</li>
+<li>customer managed --&gt; this type of policy is used when organization need tailoring of the aws managed policies.</li>
+</ul>
+<h3 id="rbac">RBAC</h3>
+<ul>
+<li>Role Based Access Control, in this model a role is created with a certain policies attaced to it to satisty a job, this model is adopted by the IAM.</li>
+</ul>
+<h3 id="active-directory">Active Directory</h3>
+<ul>
+<li>
+<p>Identity Provider Store(Idp)</p>
+</li>
+<li>
+<p>contains details about the authentication for the users</p>
+</li>
+<li>mentions the access and actions which each user can perform</li>
+<li>
+<p>can use the IAM or connect to an extrenal Active Directory which can be cannonical to Idp</p>
+</li>
+<li>
+<p>Identity Broker</p>
+</li>
+<li>
+<p>It acts as a central checkpoint for multiple Idp's</p>
+</li>
+<li>Cognito can assume this role to validate credentials from multiple third party applications</li>
+</ul>
+<h3 id="sts">STS</h3>
+<ul>
+<li>aws provides the service to access the resource in a different aws account through sts AssumeRole policy</li>
+<li>a new IAM role is created in the main account which is shared with the second account to share access to the resources</li>
+<li><code>credential_process</code> - in aws cli this is used to define a metadata parameter which specifies an external authentication connection to be used during the auth process</li>
+<li>
+<p><code>credential_source</code> - in aws cli the credential source defines the method or source from which auth codes should be fetched , different options of auth are</p>
+</li>
+<li>
+<p>IAM role (sts assume-role)</p>
+</li>
+<li>SSO (configure single sign on profile)</li>
+<li>web identity configuration (sts assume-role-with-web-identity, provide the token with parameter web-identity-token)</li>
+<li>
+<p>export it as environmnet variables</p>
+</li>
+<li>
+<p>both the <code>credential_process</code> and <code>credential_source</code> are present in the ~/.aws/config folder</p>
+</li>
+<li>
+<p>different way to pass credentials to an aws sdk</p>
+</li>
+<li>
+<p>set environment variables and set the <code>credential_soruce</code> to fetch the creds</p>
+</li>
+<li>configure the ~./aws/credentials file to read the credentials</li>
+<li>the AWS_SDK_LOAD_CONFIG variable which points to the path of credentials folder or file</li>
+<li><code>aws.config.loadFromPath</code> function which reads the credentials from a json file.</li>
+</ul>
+<h2 id="acm">ACM</h2>
+<ul>
+<li>AWS certiicate Manager, services used to create, store and renew public and private ssl/tls certificates</li>
+<li>acm wildcard certificates can be used to protect the subdomains, when the keys are signed by acm certificate authority(CA) they can be used everywhere in the companies public key infrastructure (PKI)</li>
+</ul>
+<h2 id="vpc">VPC</h2>
+<ul>
+<li>
+<p>NACL (Network ACL)</p>
+</li>
+<li>
+<p>use to protect the subnets traffic</p>
+</li>
+<li>its stateless</li>
+</ul>
+<h2 id="ec2">EC2</h2>
+<ul>
+<li>Elastic Cloud Compute</li>
+<li>
+<p>pricing types</p>
+</li>
+<li>
+<p>on Demand (pay per use)</p>
+</li>
+<li>Reserved (prepay and long term)</li>
+<li>spot (fix a max price , the instances are balanced dynamically)</li>
+<li>dedicated</li>
+</ul>
+<p>EBS storage types</p>
+<ol>
+<li>gp2 , gp3 - general purpose (3000 - 16000 IOPS)</li>
+<li>io1,io2,SAN - faster access (16000 - 64000 IOPS) , can be attached to mulitiple instances</li>
+<li>SAN - (256000 IOPS)</li>
+<li>
+<p>st1 (500 mbps), sc1 (250mbps) - hdd storage</p>
+</li>
+<li>
+<p>ec2 instance and ebs volume should be in the same availability zone in order to attach them.</p>
+</li>
+<li>general purpose ssd - virtual desktops , test and dev env, low latency iot devices</li>
+<li>throughput optimized - streaming data</li>
+<li>cold hdd - used for infrequent data</li>
+<li>provisioned i/o - critical sustained processing</li>
+<li>instance profile in ec2 are used to attach the IAM roles to the instace, a single role can be shared by multiple ec2 instances.</li>
+</ol>
+<h2 id="elastic-load-balancer">Elastic Load Balancer</h2>
+<p>types</p>
+<ol>
+<li>application (http / https requests)</li>
+<li>network load (tcp)</li>
+<li>
+<p>gateway load balancers (used to serve third party applications such as firewalls)</p>
+</li>
+<li>
+<p>Main use case is to efficiently forward requests to the appropriate server</p>
+</li>
+<li>the load balancer has a private address by default , it used the x-forwarded-by property to find the ip address of end user</li>
+</ol>
+<p><img alt="alt text" src="../aws1.png" /></p>
+<ul>
+<li>connection draining happens in elb when one of the instance is in draining stage and it reroutes the new requests to the healthy units</li>
+</ul>
+<h2 id="rds">RDS</h2>
+<ul>
+<li>main use case: In case of Transaction data , use RDS if use case need to perform analysis on large data use RedShift</li>
+</ul>
+<p>to improve performance - Read replica snapshots of rds instances are provided
+to resolve disasters - Multiple rds instances are allocated in different Availability zones</p>
+<ul>
+<li>
+<p>two different options to perform backups</p>
+</li>
+<li>
+<p>automated - handled by aws , these are performed in definitive time window, can be stored across multiple time zones</p>
+</li>
+<li>
+<p>manual - a snapshot is created manually by the user and its stored in an s3 bucket (charged) , this snapshot would be having a different RDS endpoint compared to the parent</p>
+</li>
+<li>
+<p>An unencrypted RDS instance can be encrypted by making a manual snaphot and encrypting it.</p>
+</li>
+</ul>
+<p><img alt="alt text" src="../aws2.png" /></p>
+<ul>
+<li>RDS proxy: its used to load balance all the incoming traffic to the rds instance , in case of any instance failures all the transactions are stored in the proxy servers and are resolved post failure resolving process.</li>
+</ul>
+<h2 id="elasticache">ElastiCache</h2>
+<p>In memory storage in aws, two types are available</p>
+<ol>
+<li>memcache (used to store simple cache , session storage of website) - memcache sits in front of an RDS instance</li>
+<li>Redis (complex datatypes, larger applications such as online gaming)</li>
+</ol>
+<p>MemoryDB for redis is alternative to an RDS service</p>
+<h3 id="caching-strategies">Caching Strategies</h3>
+<ul>
+<li>
+<p>different caching strategies in cache</p>
+</li>
+<li>
+<p>write - through --&gt; add data to cache first before writing to the database</p>
+</li>
+<li>read-through --&gt; first queries the cache before making a request to database, then updating the cache</li>
+<li>lazy loading --&gt; load items into the cache only when the items are required to be loaded into cache</li>
+<li>adding ttl --&gt; put a new ttl record to each item , this would reduce the cluttering of the cache and frequent update of the cache.</li>
+</ul>
+<h2 id="parameter-store">Parameter Store</h2>
+<p>System manager service provides the parameter store to encrypt sensitive data and pass on to other resources</p>
+<h2 id="secrets-manager">Secrets Manager</h2>
+<ul>
+<li>AWS secret manager is used to store all the database passwords , api keys . etc.</li>
+<li>rotation of the keys can be enables in secrets manager which is handled by an lambda function</li>
+<li>use programmatic way to retrive keys from the manager</li>
+<li>it uses a key from aws kms to encrypt and it can be replicated in other zones</li>
+</ul>
+<h2 id="ec2-image-builder">EC2 Image Builder</h2>
+<ul>
+<li>EC2 instances can be used to test and build images</li>
+</ul>
+<p><img alt="alt text" src="../aws3.png" /></p>
+<h2 id="s3">S3</h2>
+<p>Simple Storage Service</p>
+<p>Different types</p>
+<ol>
+<li>Standard (general purpose)</li>
+<li>standard - infrequent access (store backup files)</li>
+<li>glacier and glacier archive (large archive data)</li>
+<li>Intelligent Tiering (auto shift between storage types based on access frequency)</li>
+</ol>
+<p>Encryption types</p>
+<ol>
+<li>SSE-S3 (managed by s3 , not by kms - default)</li>
+<li>SSE-KMS (managed by kms)</li>
+<li>SSE-C (managed by customer)</li>
+<li>DSSE-KMS (dual encryption managed by kms)</li>
+</ol>
+<p>By default CORS is disabled between two s3 buckets , edit the properties and allow the host to enable CORS</p>
+<ul>
+<li>
+<p>in the lifecycle policy of the s3 , the following components are decided</p>
+</li>
+<li>
+<p>days after which the storage class should be changed</p>
+</li>
+<li>days after which the object should be removed from the storage service</li>
+</ul>
+<h2 id="cloudfront">CloudFront</h2>
+<p>CDN network provided by aws</p>
+<ol>
+<li>Edge Location (cache location with definitve ttl)</li>
+<li>
+<p>CloudFront origin (origin of files (s3,ec2,elb,r53))</p>
+</li>
+<li>
+<p>Can assign a resource to be restricted by use of signed URL or signed cookies.</p>
+</li>
+</ol>
+<p>additional topics - AWS WAF (firewall) --&gt; mainly used to restrict all the incoming traffic to the origin</p>
+<ul>
+<li>A new origin access identity is required whenever we need to restrict access to the s3 buckets</li>
+</ul>
+<h3 id="allowed-methods">Allowed Methods</h3>
+<ol>
+<li>GET, HEAD (resource_headers) (read-only)</li>
+<li>GET, HEAD, OPTIONS (request_to_know_allowed_methods) (read-only)</li>
+<li>GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE (read-only and write)</li>
+</ol>
+<h3 id="oac">OAC</h3>
+<ul>
+<li>OAC controls access to the origin source in cloudFront</li>
+<li>this acts as a special identity</li>
+</ul>
+<h2 id="athena">Athena</h2>
+<p>Service used to run SQL queries on data stored in s3 buckets</p>
+<p>usecases - log analysis, generating reports based on s3 data, click data analysis</p>
+<ul>
+<li>need to create a new s3 bucket before analysis to store all the results of the queries.</li>
+</ul>
+<p><img alt="alt text" src="../aws4.png" /></p>
+<h2 id="serverless-architectures">ServerLess Architectures</h2>
+<p>diff types of serverless arch</p>
+<ol>
+<li>lambda</li>
+<li>sqs</li>
+<li>sns</li>
+<li>api gateway</li>
+<li>dynamodb</li>
+<li>s3</li>
+</ol>
+<p><img alt="alt text" src="../aws5.png" /></p>
+<h3 id="lamda">lamda</h3>
+<ul>
+<li>serverless arch to run applications and microservices , the run time environment is handled by aws</li>
+<li>priced based on number of requests and memory consumption of the program</li>
+<li>
+<p>different triggers to invove a lamda function</p>
+</li>
+<li>
+<p>change in s3 bucket, dynamo table (any changes to resources)</p>
+</li>
+<li>
+<p>user requests (api gateway to invoke requests)</p>
+</li>
+<li>
+<p>increasing the memory of a lambda function automatically add CPU to the instance.</p>
+</li>
+<li>error handling in lambda functions can be handled by usage of dead letter queues which send the error logs using the sns service.</li>
+<li>lambda provides <code>alias</code> option to maintain different versions of the function, each alias has a unique ARN</li>
+<li>an alias cannot point to another alias, alias routing configuration can be used for sending a specific portion of the incoming traffic to a different version of the function</li>
+<li>
+<p>lambda functions using c#,java,python</p>
+</li>
+<li>
+<p>handler definition in python file_name.handler_function_name</p>
+</li>
+<li>in Java, the main function implements the interface <code>RequestHandler</code>, the handler function is defined as <code>MainClass::MainFunction</code></li>
+<li>in c#, the handler is defined as NameSpace::MainClass.FunctionName</li>
+</ul>
+<h3 id="api-gateway">API Gateway</h3>
+<ul>
+<li>service which sits in front of all RestFul API sockets and handles incoming requests.</li>
+<li>All requests made to API gateway are logged in cloudWatch</li>
+<li>API gateway allows importing of the openAPI profile and also allows SOAP protocol by transforming XML into JSON formats</li>
+<li>API gateway also allows mock integration endpoints for testing, use case when a front end dev team finsihes their code and wants to test but theres no available back end , they can create mock tests to test out the routes</li>
+<li>
+<p>fields in the mock test</p>
+</li>
+<li>
+<p>status code</p>
+</li>
+<li>
+<p>body message</p>
+</li>
+<li>
+<p>API Gateway also provides option of caching , in this option all the responses are cached with a ttl of 300 seconds , any new request made to gateway uses the cache</p>
+</li>
+<li>
+<p>API gateway also allows throttling of the request.</p>
+</li>
+<li>
+<p>by default it allows 10,000 requests per second</p>
+</li>
+<li>if we get more no of requests than the limit , the requests are throttled to the next second without resulting in an 429 server overload response code.</li>
+</ul>
+<h3 id="version-control">version control</h3>
+<ul>
+<li>lambda offers version control to manage different stage od SDLC , $LATEST sign indicates the default version. We can also create aliases in the functions to route traffic between two different versions of the code.</li>
+<li>lambda function can join a vpc and connect or create elastic resources in that particular vpc, need to add additional policies to acheive this.</li>
+</ul>
+<h3 id="step-functions">step functions</h3>
+<ul>
+<li>service to orchestrate several serverless functions, the step function consists of a state machine which handles all the tasks in it.</li>
+<li>
+<p>different types of executions</p>
+</li>
+<li>
+<p>series tasks</p>
+</li>
+<li>parallel tasks</li>
+<li>series + parallel</li>
+<li>branching (conditional statements)</li>
+</ul>
+<h3 id="data-storage-in-lambda-functions">Data storage in lambda functions</h3>
+<p>By default lambda functions are stateless, different options to provide storage to lambda functions</p>
+<ol>
+<li>/tmp (accessible from 512mb to 10gb, works in the same environment and can be shared by all functions using the runtime)</li>
+<li>layers (used to manage all the libraries required for the runtime (50mb ))</li>
+<li>EFS (File system which can be mounted at runtime , it should be in the same vpc as the lambda function, allows dynamic read and writes)</li>
+<li>DynamoDB (files or value directly stored to DB)</li>
+<li>S3 (store files in s3)</li>
+</ol>
+<h2 id="dynamodb">DynamoDB</h2>
+<ul>
+<li>NoSQL database servie provide by aws, it does not have any schema structure , data is stored in tables , each row is an item and each column of the table is an attribute , the data is stored in json format</li>
+<li>
+<p>two types of keys can be used to indicate the primary key</p>
+</li>
+<li>
+<p>partition key</p>
+</li>
+<li>
+<p>partition key + sort key (when a same user has multiple records , a student taking multiple course, in this case user_id+course_id is the PK)</p>
+</li>
+<li>
+<p>access to the DDB is controlled through IAM roles, access can be blocked by adding conditinal statements in policy</p>
+</li>
+</ul>
+<p><img alt="alt text" src="../aws6.png" /></p>
+<ul>
+<li>in this example policy , the condition states only matching records with <code>user_id</code> should be displayed or queried as response.</li>
+<li>a local secondary index can also be used to query results along with a single partition key , a local secondary index must be created at the creation time</li>
+<li>a global secondary index on other hand can be paired up with multiple partion keys spread across table and can be created at any time.</li>
+<li><code>Query</code> is used to scan items in the table based on a partition key along with sort key</li>
+<li><code>Scan</code> is used to scan all the items in the table , does not depend on the primary key or secondary key to scan the items.</li>
+<li>dynamo tables are different in different regions <code>us-east-1</code> and <code>us-west-1</code> would be different.</li>
+</ul>
+<h3 id="read-and-write-capacities">Read and write capacities</h3>
+<ul>
+<li>dynamo db provides Read and write capacity units as metrics</li>
+<li>each <code>READ</code> unit can read 4kb per second data in eventual consistency and 2KB/sec in stong consistency.</li>
+<li>each <code>WRITE</code> unit can write 1kb/sec</li>
+</ul>
+<h3 id="dax">DAX</h3>
+<ul>
+<li>dynamo db offers in memory cache which sits infront of the db</li>
+<li>workflow --&gt; when ever a user queries , it first checks the DAX if its a cache hit , return res, else query db</li>
+<li>usefull in case of eventual read consistency and heavy read intensive applciations , black friday sales</li>
+</ul>
+<h3 id="ttl">TTL</h3>
+<ul>
+<li>dynambo db offers the service to auto remove objects from the table based on a defined ttl.</li>
+<li>the attribute used to set ttl must be in <code>epoch-time</code> format</li>
+</ul>
+<h3 id="dynamodb-streams">DynamoDB Streams</h3>
+<ul>
+<li>its a service which stores time - ordered sequence data in table</li>
+<li>it stores the data for 24 hours</li>
+<li>it has a different api than the dynamo db , its usefull as a trigger for lambda functions.</li>
+<li>all the records are cleaned after 24 hours</li>
+<li>
+<p>usecase</p>
+</li>
+<li>
+<p>when ever a payment record is stored in the db stream , a lambda event is triggered</p>
+</li>
+<li>the lambda event sends a sns notification and adds the item to sqs queue which is processed and a reciet is genereated</li>
+</ul>
+<h3 id="provisionedthroughputexception">ProvisionedThroughPutException</h3>
+<ul>
+<li>when the request exceed the read and write units quota .this exception is thrown</li>
+<li>to avoid this a <code>exponential backoff</code> pattern is followed, (e.g first try 50ms ,second - 100ms , third -200)</li>
+</ul>
+<h2 id="kms">KMS</h2>
+<ul>
+<li>AWS key management service, it can be inherited by other storage services to encrypt / decrypt incoming and outgoing data</li>
+<li>it follows envolope encryption method , where a master key encrypts a data key which in turn is used to encrypt the main data files</li>
+<li>
+<p>useful commands in kms</p>
+</li>
+<li>
+<p>encrypt , decrypt</p>
+</li>
+<li>rotate key (periodically update the customer master key)</li>
+<li>
+<p>generate data key (used to generate a new key , which in turn can be used to encrypt and decrypt other data contents)</p>
+</li>
+<li>
+<p>GenerateDataKeyAPI is used in envolope encryption process</p>
+</li>
+<li>
+<h2 id="envolope-encryption-process-is-used-to-avoid-the-transfer-of-big-data-files-into-kms-server-instead-it-would-just-transfer-just-the-data-key-over-the-network">envolope encryption process is used to avoid the transfer of big data files into kms server , instead it would just transfer just the data key over the network.</h2>
+</li>
+</ul>
+<h2 id="sqs">SQS</h2>
+<ul>
+<li>usecase -&gt; its a pull based queue service sitting between the receiving end and the output receiving end. API calls are made to poll the events from queue</li>
+<li>every item has a visibility timeout (30sec), if the event is not processed within the time limits, its pushed back onto the queue to reprocess.</li>
+<li>default retention period of sqs is 4 days and each item can be &lt;=250kb</li>
+</ul>
+<p>two types of queue are presnet</p>
+<ol>
+<li>standard (default, allows duplicated and can be unordered)</li>
+<li>
+<p>FIFO (ordered queue , rate limit at 300 TPS)</p>
+</li>
+<li>
+<p>Delays can be introduced into the SQS to properly allow the functioning of async operations. default is 0 , max is 900 seconds</p>
+</li>
+<li>
+<p>if file size is &gt;256kb , can use s3 to store the data, in order to perform this the components needed are</p>
+</li>
+<li>
+<p>SQS Extended client for java</p>
+</li>
+<li>aws sdk java</li>
+</ol>
+<p><img alt="alt text" src="../aws7.png" /></p>
+<h2 id="sns">SNS</h2>
+<ul>
+<li>simple notification service , used a pub/sub model to deliver notifications</li>
+<li>a topic is created and all the consumers subscribe to that topic</li>
+<li>can be used to trigger lambda functions</li>
+</ul>
+<h3 id="ses">SES</h3>
+<ul>
+<li>simple email service , its similar to SNS but only for emails , supports both incoming and outgoing mails , mails are stored in an s3 bucket.</li>
+<li>used for marketing , can be used as a trigger to lambda function</li>
+</ul>
+<h2 id="kinesis">Kinesis</h2>
+<ul>
+<li>
+<p>service to provide real time data analyis services , three different types</p>
+</li>
+<li>
+<p>kinesis streams</p>
+</li>
+<li>kinesis data firehose</li>
+<li>data analytics</li>
+</ul>
+<p><img alt="alt text" src="../aws8.png" /></p>
+<h3 id="streams">streams</h3>
+<ul>
+<li>mainly used for data stream analysis or video analysis</li>
+<li>the whole input stream is divided into multiple shards which define the rate limit of the stream</li>
+<li>can connect to lambda for processing and store in s3, or emr or redshift</li>
+</ul>
+<h3 id="data-firehose">data firehose</h3>
+<ul>
+<li>similar to streams but has no shards or no retention</li>
+<li>directly stores data onto the storage units</li>
+</ul>
+<h3 id="data-analytics">data analytics</h3>
+<ul>
+<li>sits in between the kinesis stream and the storage units</li>
+<li>can run on demands sql queries related to BI and store the results in storage units</li>
+</ul>
+<h3 id="consumers">consumers</h3>
+<ul>
+<li>The kinesis provides a Client library which handles the connections between the consumers and the shards</li>
+<li>its a one:many relation , one consumer can process multiple shards.</li>
+<li>whenever a reshard occurs the client library handles the load balancing of the consumers.</li>
+</ul>
+<h2 id="elastic-bean-stack">Elastic Bean Stack</h2>
+<ul>
+<li>PaaS service , which handles all the infrastructer and deploys the applications</li>
+<li>supports docker container or recommended servers</li>
+</ul>
+<h3 id="deployment-options">deployment options</h3>
+<ul>
+<li>for this use case consider all the instances running v1 and need to update to v2</li>
+</ul>
+<p><img alt="alt text" src="../aws9.png" /></p>
+<ol>
+<li>All at once:
+   In this case , all the existing instances are deployed at once , the system is offline during the deployment phase , suitable for testing</li>
+<li>rolling:
+   In this case , the instances are divided into batches and each batch is updated concurrently , suitable for less load servers</li>
+<li>rolling with additional batch :
+   In this case , a additional batch of instances of batch size is initialized , and the batches are deployed by concurrently , no down time of the servers</li>
+<li>immutable:
+   In this case, new instance for each existing instance is initialized before deployment, after the complete deployment the intances are swapped , no down time, preferrable for production servers</li>
+</ol>
+<h3 id="traffic-splitting">traffic splitting</h3>
+<ul>
+<li>In case of immutatble deployment option, a portion of traffic is routed to the new version for a test period, post test pass checks, the slots are swapped.</li>
+</ul>
+<h3 id="advanced-ebs">Advanced EBS</h3>
+<h4 id="script-files">Script Files</h4>
+<ul>
+<li>In pre amazon linux 2 environments, all the configurations such as packages to install, shell commands, creating users, enabling services,configuring load balanncers are present in the .config file</li>
+<li>the .config file should be located in the .ebconfig folder at the root dir</li>
+</ul>
+<p><img alt="alt text" src="../aws10.png" /></p>
+<ul>
+<li>
+<p>In latest versions, the same functionalities are divided into different sections offering modularity</p>
+</li>
+<li>
+<p>BuildFile</p>
+</li>
+<li>
+<p>used to run commands that run for a short time and exit</p>
+</li>
+<li>
+<p>format --&gt; <process_name>:<code>&lt;command&gt;</code></p>
+</li>
+<li>
+<p>ProcFile</p>
+</li>
+<li>
+<p>used for running long commands post start of instance
+  <img alt="alt text" src="../aws11.png" /></p>
+</li>
+</ul>
+<p>3.PlatformHooks</p>
+<ul>
+<li>this files are used to run scripts after the environment is set up in the EBS. Different scripts can be run at different stages of the application runtime.</li>
+</ul>
+<p><img alt="alt text" src="../aws12.png" /></p>
+<h4 id="rds-connections">RDS Connections</h4>
+<ul>
+<li>If an RDS instance is included during the build process of the EBS instance, whenever we terminate the instace the RDS will be terminated and lost.</li>
+<li>To avoid this we can create the RDS instance seperately and include both EBS and RDS inside a security group and pass the database connection details as environment variables.</li>
+</ul>
+<h2 id="cicd">CI/CD</h2>
+<ul>
+<li>aws provides option of maintaining an git repository through codeRepostiory service</li>
+</ul>
+<h2 id="codedeploy">codeDeploy</h2>
+<ul>
+<li>
+<p>provided options for code deployment</p>
+</li>
+<li>
+<p>in-place deployment (replace each instance, will be having reduced performance)</p>
+</li>
+<li>
+<p>blue/green deployment (new instances are issued and new verision is deployed in the green instance, onSuccess the traffic is routed to the new version and the slots are swapped)</p>
+</li>
+<li>
+<p>All the main aspects of the deployment life cycle and configuration files should be present in the <code>appspec.yml</code> file</p>
+</li>
+<li>example of appsec.yml file</li>
+</ul>
+<p><img alt="alt text" src="../aws14.png" /></p>
+<ul>
+<li>
+<p>The phases of the deployment life cycle</p>
+</li>
+<li>
+<p>beforeBlockTraffic (tasks before de-regestering from load balancer)</p>
+</li>
+<li>blockTraffic (task to de-register from load balancer)</li>
+<li>afterBlockTraffic (tasks post de-registering from load balancer)</li>
+<li>applicationStop (tasks to stop the application)</li>
+<li>DownloadBundle (fetch resources from the repo.)</li>
+<li>BeforeInstall (backing up current version)</li>
+<li>Install (copy files to the dest.)</li>
+<li>postInstall (clean up scripts, set permissions)</li>
+<li>ApplicationStart</li>
+<li>ValidateStart</li>
+</ul>
+<p><img alt="alt text" src="../aws15.png" /></p>
+<h2 id="codepipeline">CodePipeline</h2>
+<ul>
+<li>All the stages of the deployments can be included into a pipeline</li>
+<li>It used triggers of cloudWatch to look for changes and initiate pipeline</li>
+</ul>
+<h2 id="ecs">ECS</h2>
+<ul>
+<li>Elastic Container Service - orchestration service</li>
+<li>service to run containers on ec2 instances, each container has its own virtual env, which are run on docker containers</li>
+<li>
+<p>Two different options are provided</p>
+</li>
+<li>
+<p>Running on ec2 instances (option to manage the underlying arch,)</p>
+</li>
+<li>
+<p>AWS Fargate (serverless containers, aws manages the ec2 instances)</p>
+</li>
+<li>
+<p>All the images meants for ECS are stored in Elastic Container Registry</p>
+</li>
+</ul>
+<h2 id="cloudformation">CloudFormation</h2>
+<ul>
+<li>service used to allocate resources based on a template</li>
+<li>used to allocate many resource at a single task , it creates a stack and run's all the queries in the json file</li>
+<li>all the required instances are defined in the <code>resources</code> section</li>
+<li>includes import and export features, to include the features of one template into another and chain the stacks</li>
+<li>
+<p>in the cloudFormation.yaml file</p>
+</li>
+<li>
+<p>cfn-init is used to retrieve metadata, install packages, create files and start services</p>
+</li>
+<li>
+<p>cfn-signal is used to indicate the completion of a process in the stack</p>
+</li>
+<li>
+<p>deletion</p>
+</li>
+</ul>
+<h3 id="severless-application-model">Severless Application Model</h3>
+<ul>
+<li>this service is used mainly to create serverless application instances based on the cloudFormation template</li>
+<li>uses the functions <code>package</code> and <code>deploy</code> for its operations</li>
+<li>The sam cli can be used to test before deployment of the resources</li>
+<li>
+<p>use case testing a lambda function before deployment</p>
+</li>
+<li>
+<p>use <code>sam local start-lambda</code></p>
+</li>
+<li>this would create a docker container to simulate the environment along with mocking if the service requires access to s3 or dynamodb</li>
+<li>creates a local endpoint (localhost://3000)</li>
+<li>invoke the function using <code>sam local invoke</code></li>
+<li>whenever a request arrives at the local end point , the cli routes it to the appropriate docker container and executes it</li>
+</ul>
+<h2 id="cdk">CDK</h2>
+<ul>
+<li>service which is used to allocate and deploy resources based on a code.</li>
+<li>
+<p>the components of the cdk include</p>
+</li>
+<li>
+<p>App context (main object)</p>
+</li>
+<li>Stack (container which is used to define resources)</li>
+<li>
+<p>constructs (individual items inside stack which define the resources)</p>
+</li>
+<li>
+<p>The CDK code is compiled into a cloudFormation template post which it's pushed onto the cloudFormation stack.</p>
+</li>
+</ul>
+<p><img alt="alt text" src="../aws16.png" /></p>
+<h2 id="cloudwatch">cloudWatch</h2>
+<ul>
+<li>service to monitor the aws services</li>
+<li>can be attached to any instance and fetch information at a defined regular intervals</li>
+<li>can install a cloudWatch agent in ec2 instances to collect operating system level information</li>
+<li>can create alarms and triggers use the metrics</li>
+</ul>
+<h2 id="codeguru">CodeGuru</h2>
+<ul>
+<li>service to provide a profiler for application running in aws services or on-premises</li>
+<li>
+<p>A profiler consits of</p>
+</li>
+<li>
+<p>agent - which is installed on application and sends its runtime state to the profiler</p>
+</li>
+<li>console - provides data viz of the performance</li>
+<li>
+<p>api - manage all the profiling groups</p>
+</li>
+<li>
+<p>this service can be attached to an repository to perform code analyis and provide recommendations</p>
+</li>
+</ul>
+<h2 id="aws-directlink-privatelink">AWS DirectLink , PrivateLink</h2>
+<ul>
+<li>
+<p>DirectLink</p>
+</li>
+<li>
+<p>dedicated infrastrcuter provided between the aws resources and the on-prem servers, avoid network traffic congestion</p>
+</li>
+<li>
+<p>useful for tranferring large datasets, hybrid cloud archs,cost-effective data transfers</p>
+</li>
+<li>
+<p>PrivateLink</p>
+</li>
+<li>
+<p>this service is used to create a secure tunnel between the aws resources of other accounts, this avoid connection to the public internet</p>
+</li>
+<li>useful for secure access and maintaining data privacy</li>
+</ul>
+<h2 id="aws-cli">AWS CLI</h2>
+<ul>
+<li>
+<p>the order of presedence in fetching the credentials</p>
+</li>
+<li>
+<p>runtime (terminal or sdk runtime)</p>
+</li>
+<li>environment variables</li>
+<li>./aws/credentials</li>
+<li>./aws/config</li>
+<li>ecs containers</li>
+<li>ec2 instance profiles</li>
+</ul>
+<h2 id="mock-test-important-topics">Mock Test Important Topics</h2>
+<h3 id="cloudwatch-agent-vs-athena-queries-on-s3-storage">CloudWatch Agent vs. Athena Queries on S3 Storage</h3>
+<ul>
+<li><strong>CloudWatch Agents</strong>: Used for monitoring resources.</li>
+<li><strong>Athena Queries</strong>: Used for log analysis, business intelligence, and making reports.</li>
+</ul>
+<h3 id="reserved-concurrency-vs-provisioned-concurrency">Reserved Concurrency vs. Provisioned Concurrency</h3>
+<ul>
+<li><strong>Reserved Concurrency</strong>: Indicates the maximum instances of the Lambda function that can be invoked.</li>
+<li><strong>Provisioned Concurrency</strong>: Indicates the number of instances that are always available to reduce wake-up time.</li>
+</ul>
+<h3 id="when-to-use-system-parameter-store-vs-secrets-manager">When to Use System Parameter Store vs. Secrets Manager</h3>
+<ul>
+<li>Use <strong>System Parameter Store</strong> for non-sensitive data and configuration values.</li>
+<li>Use <strong>Secrets Manager</strong> for managing sensitive information like database credentials, API keys, etc.</li>
+</ul>
+<h3 id="cloudwatch-metrics-costs">CloudWatch Metrics Costs</h3>
+<ul>
+<li>Metrics that incur costs include custom metrics, detailed monitoring for EC2 instances, and additional metrics for certain AWS services.</li>
+</ul>
+<h3 id="lambda-function-alias">Lambda Function Alias</h3>
+<ul>
+<li>Used as a pointer to the version of the function available for deployment.</li>
+</ul>
+<h3 id="strongly-consistent-vs-eventually-consistent">Strongly Consistent vs. Eventually Consistent</h3>
+<ul>
+<li><strong>Strongly Consistent</strong>: Ensures immediate consistency across all copies.</li>
+<li><strong>Eventually Consistent</strong>: Ensures consistency over time, not immediately.</li>
+</ul>
+<h3 id="mfa-authentication-using-cli">MFA Authentication Using CLI</h3>
+<ul>
+<li>Use <code>sts get-session-token</code> to receive temporary credentials valid for 1 hour.</li>
+</ul>
+<h3 id="appspecyaml-file">Appspec.yaml File</h3>
+<ul>
+<li>Used in CodeDeploy to configure security and permissions.</li>
+</ul>
+<h3 id="eb-cli-commands">EB CLI Commands</h3>
+<ul>
+<li>Commands include <code>-r</code> (region), <code>-ip</code> (instance profile), <code>-c</code> (subdomain), <code>-db</code> (relational database), <code>-db.i</code> (specify instance type), <code>-es</code> (enable spot instances), <code>-it</code> (list of EC2 instances required during deployment).</li>
+</ul>
+<h3 id="phi-and-pii-data-types">PHI and PII Data Types</h3>
+<ul>
+<li><strong>PHI</strong>: Protected Health Information.</li>
+<li><strong>PII</strong>: Personally Identifiable Information.</li>
+</ul>
+<h3 id="aws-swf">AWS SWF</h3>
+<ul>
+<li>Service orchestration similar to Step Functions but used for large-scale workflows, capable of running workflows for months.</li>
+</ul>
+<h3 id="amazon-macie">Amazon Macie</h3>
+<ul>
+<li>Service used to detect confidential information (PHI and PII data types) in S3 buckets using classification algorithms.</li>
+</ul>
+<h3 id="aws-privatelink">AWS PrivateLink</h3>
+<ul>
+<li>Allows resources inside a VPC to connect to services privately without exposing data to the public internet.</li>
+</ul>
+<h3 id="aws-identity-center">AWS Identity Center</h3>
+<ul>
+<li>Provides identity provider (IdP) and service provider (SP) services to the workforce.</li>
+</ul>
+<h3 id="event-source-mapping-lambda-functions">Event Source Mapping (Lambda Functions)</h3>
+<ul>
+<li>Invocation of a function based on an SQS event.</li>
+</ul>
+<h3 id="aws-ad-services">AWS AD Services</h3>
+<ul>
+<li>Fully managed Microsoft AD on AWS Cloud, provides an adaptor to bridge on-premise AD and AWS resources.</li>
+</ul>
+<h3 id="aws-snowball-edge">AWS Snowball Edge</h3>
+<ul>
+<li>Used for data transfer and edge computing.</li>
+</ul>
+<h3 id="iam-identity-based-policies-vs-iam-resource-based-policies">IAM Identity-Based Policies vs. IAM Resource-Based Policies</h3>
+<ul>
+<li><strong>Identity-Based Policies</strong>: Attached to IAM users, roles, or groups to define what actions an identity can perform.</li>
+<li><strong>Resource-Based Policies</strong>: Attached directly to resources, defining who can access them.</li>
+</ul>
+<h3 id="waf-use-cases">WAF Use Cases</h3>
+<ul>
+<li>Protection against SQL injection, cross-site scripting, DDoS attacks, IP filtering, and restriction to specific URIs.</li>
+</ul>
+<h3 id="cloudtrail-vs-cloudwatch">CloudTrail vs. CloudWatch</h3>
+<ul>
+<li><strong>CloudTrail</strong>: Logs, API analytics, and security investigations.</li>
+<li><strong>CloudWatch</strong>: Performance monitoring, application-level monitoring.</li>
+</ul>
+<h3 id="s3-security-best-practices">S3 Security Best Practices</h3>
+<ul>
+<li>Use encryption, access control, and logging for securing S3 data.</li>
+</ul>
+<h3 id="ec2-agent">EC2 Agent</h3>
+<ul>
+<li>Similar to CloudWatch agent, focusing on management of EC2 instances.</li>
+</ul>
+<h3 id="using-codedeploy-to-launch-instances-in-microsoft-azure">Using CodeDeploy to Launch Instances in Microsoft Azure</h3>
+<ul>
+<li>Install a CodeDeploy agent on the VM in another cloud provider to make it detectable in the CodeDeploy dashboard.</li>
+</ul>
+<h3 id="availability-of-kms-across-different-regions">Availability of KMS Across Different Regions</h3>
+<ul>
+<li>KMS is region-specific and keys cannot be transferred using AWS Direct Connect.</li>
+</ul>
+<h3 id="sts-options-for-getting-tokens-and-changing-token-validity-time">STS Options for Getting Tokens and Changing Token Validity Time</h3>
+<ul>
+<li>Options include <code>AssumeRole</code>, <code>AssumeRoleWithSAML</code>, <code>AssumeRoleWithWebIdentity</code>.</li>
+</ul>
+<h3 id="key-policy-in-kms">Key Policy in KMS</h3>
+<ul>
+<li>Each KMS key has a policy attached to it, defining the identities who can use the key.</li>
+</ul>
+<h3 id="default-retention-period-of-cloudwatch">Default Retention Period of CloudWatch</h3>
+<ul>
+<li>2 weeks (14 days).</li>
+</ul>
+<h3 id="aws-ssm-agent-and-amazon-quicksight">AWS SSM Agent and Amazon QuickSight</h3>
+<ul>
+<li><strong>SSM Agent</strong>: Installed on EC2, sends details about patches, inventory, and configurations to the System Manager.</li>
+<li><strong>Amazon QuickSight</strong>: BI service for data visualization.</li>
+</ul>
+<h3 id="log-locations-of-different-services-in-ec2-instance">Log Locations of Different Services in EC2 Instance</h3>
+<ul>
+<li><code>app/access.log</code>: Info about the CodeDeploy agent.</li>
+<li><code>/var/log/messages</code>: Directory containing all logs.</li>
+<li><code>/etc/awslogs/awslogs.conf</code>: Info about the CloudWatch agent.</li>
+</ul>
+<h3 id="specifying-resources-required-in-ebs-deployment">Specifying Resources Required in EBS Deployment</h3>
+<ul>
+<li>Use configuration files and CLI commands to specify resources.</li>
+</ul>
+<h3 id="when-to-use-aws-pricing-api">When to Use AWS Pricing API</h3>
+<ul>
+<li>For complex architectures, to fetch all price values in JSON format.</li>
+</ul>
+<h3 id="filters-in-dynamodb">Filters in DynamoDB</h3>
+<ul>
+<li>Annotations can be used for filter expressions. <code>GetTraceSummaries</code> API is used for grouping annotations.</li>
+</ul>
+<h3 id="debugging-lambda-functions">Debugging Lambda Functions</h3>
+<ul>
+<li>Use CloudWatch logs and X-Ray for debugging.</li>
+</ul>
+<h3 id="secondary-indexes-in-dynamodb">Secondary Indexes in DynamoDB</h3>
+<ul>
+<li>Used to query data more efficiently.</li>
+</ul>
+<h3 id="key-grants-in-aws-kms-and-providing-temporary-access-to-kms-keys">Key Grants in AWS KMS and Providing Temporary Access to KMS Keys</h3>
+<ul>
+<li>Key grants provide temporary access to KMS keys.</li>
+</ul>
+<h3 id="approving-every-stage-in-code-deployment-pipeline-before-deployment">Approving Every Stage in Code Deployment Pipeline Before Deployment</h3>
+<ul>
+<li>Use manual approval actions in CodePipeline.</li>
+</ul>
+<h3 id="lambda-power-tuning">Lambda Power Tuning</h3>
+<ul>
+<li>Tool to run several concurrent versions of Lambda functions at different memory configurations.</li>
+</ul>
+<h3 id="cloudwatch-emf">CloudWatch EMF</h3>
+<ul>
+<li>Embedded Metric Format used to publish logs to CloudWatch in a custom format.</li>
+</ul>
+<h3 id="jwt-structure">JWT Structure</h3>
+<ul>
+<li>Consists of three sections: Header, Payload, and Signature.</li>
+</ul>
+<h3 id="aws-x-ray">AWS X-Ray</h3>
+<ul>
+<li>Used to find specific services with errors and high latency. The X-Ray daemon sends data to the API for analytics.</li>
+</ul>
+<h3 id="instance-type-incompatibility-with-elastic-beanstalk">Instance Type Incompatibility with Elastic Beanstalk</h3>
+<ul>
+<li>Capacity reserved instances are incompatible with Elastic Beanstalk as they handle instance creation dynamically.</li>
+</ul>
+<h3 id="aws-sdk-client-for-s3">AWS SDK Client for S3</h3>
+<ul>
+<li>Can be used for client-side encryption before passing data to S3.</li>
+</ul>
+<h3 id="when-to-use-codepipeline-vs-cloudformation">When to Use CodePipeline vs. CloudFormation</h3>
+<ul>
+<li><strong>CodePipeline</strong>: For automated code delivery.</li>
+<li><strong>CloudFormation</strong>: For automated provisioning.</li>
+</ul>
+<h3 id="websocket-api-in-api-gateway">WebSocket API in API Gateway</h3>
+<ul>
+<li>Enables long-time connections with low latency.</li>
+</ul>
+<h3 id="aws-transfer-family-and-global-accelerator">AWS Transfer Family and Global Accelerator</h3>
+<ul>
+<li><strong>AWS Transfer Family</strong>: For setting up SFTP, FTP servers.</li>
+<li><strong>Global Accelerator</strong>: Improves traffic performance using AWS network infrastructure, reducing latency.</li>
+</ul>
+<h3 id="aws-database-migration-service">AWS Database Migration Service</h3>
+<ul>
+<li>Moves on-premises databases to AWS, supports AWS-to-AWS migrations, and converts between different database services (e.g., MySQL to PostgreSQL).</li>
+</ul>
+<h3 id="unauthorized-or-anonymous-access-in-aws-cognito">Unauthorized or Anonymous Access in AWS Cognito</h3>
+<ul>
+<li>Create a <code>guest_role</code> for identity pools to define resources accessible by guest users.</li>
+</ul>
+<h3 id="amazon-rekognition-and-amazon-comprehend">Amazon Rekognition and Amazon Comprehend</h3>
+<ul>
+<li><strong>Amazon Rekognition</strong>: Image and video analysis, object and scene detection, facial analysis, OCR, content moderation.</li>
+<li><strong>Amazon Comprehend</strong>: Natural language processing, sentiment analysis, entity recognition, topic modeling, key phrase extraction, language detection.</li>
+</ul>
+<h3 id="aws-appconfig-aws-msk-aws-appsync">AWS AppConfig, AWS MSK, AWS AppSync</h3>
+<ul>
+<li><strong>AWS AppConfig</strong>: Manages application configurations, controls feature rollouts.</li>
+<li><strong>AWS MSK</strong>: Managed streaming Kafka service for microservices and event-driven architectures.</li>
+<li><strong>AWS AppSync</strong>: Service to build data-driven apps with real-time updates and offline capabilities.</li>
+</ul>
+<h2 id="additional-resources">Additional Resources</h2>
+<p><img alt="alt text" src="../aws17.png" /></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/ajaymarampally"  target="_blank" rel="noopener">Ajay Marampalli</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ajaymarampally" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/ajay_marampalli" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/ajaymarampally" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
