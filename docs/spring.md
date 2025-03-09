@@ -57,16 +57,16 @@ Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutori
 
 This is usefull for performance metrics, input validation and security and providing rbac, rollback transactions on exceptions, custom exception handling, caching, auditing, API rate limiting
 
-| **Use Case**                 | **Description**                               | **Example Annotation** |
-| ---------------------------------- | --------------------------------------------------- | ---------------------------- |
-| **Logging & Monitoring**     | Logs method execution time and method calls.        | `@Around`                  |
-| **Security & Authorization** | Restricts access based on user roles.               | `@Before`                  |
-| **Transaction Management**   | Ensures rollback on failures.                       | `@Transactional`           |
-| **Exception Handling**       | Centralized error handling across services.         | `@AfterThrowing`           |
-| **Caching**                  | Stores frequently used data to improve performance. | `@Cacheable`               |
-| **Auditing**                 | Tracks user activity for compliance.                | `@Before`                  |
-| **API Rate Limiting**        | Prevents abuse by limiting API calls.               | `@Before`                  |
-| **Feature Toggles**          | Enables/disables features dynamically.              | `@Before`                  |
+| **Use Case**                 | **Description**                                     | **Example Annotation** |
+| ---------------------------- | --------------------------------------------------- | ---------------------- |
+| **Logging & Monitoring**     | Logs method execution time and method calls.        | `@Around`              |
+| **Security & Authorization** | Restricts access based on user roles.               | `@Before`              |
+| **Transaction Management**   | Ensures rollback on failures.                       | `@Transactional`       |
+| **Exception Handling**       | Centralized error handling across services.         | `@AfterThrowing`       |
+| **Caching**                  | Stores frequently used data to improve performance. | `@Cacheable`           |
+| **Auditing**                 | Tracks user activity for compliance.                | `@Before`              |
+| **API Rate Limiting**        | Prevents abuse by limiting API calls.               | `@Before`              |
+| **Feature Toggles**          | Enables/disables features dynamically.              | `@Before`              |
 
 Aspect Oriented Programming Concepts in a Nutshell
 
@@ -108,7 +108,7 @@ At the heart and core, reactive programming depends on the observer pattern
 - pub/sub communication model
 
 (
-   workflow --> whenever a subscriber wants to connect to a publisher a subscription is generated which implements all the methods
+workflow --> whenever a subscriber wants to connect to a publisher a subscription is generated which implements all the methods
 )
 
 ![1741056841892](image/spring/1741056841892.png)
@@ -150,12 +150,12 @@ flux.create(
 .subscribe(default_sub)
 ```
 
-- in this case, the main thread handles the creation of the flux, and the other parts are handled by the thread pool
-  (when ever a sub arrives, a new thread fetchs the information not the main thread)
+- in this case, the main thread handles the creation of the flux (pub), and the other parts are handled by the thread pool
+  (when ever a sub arrives, a new thread fetchs the information from the pub, not the main thread)
 
 #### publish on
 
-- this method is used to attach the reactor core scheduler for downstream
+- this method is used to attach the reactor core scheduler for downstream, whenever a publisher starts emitting data and sees a publisher on will assign the task to thread pool
 
 ```java
 flux.create(
@@ -167,3 +167,16 @@ flux.create(
 
 the handling with the schedulers is handled by the scheduler
 
+### BackPressure
+
+- Occurs when subscriber is taking slowly than at the rate pub is producing (sub taking 100 items but pub producing 10000 items)
+
+- to handle this by default reactor.core uses a queue to maintain the buffer stream and has a default max value of 256
+
+- If the sub is taking at a slow rate, pub would produce till the max and wait until
+
+methods to handle the back pressure manually (in case of flux.create())
+
+1. Add an additonal buffer (this would store the items and pass on to subscriber) (onBackPressureBuffer)
+2. thrown an error, in this case, whenever upstream produces more than the buffer size (an error will be thrown)
+3. Drop strategy --> in this case, a operator drops the extra items from the upstream, lets say sub takes 2 items and pub produces 20 items, 18 items would be dropped
