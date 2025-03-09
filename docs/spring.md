@@ -1,4 +1,4 @@
-# sJava Spring FrameWork
+# Java Spring FrameWork
 
 Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutorial/learn/lecture/36828980#overview)
 
@@ -155,7 +155,7 @@ flux.create(
 
 #### publish on
 
-- this method is used to attach the reactor core schedule for downstream
+- this method is used to attach the reactor core scheduler for downstream
 
 ```java
 flux.create(
