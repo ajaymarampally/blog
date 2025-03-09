@@ -139,3 +139,37 @@ At the heart and core, reactive programming depends on the observer pattern
 - In general scenarion the creation of the flux object and the subscription and data stream is handled by the main thread
 - If we want to avoid this and let only the main thread handle the creation process, we can use schedulers
 
+to get this functionalities, reactor provides schedulers, reactor.core.scheduler
+
+- different modes
+
+1. boundedElastic --> useful for network bound calls
+2. parallel --> useful for computive intense
+
+#### subscribe on
+
+- this method is used to attach the reactor core schedule for upstream, example
+```java
+flux.create(
+   //logic for emit and complete
+)
+.subscribeOn(Scheduler.boundedElatic())
+.subscribe(default_sub)
+```
+
+- in this case, the main thread handles the creation of the flux, and the other parts are handled by the thread pool
+(when ever a sub arrives, a new thread fetchs the information not the main thread)
+
+#### publish on
+
+- this method is used to attach the reactor core schedule for downstream
+
+```java
+flux.create(
+   //logic for emit and complete
+)
+.publishOn(Scheduler.boundedElatic())
+.subscribe(default_sub)
+```
+the handling with the schedulers is handled by the scheduler
+
