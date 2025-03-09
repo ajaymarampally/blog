@@ -1,4 +1,4 @@
-# Java Spring FrameWork
+# sJava Spring FrameWork
 
 Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutorial/learn/lecture/36828980#overview)
 
@@ -57,7 +57,6 @@ Course Link - [Chad Darby](https://gale.udemy.com/course/spring-hibernate-tutori
 
 This is usefull for performance metrics, input validation and security and providing rbac, rollback transactions on exceptions, custom exception handling, caching, auditing, API rate limiting
 
-
 | **Use Case**                 | **Description**                               | **Example Annotation** |
 | ---------------------------------- | --------------------------------------------------- | ---------------------------- |
 | **Logging & Monitoring**     | Logs method execution time and method calls.        | `@Around`                  |
@@ -80,7 +79,6 @@ Aspect Oriented Programming Concepts in a Nutshell
 6. Weaving (How): This is the director's job. It's how the script (Aspect) is turned into a movie. In Spring AOP, this happens at runtime.
 7. Proxy (The Double): This is the stunt double in your movie. In Spring AOP, it's the object that is created after applying advice to the target object. It's the one that takes the hits, performs the stunts, and makes the main character (Target Object) look good.
 
-
 ## Reactive Programming
 
 process - a singular unit with a set of resources attached to it and used at the runtime
@@ -98,16 +96,15 @@ non-blocking + async - a thread, creates a new thread to deleagate, the new thre
 
 1. request --> response : classic type of communication, for each request a response is delivered
 2. request --> streaming response: A single request is made and stream of response are delivered
-(booked a cab (req), server sends stream responses , (driver details, time to arrival))
+   (booked a cab (req), server sends stream responses , (driver details, time to arrival))
 3. streaming request --> response : A single request is initiated to the server, and multiple requests are made
-(Galaxy watch sending sensor data to the server)
+   (Galaxy watch sending sensor data to the server)
 4. bi directional : multiple requests and multiple responses (singular connections, but stream of req's and responses)
 
 At the heart and core, reactive programming depends on the observer pattern
 
 - in this pattern, a set of chained reactive calls are made, when any change is observed
-(input height in number --> conversion in diff units)
-
+  (input height in number --> conversion in diff units)
 - pub/sub communication model
 
 (
@@ -117,16 +114,11 @@ At the heart and core, reactive programming depends on the observer pattern
 ![1741056841892](image/spring/1741056841892.png)
 
 - processors - the intermit units between the publishers and subscribers who can acts as the both
-
 - Reactor is the implementation of the pub/sub commnication model
-
 - Mono: in this model, the publisher always emits 0 or 1 item
 - Flux: in this model, publisher can emit 0 .. N items at once
-
 - backpressure --> occurs when producers sends more data than a consumer can handle
-
-- Mono.just(<T> value) --> creates a publisher with a single value, subscribers can subscribe to fetch the values
-
+- Mono.just(`<T>` value) --> creates a publisher with a single value, subscribers can subscribe to fetch the values
 - Mono.fromSupplier(()-> ()) --> used to delay the emit, the value is computed and emitted only when subscription is made.
 
 ### Hot/ Cold publisher
@@ -149,6 +141,7 @@ to get this functionalities, reactor provides schedulers, reactor.core.scheduler
 #### subscribe on
 
 - this method is used to attach the reactor core schedule for upstream, example
+
 ```java
 flux.create(
    //logic for emit and complete
@@ -158,7 +151,7 @@ flux.create(
 ```
 
 - in this case, the main thread handles the creation of the flux, and the other parts are handled by the thread pool
-(when ever a sub arrives, a new thread fetchs the information not the main thread)
+  (when ever a sub arrives, a new thread fetchs the information not the main thread)
 
 #### publish on
 
@@ -171,5 +164,6 @@ flux.create(
 .publishOn(Scheduler.boundedElatic())
 .subscribe(default_sub)
 ```
+
 the handling with the schedulers is handled by the scheduler
 
