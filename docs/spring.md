@@ -125,3 +125,17 @@ At the heart and core, reactive programming depends on the observer pattern
 
 - backpressure --> occurs when producers sends more data than a consumer can handle
 
+- Mono.just(<T> value) --> creates a publisher with a single value, subscribers can subscribe to fetch the values
+
+- Mono.fromSupplier(()-> ()) --> used to delay the emit, the value is computed and emitted only when subscription is made.
+
+### Hot/ Cold publisher
+
+- in case of cold publisher , each subscriber would get its own flux stream , in case of netflix , its acts as a cold pub
+- in case of hot publisher , each subscriber would get the parent flux stream , in case of football match streaming
+
+### scheduler
+
+- In general scenarion the creation of the flux object and the subscription and data stream is handled by the main thread
+- If we want to avoid this and let only the main thread handle the creation process, we can use schedulers
+
